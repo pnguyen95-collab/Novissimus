@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8331137515570524358}
   m_Layer: 0
   m_Name: Block 1
-  m_TagString: Untagged
+  m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60,7 +60,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9d76f9a731922494bb1f8a145e74ec7e, type: 2}
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 206508d14b2ef4e4baf2628cf75e6b5f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -109,3 +110,11 @@ MonoBehaviour:
   visit: -1
   x: 0
   y: 0
+  stepLimit: 0
+  standable: 1
+  occupied: 0
+  pathActive: 0
+  mouseOver: 0
+  walkAble: 0
+  gridBehaviorCode: {fileID: 0}
+  gc: {fileID: 0}
