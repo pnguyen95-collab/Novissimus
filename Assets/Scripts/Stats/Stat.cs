@@ -6,7 +6,7 @@ using UnityEngine;
 public class Stat 
 {
     [SerializeField]
-    private int baseValue=0;
+    private int baseValue;
 
     //Get the current value of stats after modifiers
     public int GetValue ()
