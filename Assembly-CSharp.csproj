@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\ButtonsFunctions.cs" />
     <Compile Include="Assets\Scripts\CameraManagement.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Grid\GridAI.cs" />
     <Compile Include="Assets\Scripts\Grid\GridBehavior.cs" />
     <Compile Include="Assets\Scripts\Grid\GridStat.cs" />
     <Compile Include="Assets\Scripts\PlayerBehavior.cs" />
