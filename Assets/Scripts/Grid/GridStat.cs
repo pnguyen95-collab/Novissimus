@@ -1,76 +1,127 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class GridStat : MonoBehaviour
 {
+    //This class is for each block of the grid map
+
     public int visit = -1;
     public int x = 0;
     public int y = 0;
-    public bool standable = true;
+    public int stepLimit; //store step limit of the player that active
+    
+    public bool standable = true; //permanent value. determine if it is an obstacle
+    public bool occupied = false; //changeable based on playable characters
+    public bool pathActive = false; //showing the path that the player takes
+    public bool mouseOver = false; //check if rn Mouse is over the object
+    public bool walkAble = false; //use this to check if the object's pos is walkable for the player
 
-    public int status;
-    // Start is called before the first frame update
+    
+    public GridBehavior gridBehaviorCode;
+    public GameObject gc;
+
+
     void Start()
     {
-        status = 0;
+        stepLimit = 0;
+        gc = GameObject.FindGameObjectWithTag("GameController");
+        gridBehaviorCode = gc.GetComponent<GridBehavior>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        StandableStatus();
 
+        VisitedColor();
 
-        switch (status)
+        if (occupied == true)
         {
-            case 0:
-                this.GetComponent<Renderer>().material.color = Color.white;
-                break;
-            case 1:
-                this.GetComponent<Renderer>().material.color = Color.yellow;
-                StartCoroutine(ChangeColorBack());
-                break;
-            case 2:
-                this.GetComponent<Renderer>().material.color = Color.green;
-                break;
-            case 3:
-                this.GetComponent<Renderer>().material.color = Color.gray;
-                break;
-            case 4:
-                this.GetComponent<Renderer>().material.color = Color.red;
-                break;
+            SetGridColor(Color.gray);
+        }
 
-        }             
+        if (standable == false)
+        {
+            SetGridColor(Color.red);
+        }
+
+        if (pathActive == true)
+        {
+            SetGridColor(Color.yellow);
+            
+        }
+
+        if (standable == true && occupied==false && visit==-1)
+        {
+            SetGridColor(Color.white);
+        }
+
+
     }
 
     private void OnMouseOver()
     {
-        this.status = 3;
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
+        SetGridColor(Color.gray);
+        mouseOver = true;
+    }
+    private void OnMouseExit()
+    {
+        SetGridColor(Color.white);
+        mouseOver = false;
     }
 
-
-    void OnMouseExit()
+    //associate with the color of the grid based on player's speed limit
+    void VisitedColor()
     {
-         this.status = 0;
-    }
-
-    IEnumerator ChangeColorBack()
-    {
-        //yield on a new YieldInstruction that waits for 5 seconds.
-        yield return new WaitForSeconds(2);
-
-        this.status = 0;
-
-        //yield return false;
-    }
-
-    void StandableStatus()
-    {
-        if (standable == false)
+        if (visit < stepLimit && visit > 0)
         {
-            this.status = 4;
+            if (mouseOver == true)
+            {
+                SetGridColor(Color.blue);
+                walkAble = true;
+            }
+            else
+            {
+                SetGridColor(Color.cyan);
+            }
         }
-            
+        else if (visit == -1)
+        {
+            SetGridColor(Color.white);
+            walkAble = false;
+        }
     }
+
+    //return x and y of this object
+    public int[] GetXYPoints()
+    {
+        int[] points = new int[2];
+
+        points[0] = x;
+        points[1] = y;
+
+        return points;
+    }
+
+    //player click the object
+    private void OnMouseDown()
+    {
+        if (walkAble == true)
+        {
+
+           
+        }
+    }
+
+    //just function to change color
+    void SetGridColor(Color x)
+    {
+        this.GetComponent<Renderer>().material.color = x;
+    }
+
+    
 }
