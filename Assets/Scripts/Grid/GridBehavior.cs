@@ -9,6 +9,7 @@ public class GridBehavior : MonoBehaviour
     public int columns = 20;
     public int scale = 1;
     public GameObject gridPrefab;
+    public GameObject enemyPrefeb;
     public GameObject playerPrefab;
     public Vector3 leftBottomLocation = new Vector3(0, 0, 0);
     public GameObject[,] gridArray;
@@ -93,6 +94,9 @@ public class GridBehavior : MonoBehaviour
         GeneratePlayer(0, 0);
         GeneratePlayer(4, 0);
         GeneratePlayer(6, 0);
+        GenerateEnemy(5, 5);
+        GenerateEnemy(5, 6);
+
     }
 
     void GenerateObstacle(int x, int y)
@@ -103,6 +107,12 @@ public class GridBehavior : MonoBehaviour
     void GeneratePlayer(int x, int y)
     {
         GameObject player = Instantiate(playerPrefab, new Vector3(leftBottomLocation.x + scale * x, leftBottomLocation.y + scale, leftBottomLocation.z + scale * y), Quaternion.identity);
+        player.transform.SetParent(gridArray[x, y].transform);
+    }
+
+    void GenerateEnemy(int x, int y)
+    {
+        GameObject player = Instantiate(enemyPrefeb, new Vector3(leftBottomLocation.x + scale * x, leftBottomLocation.y + scale, leftBottomLocation.z + scale * y), Quaternion.identity);
         player.transform.SetParent(gridArray[x, y].transform);
     }
 

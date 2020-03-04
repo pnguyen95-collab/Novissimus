@@ -18,7 +18,8 @@ public class PlayerBehavior : MonoBehaviour
     public Vector3[] positions; //Positions store the Points of blocks that player will walk through
 
     public bool triggerMoving;
-    public bool playerIsActive;
+    public bool playerIsActive; //to check if this player is selected
+    public bool playerIsPlayable; //still can perform actions (walk,attack)
     
     
    
@@ -37,6 +38,7 @@ public class PlayerBehavior : MonoBehaviour
         speedOfBallMoving = 1;
 
         playerIsActive = false;
+        playerIsPlayable = true;
 
     }
 
@@ -51,6 +53,13 @@ public class PlayerBehavior : MonoBehaviour
         if(triggerMoving==true)
         {
             StartCoroutine(MultipleLerp(positions, speedOfBallMoving));
+
+            triggerMoving = false;
+            gridBehaviorCode.resetVisit();
+            playerIsActive = false;
+            playerIsPlayable = false;
+            //gmCode.countNumOfPlayer++;
+            gmCode.setCurrentPlayer(null);
         }
     }
 
@@ -62,16 +71,29 @@ public class PlayerBehavior : MonoBehaviour
             if (EventSystem.current.IsPointerOverGameObject())
                 return;
 
-            gmCode.setOnOffMenu(true);
+            if (playerIsPlayable == true)
+            {
+                gmCode.setOnOffMenu(true);
 
 
 
-            int x = parent.GetComponent<GridStat>().x;
-            int y = parent.GetComponent<GridStat>().y;
+                int x = parent.GetComponent<GridStat>().x;
+                int y = parent.GetComponent<GridStat>().y;
+
+                gridBehaviorCode.FindSelectableBlock(x, y, limitNum);
+                playerIsActive = true;
+                gmCode.setCurrentPlayer(this.gameObject);
+            }
+            else 
+            {
+                if (gmCode.turnStatus == 0)
+                    print("player already moved");
+                else
+                    print("Enemy turn");
+            }
             
-            gridBehaviorCode.FindSelectableBlock(x,y,limitNum);
-            playerIsActive = true;
-            gmCode.setCurrentPlayer(this.gameObject);
+
+            
 
         }
         else if (Input.GetMouseButtonDown(1))
@@ -131,7 +153,6 @@ public class PlayerBehavior : MonoBehaviour
         else
         {
             print("over block limit");
-
         }
 
 
@@ -154,10 +175,7 @@ public class PlayerBehavior : MonoBehaviour
             transform.position = _pos[i];
             startPos = _pos[i];
         }
-        triggerMoving = false;
-        gridBehaviorCode.resetVisit();
-        playerIsActive = false;
-        gmCode.setCurrentPlayer(null);
+        
         yield return false;
     }
 

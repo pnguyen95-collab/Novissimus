@@ -12,6 +12,11 @@ public class GameManager : MonoBehaviour
     public GameObject currentPlayer;
     public GameObject menuPanel;
     public GridBehavior gridBehaviorCode;
+    public int turnStatus; // 0 = player , 1 = enemy
+    public int numOfPlayer;
+    public int countNumOfPlayer;
+    public int numOfEnemy;
+    public int countNumOfEnemy;
 
     // Start is called before the first frame update
     void Start()
@@ -20,12 +25,21 @@ public class GameManager : MonoBehaviour
         runRaycast = false;
         menuPanel = GameObject.Find("PlayerMenuPanel");
         setOnOffMenu(false);
+        turnStatus = 0;
+
+        players = GameObject.FindGameObjectsWithTag("Player");
+        numOfPlayer = players.Length;
+        numOfEnemy = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        countNumOfEnemy = 0;
+        countNumOfPlayer = 0;
         
     }
 
     // Update is called once per frame
     void Update()
     {
+        checkTurn(); 
+
         if (runRaycast == true)
         {
 
@@ -85,5 +99,60 @@ public class GameManager : MonoBehaviour
         menuPanel.SetActive(x);
     }
 
+    public void checkTurn()
+    {
+        int tempPlayerNum = 0;
+        int tempEnemyNum = 0;
+
+        if (turnStatus == 0)
+        {
+            foreach (GameObject p in players)
+            {
+                if (p.GetComponent<PlayerBehavior>().playerIsPlayable == false)
+                {
+                    tempPlayerNum++;
+                }
+            }
+
+            if (tempPlayerNum == numOfPlayer)
+            {
+                turnStatus = 1;
+                //all enemies are active
+            }
+        }
+        else if (turnStatus == 1)
+        {
+            /*
+       foreach (GameObject e in enemies)
+       {
+           if (p.GetComponent<PlayerBehavior>().playerIsPlayable == false)
+           {
+               tempEnemyNum++;
+           }
+       }
+       */
+
+        if (countNumOfEnemy == numOfEnemy)
+            {
+                turnStatus = 0;
+                countNumOfEnemy = 0;
+                foreach (GameObject p in players)
+                {
+                    p.GetComponent<PlayerBehavior>().playerIsPlayable = true;
+                }
+            }
+        }
+
+
+
+
+
+
+      
+
+
+       
+        
+    }
     
 }
