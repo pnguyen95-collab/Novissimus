@@ -1186,7 +1186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8900e3e2082d83448f854016e0ee1bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 10
 --- !u!1 &951217305
 GameObject:
   m_ObjectHideFlags: 0
@@ -1652,6 +1652,16 @@ MonoBehaviour:
   path: []
   AdjacencyList: []
   one: {fileID: 0}
+  playerSpawn:
+  - spawnXY: {x: 0, y: 0}
+  - spawnXY: {x: 4, y: 0}
+  - spawnXY: {x: 6, y: 0}
+  enemySpawn:
+  - spawnXY: {x: 5, y: 5}
+  - spawnXY: {x: 5, y: 6}
+  obstacleSpawn:
+  - spawnXY: {x: 2, y: 0}
+  - spawnXY: {x: 2, y: 2}
 --- !u!114 &1444609427
 MonoBehaviour:
   m_ObjectHideFlags: 0

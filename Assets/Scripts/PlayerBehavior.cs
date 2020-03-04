@@ -12,7 +12,7 @@ public class PlayerBehavior : MonoBehaviour
     public GameObject gm;
     public GameObject parent;
 
-    public int limitNum; //Limit of block that player can move
+    public CharacterStats limitNum; //Limit of block that player can move
     public float speedOfBallMoving; //just for speed of the object movement
 
     public Vector3[] positions; //Positions store the Points of blocks that player will walk through
@@ -30,9 +30,8 @@ public class PlayerBehavior : MonoBehaviour
         gridBehaviorCode = gm.GetComponent<GridBehavior>();
         gmCode = gm.GetComponent<GameManager>();
 
-        
-        //set limit num
-        limitNum = 5;
+        //set limit num (stats from stat system)
+        limitNum = GetComponent<CharacterStats>();
 
         triggerMoving = false;
         speedOfBallMoving = 1;
@@ -80,7 +79,7 @@ public class PlayerBehavior : MonoBehaviour
                 int x = parent.GetComponent<GridStat>().x;
                 int y = parent.GetComponent<GridStat>().y;
 
-                gridBehaviorCode.FindSelectableBlock(x, y, limitNum);
+                gridBehaviorCode.FindSelectableBlock(x, y, limitNum.moveSpeed.GetValue());
                 playerIsActive = true;
                 gmCode.setCurrentPlayer(this.gameObject);
             }
@@ -122,7 +121,7 @@ public class PlayerBehavior : MonoBehaviour
         currentY = parent.GetComponent<GridStat>().y;
 
         
-        bool walkable = gridBehaviorCode.RunThePath(currentX, currentY, endX, endY, limitNum);
+        bool walkable = gridBehaviorCode.RunThePath(currentX, currentY, endX, endY, limitNum.moveSpeed.GetValue());
 
 
         //check if it over block limit
