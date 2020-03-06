@@ -232,7 +232,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -20, y: 24.640015}
+  m_AnchoredPosition: {x: -252, y: 0}
   m_SizeDelta: {x: 732.6, y: 137.35999}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &95419921
@@ -260,7 +260,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 53
-    m_Alignment: 5
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -644,6 +644,8 @@ MonoBehaviour:
   damage:
     baseValue: 2
   moveSpeed:
+    baseValue: 0
+  attackRange:
     baseValue: 0
   currentHealth: 0
 --- !u!4 &363610354
@@ -1232,7 +1234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8900e3e2082d83448f854016e0ee1bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 10
 --- !u!1 &828266975
 GameObject:
   m_ObjectHideFlags: 0
@@ -1601,7 +1603,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Grid: 20 by 20
 
-    GridNum start from 0 -19'
+    Combat Map'
 --- !u!222 &1261826470
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1750,6 +1752,16 @@ MonoBehaviour:
   path: []
   AdjacencyList: []
   one: {fileID: 0}
+  playerSpawn:
+  - spawnXY: {x: 0, y: 0}
+  - spawnXY: {x: 4, y: 0}
+  - spawnXY: {x: 6, y: 0}
+  enemySpawn:
+  - spawnXY: {x: 5, y: 5}
+  - spawnXY: {x: 5, y: 6}
+  obstacleSpawn:
+  - spawnXY: {x: 2, y: 0}
+  - spawnXY: {x: 2, y: 2}
 --- !u!114 &1444609427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1773,6 +1785,8 @@ MonoBehaviour:
   countNumOfPlayer: 0
   numOfEnemy: 0
   countNumOfEnemy: 0
+  limitTurns: 0
+  turnCountdown: 0
 --- !u!114 &1444609428
 MonoBehaviour:
   m_ObjectHideFlags: 0

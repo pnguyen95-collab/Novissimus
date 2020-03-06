@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4293874760581702379}
   - component: {fileID: 4293874760581702378}
   - component: {fileID: 6562446583789586902}
-  - component: {fileID: 8875479615302304535}
+  - component: {fileID: 5759600858116839322}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -113,12 +113,15 @@ MonoBehaviour:
   gmCode: {fileID: 0}
   gm: {fileID: 0}
   parent: {fileID: 0}
+  particleChildForSelected: {fileID: 0}
+  particleChildForPlayable: {fileID: 0}
   speedOfBallMoving: 0
+  moveOrAttack: 0
   positions: []
   triggerMoving: 0
   playerIsActive: 0
   playerIsPlayable: 0
---- !u!114 &8875479615302304535
+--- !u!114 &5759600858116839322
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,10 +130,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4293874760581702377}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e50d78d5857cfd34c8e6b8be9df60775, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f5e4c0adfa351f45beae66e6a12d376, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  limitNum: 0
-  attackDamage: 0
-  attackRange: 0
+  maxHealth:
+    baseValue: 20
+  damage:
+    baseValue: 3
+  moveSpeed:
+    baseValue: 5
+  currentHealth: 0

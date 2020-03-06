@@ -18,6 +18,7 @@ public class GridStat : MonoBehaviour
     public bool pathActive = false; //showing the path that the player takes
     public bool mouseOver = false; //check if rn Mouse is over the object
     public bool interactable = false; //use this to check if the object's pos is walkable for the player
+    public bool resourceNode = false; //turn on if is a resource node
     
 
     
@@ -39,7 +40,7 @@ public class GridStat : MonoBehaviour
     {
         
         VisitedColor();
-        checkOccupied();
+        //checkOccupied();
 
         if (occupied == true)
         {
@@ -60,6 +61,11 @@ public class GridStat : MonoBehaviour
         if (standable == true && occupied==false && visit==-1)
         {
             SetGridColor(Color.white);
+        }
+
+        if (resourceNode == true)
+        {
+            SetGridColor(Color.gray);
         }
 
 
@@ -124,17 +130,17 @@ public class GridStat : MonoBehaviour
         return points;
     }
 
-    public void checkOccupied()
-    {
-        if (this.transform.childCount > 0)
-        {
-            occupied = true;
-        }
-        else
-        {
-            occupied = false;
-        }
-    }
+    //public void checkOccupied()
+    //{
+    //    if (this.transform.childCount > 0)
+    //    {
+    //        occupied = true;
+    //    }
+    //    else
+    //    {
+    //        occupied = false;
+    //    }
+    //}
 
     //just function to change color
     void SetGridColor(Color x)

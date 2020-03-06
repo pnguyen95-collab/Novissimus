@@ -18,21 +18,39 @@ public class ButtonsFunctions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gmCode.turnStatus == 0)
+        //check to see if combat/resource grid
+        if (gmCode.limitTurns == false)
         {
-            turnStatus.text = "Turn: Player";
-            turnStatus.color = Color.blue;
+            if (gmCode.turnStatus == 0)
+            {
+                turnStatus.text = "Turn: Player";
+                turnStatus.color = Color.blue;
+            }
+
+            if (gmCode.turnStatus == 1)
+            {
+                turnStatus.text = "Turn: Enemy";
+                turnStatus.color = Color.red;
+            }
         }
-        else if (gmCode.turnStatus == 1)
+        else if (gmCode.limitTurns == true)
         {
-            turnStatus.text = "Turn: Enemy";
-            turnStatus.color = Color.red;
+            if (gmCode.turnStatus == 0)
+            {
+                turnStatus.text = "Turns Remaining: " + gmCode.turnCountdown;
+                turnStatus.color = Color.blue;
+            }
+            if (gmCode.turnStatus == 1)
+            {
+                turnStatus.text = "Time's Up";
+                turnStatus.color = Color.green;
+            }
         }
         else
         {
-            print("turn status text error");
-            turnStatus.color = Color.green;
+            print ("error with turn display UI");
         }
+
     }
 
     public void MoveButton()

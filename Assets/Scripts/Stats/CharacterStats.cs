@@ -5,6 +5,7 @@ public class CharacterStats : MonoBehaviour
     public Stat maxHealth;
     public Stat damage;
     public Stat moveSpeed;
+    public Stat attackRange;
 
     public int currentHealth;
 

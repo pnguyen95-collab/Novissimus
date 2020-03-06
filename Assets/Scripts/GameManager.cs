@@ -19,6 +19,10 @@ public class GameManager : MonoBehaviour
     public int numOfEnemy;
     public int countNumOfEnemy;
 
+    //boolean to trigger whether or not there's a limited number of turns
+    public bool limitTurns = false;
+    public int turnCountdown;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +39,13 @@ public class GameManager : MonoBehaviour
         numOfEnemy = GameObject.FindGameObjectsWithTag("Enemy").Length;
         countNumOfEnemy = 0;
         countNumOfPlayer = 0;
+
+        //set how many turns countdown to countdown until return to base
+        if (limitTurns == true)
+        {
+            turnCountdown = 10;
+            Debug.Log("You have " + turnCountdown + " turns remaining!");
+        }
         
     }
 
@@ -205,6 +216,22 @@ public class GameManager : MonoBehaviour
 
             if (tempPlayerNum == numOfPlayer)
             {
+                //check if limit turns is true
+                if (limitTurns == true)
+                {
+                    turnCountdown -= 1;
+                    Debug.Log("You have " + turnCountdown + " turns remaining!");
+
+                    //check if turn countdown is 0
+                    if (turnCountdown == 0)
+                    {
+                        //function to return to base
+                        turnStatus = 1;
+
+                        Debug.Log("You are forced to return to base.");
+                    }
+                }
+
                 turnStatus = 1;
                 //all enemies are active
             }
@@ -221,8 +248,6 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-
-
 
 
 

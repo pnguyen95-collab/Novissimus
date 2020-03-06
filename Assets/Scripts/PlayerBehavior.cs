@@ -8,7 +8,7 @@ public class PlayerBehavior : MonoBehaviour
 {
     
     public GridBehavior gridBehaviorCode;
-    public PlayerStats playerStats;
+    public CharacterStats playerStats;
     public GameManager gmCode;
     public GameObject gm;
     public GameObject parent;
@@ -37,7 +37,7 @@ public class PlayerBehavior : MonoBehaviour
         gm = GameObject.FindGameObjectWithTag("GameController");
         gridBehaviorCode = gm.GetComponent<GridBehavior>();
         gmCode = gm.GetComponent<GameManager>();
-        playerStats = this.GetComponent<PlayerStats>();
+        playerStats = this.GetComponent<CharacterStats>();
         
        
 
@@ -123,7 +123,7 @@ public class PlayerBehavior : MonoBehaviour
         moveOrAttack = 0;
         int x = parent.GetComponent<GridStat>().x;
         int y = parent.GetComponent<GridStat>().y;
-        gridBehaviorCode.FindSelectableBlock(x, y, playerStats.limitNum);
+        gridBehaviorCode.FindSelectableBlock(x, y, playerStats.moveSpeed.GetValue());
         
     }
 
@@ -132,7 +132,7 @@ public class PlayerBehavior : MonoBehaviour
         moveOrAttack = 1;
         int x = parent.GetComponent<GridStat>().x;
         int y = parent.GetComponent<GridStat>().y;
-        gridBehaviorCode.FindSelectableBlock(x, y, playerStats.attackRange);
+        gridBehaviorCode.FindSelectableBlock(x, y, playerStats.attackRange.GetValue());
         
     }
 
@@ -149,7 +149,7 @@ public class PlayerBehavior : MonoBehaviour
         currentY = parent.GetComponent<GridStat>().y;
 
         
-        bool walkable = gridBehaviorCode.RunThePath(currentX, currentY, endX, endY, playerStats.limitNum);
+        bool walkable = gridBehaviorCode.RunThePath(currentX, currentY, endX, endY, playerStats.moveSpeed.GetValue());
 
 
         //check if it over block limit
@@ -209,7 +209,7 @@ public class PlayerBehavior : MonoBehaviour
     {
         if (target.GetComponent<EnemyStats>() != null)
         {
-            target.GetComponent<EnemyStats>().health = target.GetComponent<EnemyStats>().health - playerStats.attackDamage;
+            target.GetComponent<EnemyStats>().health = target.GetComponent<EnemyStats>().health - playerStats.damage.GetValue();
             this.playerIsPlayable = false;
             this.playerIsActive = false;
             gmCode.setCurrentPlayer(null);
