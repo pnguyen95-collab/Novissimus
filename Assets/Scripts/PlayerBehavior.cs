@@ -86,16 +86,16 @@ public class PlayerBehavior : MonoBehaviour
 
             if (playerIsPlayable == true)
             {
-                gmCode.setOnOffMenu(gmCode.menuPanel,true);
+                    gmCode.setOnOffMenu(gmCode.menuPanel, true);
 
 
 
-                int x = parent.GetComponent<GridStat>().x;
-                int y = parent.GetComponent<GridStat>().y;
+                    int x = parent.GetComponent<GridStat>().x;
+                    int y = parent.GetComponent<GridStat>().y;
 
-                //gridBehaviorCode.FindSelectableBlock(x, y, playerStats.limitNum);
-                playerIsActive = true;
-                gmCode.setCurrentPlayer(this.gameObject);
+                    //gridBehaviorCode.FindSelectableBlock(x, y, playerStats.limitNum);
+                    playerIsActive = true;
+                    gmCode.setCurrentPlayer(this.gameObject);
             }
             else 
             {

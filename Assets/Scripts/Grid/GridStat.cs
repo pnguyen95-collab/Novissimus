@@ -40,7 +40,7 @@ public class GridStat : MonoBehaviour
     {
         
         VisitedColor();
-        //checkOccupied();
+        checkOccupied();
 
         if (occupied == true)
         {
@@ -130,17 +130,17 @@ public class GridStat : MonoBehaviour
         return points;
     }
 
-    //public void checkOccupied()
-    //{
-    //    if (this.transform.childCount > 0)
-    //    {
-    //        occupied = true;
-    //    }
-    //    else
-    //    {
-    //        occupied = false;
-    //    }
-    //}
+    public void checkOccupied()
+    {
+        if (this.transform.childCount > 0)
+        {
+            occupied = true;
+        }
+        else
+        {
+            occupied = false;
+        }
+    }
 
     //just function to change color
     void SetGridColor(Color x)

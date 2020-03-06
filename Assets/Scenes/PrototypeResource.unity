@@ -2287,8 +2287,8 @@ MonoBehaviour:
   countNumOfPlayer: 0
   numOfEnemy: 0
   countNumOfEnemy: 0
-  limitTurns: 1
-  turnCountdown: 0
+  resourceGrid: 1
+  turnCountdown: 10
 --- !u!114 &1976581626
 MonoBehaviour:
   m_ObjectHideFlags: 0

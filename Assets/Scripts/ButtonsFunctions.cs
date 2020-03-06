@@ -19,7 +19,7 @@ public class ButtonsFunctions : MonoBehaviour
     void Update()
     {
         //check to see if combat/resource grid
-        if (gmCode.limitTurns == false)
+        if (gmCode.resourceGrid == false)
         {
             if (gmCode.turnStatus == 0)
             {
@@ -33,7 +33,7 @@ public class ButtonsFunctions : MonoBehaviour
                 turnStatus.color = Color.red;
             }
         }
-        else if (gmCode.limitTurns == true)
+        else if (gmCode.resourceGrid == true)
         {
             if (gmCode.turnStatus == 0)
             {

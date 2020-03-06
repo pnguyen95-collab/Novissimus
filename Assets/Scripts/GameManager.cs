@@ -19,8 +19,8 @@ public class GameManager : MonoBehaviour
     public int numOfEnemy;
     public int countNumOfEnemy;
 
-    //boolean to trigger whether or not there's a limited number of turns
-    public bool limitTurns = false;
+    //boolean to trigger whether or not it's a resource grid
+    public bool resourceGrid = false;
     public int turnCountdown;
 
     // Start is called before the first frame update
@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
         countNumOfPlayer = 0;
 
         //set how many turns countdown to countdown until return to base
-        if (limitTurns == true)
+        if (resourceGrid == true)
         {
             turnCountdown = 10;
             Debug.Log("You have " + turnCountdown + " turns remaining!");
@@ -118,13 +118,21 @@ public class GameManager : MonoBehaviour
 
             if (temp.GetComponent<GridStat>().interactable == true && temp.GetComponent<GridStat>().occupied == false)
             {
-                //player move
-                currentPlayer.GetComponent<PlayerBehavior>().PlayerMove(temp.GetComponent<GridStat>().x, temp.GetComponent<GridStat>().y);
+                    //player move
+                    currentPlayer.GetComponent<PlayerBehavior>().PlayerMove(temp.GetComponent<GridStat>().x, temp.GetComponent<GridStat>().y);
 
-                runRaycast = false;
+                    runRaycast = false;
             }
             else
             {
+                if (temp.GetComponent<GridStat>().resourceNode == true)
+                {
+                    //player move
+                    currentPlayer.GetComponent<PlayerBehavior>().PlayerMove(temp.GetComponent<GridStat>().x, temp.GetComponent<GridStat>().y);
+
+                    runRaycast = false;
+                }
+
                 print("cannot walk there");
                 //reset to the start
                 runRaycast = false;
@@ -134,6 +142,7 @@ public class GameManager : MonoBehaviour
         }
         else if (currentPlayer.GetComponent<PlayerBehavior>().moveOrAttack == 1)
         {
+
             if (temp.GetComponent<GridStat>().interactable == true && temp.GetComponent<GridStat>().occupied == false)
             {
                 print("nothing to attck there");
@@ -162,10 +171,9 @@ public class GameManager : MonoBehaviour
         }
         else if (currentPlayer.GetComponent<PlayerBehavior>().moveOrAttack == 1)
         {
-
-            print("cannot attack another player");
-            runRaycast = false;
-            gridBehaviorCode.resetVisit();
+                print("cannot attack another player");
+                runRaycast = false;
+                gridBehaviorCode.resetVisit();
         }
         else
         {
@@ -177,21 +185,18 @@ public class GameManager : MonoBehaviour
     {
         if (currentPlayer.GetComponent<PlayerBehavior>().moveOrAttack == 0)
         {
-
-
             print("cannot walk there. Enemy on it");
             //reset to the start
             runRaycast = false;
             gridBehaviorCode.resetVisit();
 
-
         }
         else if (currentPlayer.GetComponent<PlayerBehavior>().moveOrAttack == 1)
         {
-            //attack
-            print("Attacking enemy");
-            currentPlayer.GetComponent<PlayerBehavior>().AttackEnemy(temp);
-            runRaycast = false;
+                //attack
+                print("Attacking enemy");
+                currentPlayer.GetComponent<PlayerBehavior>().AttackEnemy(temp);
+                runRaycast = false;
         }
         else
         {
@@ -217,7 +222,7 @@ public class GameManager : MonoBehaviour
             if (tempPlayerNum == numOfPlayer)
             {
                 //check if limit turns is true
-                if (limitTurns == true)
+                if (resourceGrid == true)
                 {
                     turnCountdown -= 1;
                     Debug.Log("You have " + turnCountdown + " turns remaining!");
