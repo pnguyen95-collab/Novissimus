@@ -8,12 +8,15 @@ public class PlayerBehavior : MonoBehaviour
 {
     
     public GridBehavior gridBehaviorCode;
+    public PlayerStats playerStats;
     public GameManager gmCode;
     public GameObject gm;
     public GameObject parent;
+    public GameObject particleChildForSelected;
+    public GameObject particleChildForPlayable;
 
-    public int limitNum; //Limit of block that player can move
     public float speedOfBallMoving; //just for speed of the object movement
+    public int moveOrAttack;
 
     public Vector3[] positions; //Positions store the Points of blocks that player will walk through
 
@@ -25,17 +28,22 @@ public class PlayerBehavior : MonoBehaviour
    
     void Start()
     {
-        
+        if (this.transform.childCount > 0)
+        {
+            particleChildForSelected = this.transform.GetChild(0).gameObject;
+            particleChildForPlayable = this.transform.GetChild(1).gameObject;
+
+        }
         gm = GameObject.FindGameObjectWithTag("GameController");
         gridBehaviorCode = gm.GetComponent<GridBehavior>();
         gmCode = gm.GetComponent<GameManager>();
-
+        playerStats = this.GetComponent<PlayerStats>();
         
-        //set limit num
-        limitNum = 5;
+       
 
         triggerMoving = false;
         speedOfBallMoving = 1;
+        moveOrAttack = 0;
 
         playerIsActive = false;
         playerIsPlayable = true;
@@ -45,9 +53,11 @@ public class PlayerBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckParticle();
+
         //finding parent's block of the player
         parent = this.transform.parent.gameObject;
-        parent.GetComponent<GridStat>().occupied = true;
+        //parent.GetComponent<GridStat>().occupied = true;
 
         //trigger player to move (must be used in Update function in order to use Lerp)
         if(triggerMoving==true)
@@ -56,10 +66,13 @@ public class PlayerBehavior : MonoBehaviour
 
             triggerMoving = false;
             gridBehaviorCode.resetVisit();
-            playerIsActive = false;
-            playerIsPlayable = false;
+
+            gmCode.setOnOffMenu(gmCode.menuPanel2, true);
+
+            //playerIsActive = false;
+            //playerIsPlayable = false;
             //gmCode.countNumOfPlayer++;
-            gmCode.setCurrentPlayer(null);
+            //gmCode.setCurrentPlayer(null);
         }
     }
 
@@ -73,14 +86,14 @@ public class PlayerBehavior : MonoBehaviour
 
             if (playerIsPlayable == true)
             {
-                gmCode.setOnOffMenu(true);
+                gmCode.setOnOffMenu(gmCode.menuPanel,true);
 
 
 
                 int x = parent.GetComponent<GridStat>().x;
                 int y = parent.GetComponent<GridStat>().y;
 
-                gridBehaviorCode.FindSelectableBlock(x, y, limitNum);
+                //gridBehaviorCode.FindSelectableBlock(x, y, playerStats.limitNum);
                 playerIsActive = true;
                 gmCode.setCurrentPlayer(this.gameObject);
             }
@@ -96,18 +109,32 @@ public class PlayerBehavior : MonoBehaviour
             
 
         }
-        else if (Input.GetMouseButtonDown(1))
+        else if (Input.GetMouseButtonDown(1)) //act as click exit
         {
-
-            gmCode.setOnOffMenu(false);
+            moveOrAttack = 0;
+            gmCode.setOnOffMenu(gmCode.menuPanel,false);
             gridBehaviorCode.resetVisit();
-            //act as click exit
             
-           
         }
     }
 
-    
+    public void ShowMoveableBlcoks()
+    {
+        moveOrAttack = 0;
+        int x = parent.GetComponent<GridStat>().x;
+        int y = parent.GetComponent<GridStat>().y;
+        gridBehaviorCode.FindSelectableBlock(x, y, playerStats.limitNum);
+        
+    }
+
+    public void ShowAttackableBlcoks()
+    {
+        moveOrAttack = 1;
+        int x = parent.GetComponent<GridStat>().x;
+        int y = parent.GetComponent<GridStat>().y;
+        gridBehaviorCode.FindSelectableBlock(x, y, playerStats.attackRange);
+        
+    }
 
 
     //playerMove receive input from player
@@ -122,7 +149,7 @@ public class PlayerBehavior : MonoBehaviour
         currentY = parent.GetComponent<GridStat>().y;
 
         
-        bool walkable = gridBehaviorCode.RunThePath(currentX, currentY, endX, endY, limitNum);
+        bool walkable = gridBehaviorCode.RunThePath(currentX, currentY, endX, endY, playerStats.limitNum);
 
 
         //check if it over block limit
@@ -141,12 +168,11 @@ public class PlayerBehavior : MonoBehaviour
                 for (int j = 0; j < pathCount; j++)
                 {
                     positions[j] = temp;
-
                 }
 
                 this.transform.SetParent(gridBehaviorCode.path[i].transform);
 
-                gridBehaviorCode.gridArray[currentX, currentY].GetComponent<GridStat>().occupied = false;
+                
                 triggerMoving = true;
             }
         }
@@ -177,6 +203,48 @@ public class PlayerBehavior : MonoBehaviour
         }
         
         yield return false;
+    }
+
+    public void AttackEnemy(GameObject target)
+    {
+        if (target.GetComponent<EnemyStats>() != null)
+        {
+            target.GetComponent<EnemyStats>().health = target.GetComponent<EnemyStats>().health - playerStats.attackDamage;
+            this.playerIsPlayable = false;
+            this.playerIsActive = false;
+            gmCode.setCurrentPlayer(null);
+            gridBehaviorCode.resetVisit();
+        }
+
+    }
+
+    public void DoNothing()
+    {
+        playerIsActive = false;
+        playerIsPlayable = false;
+        gmCode.setCurrentPlayer(null);
+    }
+
+    public void CheckParticle()
+    {
+        if (playerIsActive == true)
+        {
+            this.particleChildForSelected.SetActive(true);
+        }
+        else
+        {
+            this.particleChildForSelected.SetActive(false);
+        }
+
+        if (playerIsPlayable==true)
+        {
+            this.particleChildForPlayable.SetActive(true);
+        }
+        else
+        {
+            this.particleChildForPlayable.SetActive(false);
+        }
+
     }
 
 

@@ -37,13 +37,30 @@ public class ButtonsFunctions : MonoBehaviour
 
     public void MoveButton()
     {
-        gmCode.setOnOffMenu(false);
+        gmCode.setOnOffMenu(gmCode.menuPanel,false);
+       
+        gmCode.currentPlayer.GetComponent<PlayerBehavior>().ShowMoveableBlcoks();
+        gmCode.runRaycast = true;
+    }
+    public void Attack()
+    {
+        gmCode.setOnOffMenu(gmCode.menuPanel2, false);
+        
+        gmCode.currentPlayer.GetComponent<PlayerBehavior>().ShowAttackableBlcoks();
         gmCode.runRaycast = true;
     }
 
     public void ExitButton()
     {
-        gmCode.setOnOffMenu(false);
+        gmCode.setOnOffMenu(gmCode.menuPanel, false);
+        gm.GetComponent<GridBehavior>().resetVisit();
+    }
+
+    public void DoNothing()
+    {
+        gmCode.setOnOffMenu(gmCode.menuPanel2, false);
+        gmCode.setOnOffMenu(gmCode.menuPanel, false);
+        gmCode.currentPlayer.GetComponent<PlayerBehavior>().DoNothing();
         gm.GetComponent<GridBehavior>().resetVisit();
     }
 

@@ -131,6 +131,7 @@ public class GridBehavior : MonoBehaviour
             foreach (GameObject obj in gridArray)
             {
                 obj.GetComponent<GridStat>().stepLimit = limitNum;
+                
                 if (obj && obj.GetComponent<GridStat>().visit == step - 1)
                     TestFourDirections(obj.GetComponent<GridStat>().x, obj.GetComponent<GridStat>().y, step);
             }
@@ -261,8 +262,10 @@ public class GridBehavior : MonoBehaviour
 
     public void FindSelectableBlock(int x,int y,int limitNum)
     {
+        
         GameObject current = gridArray[x, y];
         SetDistance(x,y,limitNum);
+
      }
 
     public void resetVisit()
