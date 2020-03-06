@@ -6,10 +6,13 @@ public class CameraManagement : MonoBehaviour
 {
     public int speed;
 
-    private void Start()
-    {
-        speed = 2;
-    }
+    //private void Start() don't need this
+    //{
+    //    speed = 5;
+    //}
+      
+
+    //Moving the camera around with the arrow keys
 
     void Update()
     {

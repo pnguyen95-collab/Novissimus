@@ -17,12 +17,24 @@ public class GridBehavior : MonoBehaviour
     public int startY = 0;
     public int endX = 0;
     public int endY = 3;
+
     public List<GameObject> path = new List<GameObject>();
 
     public List<GameObject> AdjacencyList = new List<GameObject>();
 
-
     public Material one;
+
+    [System.Serializable]
+    public class SpawnXY
+    {
+        public Vector2Int spawnXY;
+    }
+
+    //Player, enemy and obstacle spawn locations
+    public List<SpawnXY> playerSpawn;
+    public List<SpawnXY> enemySpawn;
+    public List<SpawnXY> obstacleSpawn;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -70,9 +82,8 @@ public class GridBehavior : MonoBehaviour
     }
 
     //generate grid size of grid do here, positions of player's car do here, positions of obstacles do here
-    void GenerateGrid()
+    public void GenerateGrid()
     {
-
 
         for (int i = 0; i < columns; i++)
         {
@@ -86,16 +97,33 @@ public class GridBehavior : MonoBehaviour
                 obj.GetComponent<GridStat>().y = j;
 
                 gridArray[i, j] = obj;
+
             }
         }
 
-        GenerateObstacle(2, 0);
-        GenerateObstacle(2, 2);
-        GeneratePlayer(0, 0);
-        GeneratePlayer(4, 0);
-        GeneratePlayer(6, 0);
-        GenerateEnemy(5, 5);
-        GenerateEnemy(5, 6);
+        //Generates players/enemies/obstacles according to list
+        for (int i = 0; i < playerSpawn.Count; i++)
+        {
+           GeneratePlayer(playerSpawn[i].spawnXY.x, playerSpawn[i].spawnXY.y);
+        }
+
+        for (int i = 0; i < enemySpawn.Count; i++)
+        {
+            GenerateEnemy(enemySpawn[i].spawnXY.x, enemySpawn[i].spawnXY.y);
+        }
+
+        for (int i = 0; i < obstacleSpawn.Count; i++)
+        {
+            GenerateObstacle(obstacleSpawn[i].spawnXY.x, obstacleSpawn[i].spawnXY.y);
+        }
+
+        //GenerateObstacle(2, 0); old system
+        //GenerateObstacle(2, 2);
+        //GeneratePlayer(0, 0);
+        //GeneratePlayer(4, 0);
+        //GeneratePlayer(6, 0);
+        //GenerateEnemy(5, 5);
+        //GenerateEnemy(5, 6);
 
     }
 
