@@ -101,6 +101,7 @@ public class GridBehavior : MonoBehaviour
             }
         }
 
+
         //Generates players/enemies/obstacles according to list
         for (int i = 0; i < playerSpawn.Count; i++)
         {
@@ -144,7 +145,7 @@ public class GridBehavior : MonoBehaviour
         player.transform.SetParent(gridArray[x, y].transform);
     }
 
-    //
+    
     void SetDistance(int pointX,int pointY,int limitNum)
     {
          startX = pointX;
@@ -304,4 +305,5 @@ public class GridBehavior : MonoBehaviour
             obj.GetComponent<GridStat>().pathActive=false;
         }
     }
+
 }
