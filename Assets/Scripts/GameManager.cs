@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject menuPanel;
     public GameObject menuPanel2;
     public GridBehavior gridBehaviorCode;
+    public NodeLoot lootResources;
     public int turnStatus; // 0 = player , 1 = enemy
     public int numOfPlayer;
     public int countNumOfPlayer;
@@ -27,10 +28,14 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         gridBehaviorCode = this.GetComponent<GridBehavior>();
+        lootResources = this.GetComponent<NodeLoot>();
         runRaycast = false;
         menuPanel = GameObject.Find("PlayerMenuPanel");
-        menuPanel2 = GameObject.Find("PlayerMenuPanel2");
-        setOnOffMenu(menuPanel,false);
+        if (resourceGrid == false)
+        {
+            menuPanel2 = GameObject.Find("PlayerMenuPanel2");
+        }
+        setOnOffMenu(menuPanel, false);
         setOnOffMenu(menuPanel2, false);
         turnStatus = 0;
 
@@ -91,7 +96,7 @@ public class GameManager : MonoBehaviour
         
             else // If Raycast did not return anything
             {
-            Debug.Log("NULL");
+            //Debug.Log("NULL");
 
             }
         }
@@ -121,7 +126,23 @@ public class GameManager : MonoBehaviour
                     //player move
                     currentPlayer.GetComponent<PlayerBehavior>().PlayerMove(temp.GetComponent<GridStat>().x, temp.GetComponent<GridStat>().y);
 
-                    runRaycast = false;
+                if (resourceGrid == true && turnCountdown > 0)
+                {
+                    turnCountdown -= 1;
+                    Debug.Log("You have " + turnCountdown + " turns remaining!");
+
+                    //check if turn countdown is 0
+                    if (turnCountdown == 0)
+                    {
+
+                        //return to base function
+                        turnStatus = 2;
+
+                        Debug.Log("You are forced to return to base.");
+                    }
+                }
+
+                runRaycast = false;
             }
             else
             {
@@ -130,6 +151,24 @@ public class GameManager : MonoBehaviour
                     //player move
                     currentPlayer.GetComponent<PlayerBehavior>().PlayerMove(temp.GetComponent<GridStat>().x, temp.GetComponent<GridStat>().y);
 
+                    if (resourceGrid == true && turnCountdown > 0)
+                    {
+                        turnCountdown -= 1;
+                        Debug.Log("You have " + turnCountdown + " turns remaining!");
+
+                        //check if turn countdown is 0
+                        if (turnCountdown == 0)
+                        {
+
+                            //return to base function
+                            turnStatus = 2;
+
+                            Debug.Log("You are forced to return to base.");
+                        }
+                    }
+
+                    CollectResources();
+                        
                     runRaycast = false;
                 }
 
@@ -154,6 +193,35 @@ public class GameManager : MonoBehaviour
         else
         {
             print("moveOrAttack error");
+        }
+
+        //function to collect resources
+        void CollectResources()
+        {
+            int x = temp.GetComponent<GridStat>().x;
+            int y = temp.GetComponent<GridStat>().y;
+
+            // gather metal resources
+            if (gridBehaviorCode.gridArray[x, y].transform.GetChild(0).name.Contains("Metal") == true)
+            {
+                //function to add resources
+                Destroy(gridBehaviorCode.gridArray[x, y].transform.GetChild(0).gameObject);
+                temp.GetComponent<GridStat>().resourceNode = false;
+            }
+            // gather synthetic resources
+            if (gridBehaviorCode.gridArray[x, y].transform.GetChild(0).name.Contains("Synthetic") == true)
+            {
+                //function to add resources
+                Destroy(gridBehaviorCode.gridArray[x, y].transform.GetChild(0).gameObject);
+                temp.GetComponent<GridStat>().resourceNode = false;
+            }
+            // gather electronic resources
+            if (gridBehaviorCode.gridArray[x, y].transform.GetChild(0).name.Contains("Electronic") == true)
+            {
+                //function to add resources
+                Destroy(gridBehaviorCode.gridArray[x, y].transform.GetChild(0).gameObject);
+                temp.GetComponent<GridStat>().resourceNode = false;
+            }
         }
     }
 
@@ -221,8 +289,8 @@ public class GameManager : MonoBehaviour
 
             if (tempPlayerNum == numOfPlayer)
             {
-                //check if limit turns is true
-                if (resourceGrid == true)
+                /*/check if limit turns is true
+                if (resourceGrid == true && turnCountdown > 0)
                 {
                     turnCountdown -= 1;
                     Debug.Log("You have " + turnCountdown + " turns remaining!");
@@ -230,12 +298,15 @@ public class GameManager : MonoBehaviour
                     //check if turn countdown is 0
                     if (turnCountdown == 0)
                     {
-                        //function to return to base
+
+                        //return to base function
                         turnStatus = 1;
+                        numOfPlayer = 0;
 
                         Debug.Log("You are forced to return to base.");
                     }
                 }
+                */
 
                 turnStatus = 1;
                 //all enemies are active
@@ -254,13 +325,6 @@ public class GameManager : MonoBehaviour
             }
         }
 
-
-
-
-      
-
-
-       
         
     }
     

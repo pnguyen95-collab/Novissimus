@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class NodeLoot : MonoBehaviour
 {
-    
-    // Start is called before the first frame update
-    void Start()
+    [System.Serializable]
+    public class ResourceTable
     {
-        
+        public string name;
+        public int rarity;
+        public int quantity;
     }
 
-    // Update is called once per frame
-    void Update()
+    public List<ResourceTable> metalSpawns;
+    public List<ResourceTable> syntheticSpawns;
+    public List<ResourceTable> electronicSpawns;
+
+    public void MetalSpawn()
     {
-        
+        int randomNumber = Random.Range(0,101);
+       
+        //check for iron spawn
     }
 }

@@ -67,7 +67,10 @@ public class PlayerBehavior : MonoBehaviour
             triggerMoving = false;
             gridBehaviorCode.resetVisit();
 
-            gmCode.setOnOffMenu(gmCode.menuPanel2, true);
+            if (gmCode.resourceGrid == false)
+            {
+                gmCode.setOnOffMenu(gmCode.menuPanel2, true);
+            }
 
             //playerIsActive = false;
             //playerIsPlayable = false;

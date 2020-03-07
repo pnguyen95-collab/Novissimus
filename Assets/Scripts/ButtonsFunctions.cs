@@ -33,22 +33,18 @@ public class ButtonsFunctions : MonoBehaviour
                 turnStatus.color = Color.red;
             }
         }
-        else if (gmCode.resourceGrid == true)
+        if (gmCode.resourceGrid == true)
         {
             if (gmCode.turnStatus == 0)
             {
                 turnStatus.text = "Turns Remaining: " + gmCode.turnCountdown;
                 turnStatus.color = Color.blue;
             }
-            if (gmCode.turnStatus == 1)
+            if (gmCode.turnStatus == 2)
             {
                 turnStatus.text = "Time's Up";
                 turnStatus.color = Color.green;
             }
-        }
-        else
-        {
-            print ("error with turn display UI");
         }
 
     }
@@ -63,6 +59,7 @@ public class ButtonsFunctions : MonoBehaviour
     public void Attack()
     {
         gmCode.setOnOffMenu(gmCode.menuPanel2, false);
+        gmCode.setOnOffMenu(gmCode.menuPanel, false);
         
         gmCode.currentPlayer.GetComponent<PlayerBehavior>().ShowAttackableBlcoks();
         gmCode.runRaycast = true;
