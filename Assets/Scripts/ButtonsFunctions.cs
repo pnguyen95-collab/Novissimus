@@ -63,7 +63,8 @@ public class ButtonsFunctions : MonoBehaviour
     public void Attack()
     {
         gmCode.setOnOffMenu(gmCode.menuPanel2, false);
-        
+        gmCode.setOnOffMenu(gmCode.menuPanel, false);
+
         gmCode.currentPlayer.GetComponent<PlayerBehavior>().ShowAttackableBlcoks();
         gmCode.runRaycast = true;
     }
@@ -86,4 +87,7 @@ public class ButtonsFunctions : MonoBehaviour
     {
         gmCode.countNumOfEnemy++;
     }
+
+
+    
 }

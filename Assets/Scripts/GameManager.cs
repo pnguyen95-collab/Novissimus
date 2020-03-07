@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
 
     public GameObject[] players;
+    public GameObject[] enemies;
     public bool runRaycast;
     public GameObject currentPlayer;
     public GameObject menuPanel;
@@ -36,6 +37,7 @@ public class GameManager : MonoBehaviour
 
         players = GameObject.FindGameObjectsWithTag("Player");
         numOfPlayer = players.Length;
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
         numOfEnemy = GameObject.FindGameObjectsWithTag("Enemy").Length;
         countNumOfEnemy = 0;
         countNumOfPlayer = 0;
@@ -207,7 +209,7 @@ public class GameManager : MonoBehaviour
     public void checkTurn()
     {
         int tempPlayerNum = 0;
-        int tempEnemyNum = 0;
+        //int tempEnemyNum = 0;
 
         if (turnStatus == 0)
         {
@@ -243,7 +245,16 @@ public class GameManager : MonoBehaviour
         }
         else if (turnStatus == 1)
         {
-          if (countNumOfEnemy == numOfEnemy)
+            //enemyai start
+            //do one enemy one by one
+            if(countNumOfEnemy<numOfEnemy)
+            foreach (GameObject e in enemies)
+            {
+                    e.GetComponent<EnemyBehavior>().triggerMoving = true;
+                countNumOfEnemy++;
+            }
+
+          else if (countNumOfEnemy == numOfEnemy)
             {
                 turnStatus = 0;
                 countNumOfEnemy = 0;
@@ -253,15 +264,9 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-
-
-
-
-      
-
-
-       
-        
+    
     }
     
+    
+
 }

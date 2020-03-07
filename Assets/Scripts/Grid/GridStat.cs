@@ -18,6 +18,7 @@ public class GridStat : MonoBehaviour
     public bool pathActive = false; //showing the path that the player takes
     public bool mouseOver = false; //check if rn Mouse is over the object
     public bool interactable = false; //use this to check if the object's pos is walkable for the player
+    public bool inAttackRange;
     public bool resourceNode = false; //turn on if is a resource node
     
 
@@ -29,6 +30,7 @@ public class GridStat : MonoBehaviour
 
     void Start()
     {
+        inAttackRange = false;
         stepLimit = 0;
         gc = GameObject.FindGameObjectWithTag("GameController");
         gridBehaviorCode = gc.GetComponent<GridBehavior>();
@@ -44,6 +46,11 @@ public class GridStat : MonoBehaviour
 
         if (occupied == true)
         {
+            if (mouseOver == true)
+            {
+                SetGridColor(Color.blue);
+            }
+            else
             SetGridColor(Color.gray);
         }
 
@@ -105,10 +112,12 @@ public class GridStat : MonoBehaviour
                 if (MoveOrAttack == 0)
                 {
                     SetGridColor(Color.cyan);
+                    interactable = true;
                 }
                 else
                 {
                     SetGridColor(Color.yellow);
+                    inAttackRange = true;
                 }
             }
         }
@@ -116,6 +125,7 @@ public class GridStat : MonoBehaviour
         {
             SetGridColor(Color.white);
             interactable = false;
+            inAttackRange = false;
         }
     }
 
