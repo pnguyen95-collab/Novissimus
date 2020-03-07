@@ -104,8 +104,10 @@ public class PlayerBehavior : MonoBehaviour
             {
                 if (gmCode.turnStatus == 0)
                     print("player already moved");
+                else if (gmCode.turnStatus == 2)
+                    print("Time's Up!");
                 else
-                    print("Enemy turn");
+                    print("Enemy Turn");
             }
             
 
@@ -204,7 +206,7 @@ public class PlayerBehavior : MonoBehaviour
             transform.position = _pos[i];
             startPos = _pos[i];
         }
-        
+
         yield return false;
     }
 

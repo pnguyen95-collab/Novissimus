@@ -433,9 +433,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb3fc78918d874c418140a1b731b59d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  metalSpawns: []
-  syntheticSpawns: []
-  electronicSpawns: []
+  metalSpawns:
+  - name: Iron
+    rarity: 50
+    minQuantity: 1
+    maxQuantity: 3
+  - name: Steel
+    rarity: 35
+    minQuantity: 1
+    maxQuantity: 2
+  - name: Brass
+    rarity: 15
+    minQuantity: 1
+    maxQuantity: 1
+  syntheticSpawns:
+  - name: Plastic
+    rarity: 45
+    minQuantity: 2
+    maxQuantity: 4
+  - name: Rubber
+    rarity: 45
+    minQuantity: 2
+    maxQuantity: 4
+  - name: Nylon
+    rarity: 10
+    minQuantity: 1
+    maxQuantity: 1
+  electronicSpawns:
+  - name: Wires
+    rarity: 70
+    minQuantity: 5
+    maxQuantity: 8
+  - name: Circuit Board
+    rarity: 15
+    minQuantity: 1
+    maxQuantity: 1
+  - name: Electronic Chip
+    rarity: 15
+    minQuantity: 1
+    maxQuantity: 1
+  coreResource:
+  - name: Scrap
+    rarity: 0
+    minQuantity: 25
+    maxQuantity: 50
+  - name: Fuel
+    rarity: 0
+    minQuantity: 10
+    maxQuantity: 20
 --- !u!4 &143323879
 Transform:
   m_ObjectHideFlags: 0
@@ -2323,6 +2368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   players: []
+  enemies: []
   runRaycast: 0
   currentPlayer: {fileID: 0}
   menuPanel: {fileID: 489379045}

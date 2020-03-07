@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject menuPanel2;
     public GridBehavior gridBehaviorCode;
     public NodeLoot lootResources;
-    public int turnStatus; // 0 = player , 1 = enemy
+    public int turnStatus; // 0 = player , 1 = enemy, 2 = none
     public int numOfPlayer;
     public int countNumOfPlayer;
     public int numOfEnemy;
@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         gridBehaviorCode = this.GetComponent<GridBehavior>();
-        lootResources = this.GetComponent<NodeLoot>();
         runRaycast = false;
         menuPanel = GameObject.Find("PlayerMenuPanel");
         if (resourceGrid == false)
@@ -117,7 +116,7 @@ public class GameManager : MonoBehaviour
 
     private void ClickOnBlock(GameObject temp)
     {
-        print("in raycast block");
+        //print("in raycast block");
 
         //check if the order is move or attack
         if (currentPlayer.GetComponent<PlayerBehavior>().moveOrAttack == 0)
@@ -148,10 +147,13 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                if (temp.GetComponent<GridStat>().resourceNode == true)
+                if (temp.GetComponent<GridStat>().resourceNode == true && temp.GetComponent<GridStat>().interactable == true)
                 {
+
                     //player move
                     currentPlayer.GetComponent<PlayerBehavior>().PlayerMove(temp.GetComponent<GridStat>().x, temp.GetComponent<GridStat>().y);
+
+                    CollectResources();
 
                     if (resourceGrid == true && turnCountdown > 0)
                     {
@@ -169,8 +171,6 @@ public class GameManager : MonoBehaviour
                         }
                     }
 
-                    CollectResources();
-                        
                     runRaycast = false;
                 }
 
@@ -206,21 +206,24 @@ public class GameManager : MonoBehaviour
             // gather metal resources
             if (gridBehaviorCode.gridArray[x, y].transform.GetChild(0).name.Contains("Metal") == true)
             {
-                //function to add resources
+                //function to add resources & destroy resource node
+                lootResources.MetalSpawn();
                 Destroy(gridBehaviorCode.gridArray[x, y].transform.GetChild(0).gameObject);
                 temp.GetComponent<GridStat>().resourceNode = false;
             }
             // gather synthetic resources
             if (gridBehaviorCode.gridArray[x, y].transform.GetChild(0).name.Contains("Synthetic") == true)
             {
-                //function to add resources
+                //function to add resources & destroy resource node
+                lootResources.SyntheticSpawn();
                 Destroy(gridBehaviorCode.gridArray[x, y].transform.GetChild(0).gameObject);
                 temp.GetComponent<GridStat>().resourceNode = false;
             }
             // gather electronic resources
             if (gridBehaviorCode.gridArray[x, y].transform.GetChild(0).name.Contains("Electronic") == true)
             {
-                //function to add resources
+                //function to add resources & destroy resource node
+                lootResources.ElectronicSpawn();
                 Destroy(gridBehaviorCode.gridArray[x, y].transform.GetChild(0).gameObject);
                 temp.GetComponent<GridStat>().resourceNode = false;
             }
@@ -333,6 +336,15 @@ public class GameManager : MonoBehaviour
                 {
                     p.GetComponent<PlayerBehavior>().playerIsPlayable = true;
                 }
+            }
+        }
+
+        //neither player or enemy turn
+        if (turnStatus == 2)
+        {
+            foreach (GameObject p in players)
+            {
+                p.GetComponent<PlayerBehavior>().playerIsPlayable = false;
             }
         }
     }
