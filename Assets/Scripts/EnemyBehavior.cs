@@ -8,6 +8,7 @@ public class EnemyBehavior : MonoBehaviour
     public GameObject particleChildAttackable;
     public GameObject particleChildMouseOver;
     public GridBehavior gridBehaviorCode;
+    public CharacterStats enemyStats;
     public bool mouseOver;
     public bool canBeAttacked;
     public GameObject gm;
@@ -30,6 +31,7 @@ public class EnemyBehavior : MonoBehaviour
         gm = GameObject.FindGameObjectWithTag("GameController");
         gmCode = gm.GetComponent<GameManager>();
         gridBehaviorCode = gm.GetComponent<GridBehavior>();
+        enemyStats = this.GetComponent<CharacterStats>();
 
         if (this.transform.childCount > 0)
         {
@@ -157,7 +159,7 @@ public class EnemyBehavior : MonoBehaviour
         int x = parent.GetComponent<GridStat>().x;
         int y = parent.GetComponent<GridStat>().y;
         //get stat from enemy code
-        gridBehaviorCode.FindSelectableBlock(x, y, 4);
+        gridBehaviorCode.FindSelectableBlock(x, y, enemyStats.moveSpeed.GetValue());
 
 
         trigger = true;

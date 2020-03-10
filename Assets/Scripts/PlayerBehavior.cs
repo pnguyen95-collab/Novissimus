@@ -9,6 +9,7 @@ public class PlayerBehavior : MonoBehaviour
     
     public GridBehavior gridBehaviorCode;
     public CharacterStats playerStats;
+    public CharacterStats enemyStats;
     public GameManager gmCode;
     public GameObject gm;
     public GameObject parent;
@@ -212,9 +213,9 @@ public class PlayerBehavior : MonoBehaviour
 
     public void AttackEnemy(GameObject target)
     {
-        if (target.GetComponent<EnemyStats>() != null)
+        if (target.GetComponent<CharacterStats>() != null)
         {
-            target.GetComponent<EnemyStats>().health = target.GetComponent<EnemyStats>().health - playerStats.damage.GetValue();
+            target.GetComponent<CharacterStats>().TakeDamage(playerStats.damage.GetValue());
             this.playerIsPlayable = false;
             this.playerIsActive = false;
             gmCode.setCurrentPlayer(null);

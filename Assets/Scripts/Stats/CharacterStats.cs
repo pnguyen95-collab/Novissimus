@@ -14,7 +14,7 @@ public class CharacterStats : MonoBehaviour
         currentHealth = maxHealth.GetValue();
     }
 
-    //Damage Testing
+    /*/Damage Testing
      public void Update()
     {
         if (Input.GetKeyDown(KeyCode.T))
@@ -22,6 +22,7 @@ public class CharacterStats : MonoBehaviour
             TakeDamage(2);
         }
     }
+    */
 
     //Damage calculation method
     public void TakeDamage (int damage)
