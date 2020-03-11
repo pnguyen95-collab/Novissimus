@@ -294,27 +294,12 @@ public class GameManager : MonoBehaviour
 
             if (tempPlayerNum == numOfPlayer)
             {
-                /*/check if limit turns is true
-                if (resourceGrid == true && turnCountdown > 0)
-                {
-                    turnCountdown -= 1;
-                    Debug.Log("You have " + turnCountdown + " turns remaining!");
-
-                    //check if turn countdown is 0
-                    if (turnCountdown == 0)
-                    {
-
-                        //return to base function
-                        turnStatus = 1;
-                        numOfPlayer = 0;
-
-                        Debug.Log("You are forced to return to base.");
-                    }
-                }
-                */
-
+                //enemies are active
                 turnStatus = 1;
-                //all enemies are active
+
+                //check all active enemies/players
+                players = GameObject.FindGameObjectsWithTag("Player");
+                enemies = GameObject.FindGameObjectsWithTag("Enemy");
             }
         }
         else if (turnStatus == 1)
@@ -332,6 +317,11 @@ public class GameManager : MonoBehaviour
             {
                 turnStatus = 0;
                 countNumOfEnemy = 0;
+
+                //check all active enemies/players
+                players = GameObject.FindGameObjectsWithTag("Player");
+                enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
                 foreach (GameObject p in players)
                 {
                     p.GetComponent<PlayerBehavior>().playerIsPlayable = true;

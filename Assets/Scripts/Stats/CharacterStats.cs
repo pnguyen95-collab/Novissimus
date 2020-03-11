@@ -40,6 +40,7 @@ public class CharacterStats : MonoBehaviour
     public virtual void Destroyed()
     {
         // What happens when vehicle is destroyed
+        Destroy(this.gameObject);
         Debug.Log(transform.name + " is destroyed.");
     }
 }
