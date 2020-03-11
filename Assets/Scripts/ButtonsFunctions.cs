@@ -8,6 +8,7 @@ public class ButtonsFunctions : MonoBehaviour
     public GameObject gm;
     public GameManager gmCode;
     public Text turnStatus;
+
     // Start is called before the first frame update
     void Start()
     {

@@ -7,27 +7,28 @@ public class EnemyBehavior : MonoBehaviour
     //should add one more particle for mouseOVer
     public GameObject particleChildAttackable;
     public GameObject particleChildMouseOver;
+    public GameObject gm;
+    public GameObject parent;
     public GridBehavior gridBehaviorCode;
     public CharacterStats enemyStats;
-    public bool mouseOver;
-    public bool canBeAttacked;
-    public GameObject gm;
     public GameManager gmCode;
-    private int upDown; // if 0 = go front , 1 = go back 
+
+    private List<GameObject> tempList = new List<GameObject>();
+    
+
+    public Vector3[] positions;
+
+    public bool mouseOver;
     public bool triggerMoving;
     public bool triggerForLerp;
-    public GameObject parent;
-    public GameObject targetForMoving;
-    public List<GameObject> tempList = new List<GameObject>();
+
     private bool trigger;
-    public Vector3[] positions;
+    
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        triggerMoving = false;
-        triggerForLerp = false;
-        upDown = 0;
         gm = GameObject.FindGameObjectWithTag("GameController");
         gmCode = gm.GetComponent<GameManager>();
         gridBehaviorCode = gm.GetComponent<GridBehavior>();
@@ -39,12 +40,15 @@ public class EnemyBehavior : MonoBehaviour
             particleChildAttackable = this.transform.GetChild(0).gameObject;
         }
 
-        canBeAttacked = false;
+        
+        triggerMoving = false;
+        triggerForLerp = false;
         mouseOver = false;
         trigger = false;
     }
     void Update()
     {
+       
         CheckParticle();
 
         parent = this.transform.parent.gameObject;
@@ -114,21 +118,12 @@ public class EnemyBehavior : MonoBehaviour
 
     IEnumerator EnemyMove()
     {
+       ShowMoveableBlcoks();
         
-        ShowMoveableBlcoks();
-        //targetForMoving = SelectOnePositionToMove();
-        
-
-        
-        
-
        yield return new WaitUntil(() => trigger == true);
        GameObject target = SelectOnePositionToMove();
-        
 
-        FinalMove(target.GetComponent<GridStat>().x, target.GetComponent<GridStat>().y);
-
-
+       FinalMove(target.GetComponent<GridStat>().x, target.GetComponent<GridStat>().y);
     }
 
    
@@ -155,41 +150,28 @@ public class EnemyBehavior : MonoBehaviour
 
     public void ShowMoveableBlcoks()
     {
-        
         int x = parent.GetComponent<GridStat>().x;
         int y = parent.GetComponent<GridStat>().y;
         //get stat from enemy code
         gridBehaviorCode.FindSelectableBlock(x, y, enemyStats.moveSpeed.GetValue());
 
-
         trigger = true;
-        
-
     }
 
     public GameObject SelectOnePositionToMove()
     {
-        
-
-        foreach (GameObject obj in gridBehaviorCode.gridArray)
+        GameObject target;
+        if (gridBehaviorCode.tempOfInteractableBlocks.Count > 0)
         {
-            
-
-
-            if (obj.GetComponent<GridStat>().interactable == true&& obj.GetComponent<GridStat>().occupied == false )
-            {
-               
-                tempList.Add(obj);
-            }
-
-            
+            target = gridBehaviorCode.tempOfInteractableBlocks[Random.Range(0, tempList.Count)];
+            print("target to move X:" + target.GetComponent<GridStat>().x + " Y: " + target.GetComponent<GridStat>().y);
+            return target;
         }
-        
-
-        GameObject target = tempList[Random.Range(0, tempList.Count)];
-        print("target to move X:"+ target.GetComponent<GridStat>().x+" Y: "+ target.GetComponent<GridStat>().y);
-        return target;
-
+        else
+        {
+            print("list is empty");
+            return target = null;
+        }
     }
 
     public void FinalMove(int endX, int endY)
@@ -197,14 +179,11 @@ public class EnemyBehavior : MonoBehaviour
         gridBehaviorCode.findDistance = true;
         int currentX;
         int currentY;
-        //findcurrent
+
         currentX = parent.GetComponent<GridStat>().x;
-
         currentY = parent.GetComponent<GridStat>().y;
-
-
+        
         bool walkable = gridBehaviorCode.RunThePath(currentX, currentY, endX, endY, 4);
-
 
         //check if it over block limit
         if (walkable == true)
@@ -225,8 +204,7 @@ public class EnemyBehavior : MonoBehaviour
                 }
 
                 this.transform.SetParent(gridBehaviorCode.path[i].transform);
-
-
+                
                 triggerForLerp = true;
             }
         }
@@ -234,9 +212,10 @@ public class EnemyBehavior : MonoBehaviour
         {
             print("over block limit");
         }
-
-
+        
     }
+
+   
 
 
 
