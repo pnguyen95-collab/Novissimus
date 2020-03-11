@@ -16,17 +16,15 @@ public class PlayerBehavior : MonoBehaviour
     public GameObject particleChildForSelected;
     public GameObject particleChildForPlayable;
 
-    public float speedOfBallMoving; //just for speed of the object movement
-    public int moveOrAttack;
-
     public Vector3[] positions; //Positions store the Points of blocks that player will walk through
 
+    public float speedOfBallMoving; //just for speed of the object movement
+    public int moveOrAttack;
+    
     public bool triggerMoving;
     public bool playerIsActive; //to check if this player is selected
     public bool playerIsPlayable; //still can perform actions (walk,attack)
     
-    
-   
     void Start()
     {
         if (this.transform.childCount > 0)
@@ -35,23 +33,20 @@ public class PlayerBehavior : MonoBehaviour
             particleChildForPlayable = this.transform.GetChild(1).gameObject;
 
         }
+
         gm = GameObject.FindGameObjectWithTag("GameController");
         gridBehaviorCode = gm.GetComponent<GridBehavior>();
         gmCode = gm.GetComponent<GameManager>();
         playerStats = this.GetComponent<CharacterStats>();
         
-       
-
         triggerMoving = false;
+        playerIsActive = false;
+        playerIsPlayable = true;
         speedOfBallMoving = 1;
         moveOrAttack = 0;
 
-        playerIsActive = false;
-        playerIsPlayable = true;
-
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         CheckParticle();
@@ -72,11 +67,7 @@ public class PlayerBehavior : MonoBehaviour
             {
                 gmCode.setOnOffMenu(gmCode.menuPanel2, true);
             }
-
-            //playerIsActive = false;
-            //playerIsPlayable = false;
-            //gmCode.countNumOfPlayer++;
-            //gmCode.setCurrentPlayer(null);
+            
         }
     }
 
@@ -87,24 +78,30 @@ public class PlayerBehavior : MonoBehaviour
         {
             if (EventSystem.current.IsPointerOverGameObject())
                 return;
-
-            if (playerIsPlayable == true)
+            if(gmCode.currentPlayer==null)
+            if (playerIsPlayable == true && playerIsActive == false)
             {
-                    gmCode.setOnOffMenu(gmCode.menuPanel, true);
+
+                gmCode.setOnOffMenu(gmCode.menuPanel, true);
 
 
 
-                    int x = parent.GetComponent<GridStat>().x;
-                    int y = parent.GetComponent<GridStat>().y;
+                int x = parent.GetComponent<GridStat>().x;
+                int y = parent.GetComponent<GridStat>().y;
 
-                    //gridBehaviorCode.FindSelectableBlock(x, y, playerStats.limitNum);
-                    playerIsActive = true;
-                    gmCode.setCurrentPlayer(this.gameObject);
+                //gridBehaviorCode.FindSelectableBlock(x, y, playerStats.limitNum);
+                playerIsActive = true;
+                gmCode.setCurrentPlayer(this.gameObject);
             }
-            else 
+            else if (playerIsActive==true)
+            {
+                print("this is your current player");
+            }
+            else
             {
                 if (gmCode.turnStatus == 0)
                     print("player already moved");
+
                 else if (gmCode.turnStatus == 2)
                     print("Time's Up!");
                 else

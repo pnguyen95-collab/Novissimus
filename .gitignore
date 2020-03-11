@@ -58,3 +58,7 @@ sysinfo.txt
 crashlytics-build.properties
 
 *.cache
+.vs/Novissimus/v15/Server/sqlite3/storage.ide
+Assets/Prefab/Player.prefab
+Assets/Prefab/Player.prefab
+Assets/Scripts/PlayerBehavior.cs

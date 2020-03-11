@@ -4,25 +4,27 @@ using UnityEngine;
 
 public class GridBehavior : MonoBehaviour
 {
-    public bool findDistance = false;
-    public int rows = 20;
-    public int columns = 20;
-    public int scale = 1;
+    public Material one;
     public GameObject gridPrefab;
     public GameObject enemyPrefeb;
     public GameObject playerPrefab;
-    public Vector3 leftBottomLocation = new Vector3(0, 0, 0);
     public GameObject[,] gridArray;
+    public Vector3 leftBottomLocation = new Vector3(0, 0, 0);
+
+    public List<GameObject> path = new List<GameObject>();
+    public List<GameObject> AdjacencyList = new List<GameObject>();
+    public List<GameObject> tempOfInteractableBlocks = new List<GameObject>();
+
+    public bool findDistance = false;
+    public int rows = 20;
+    public int columns = 20;
     public int startX = 0;
     public int startY = 0;
     public int endX = 0;
     public int endY = 3;
+    public int scale = 1;
 
-    public List<GameObject> path = new List<GameObject>();
-
-    public List<GameObject> AdjacencyList = new List<GameObject>();
-
-    public Material one;
+   
 
     [System.Serializable]
     public class SpawnXY
@@ -49,12 +51,7 @@ public class GridBehavior : MonoBehaviour
         }
 
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    
 
     //execute the finding path
     public bool RunThePath(int sX, int sY, int eX, int eY, int limitNum)
@@ -148,6 +145,7 @@ public class GridBehavior : MonoBehaviour
     
     void SetDistance(int pointX,int pointY,int limitNum)
     {
+        tempOfInteractableBlocks.Clear();
          startX = pointX;
          startY = pointY;
 
@@ -156,13 +154,22 @@ public class GridBehavior : MonoBehaviour
         int[] testArray = new int[rows * columns];
         for (int step = 1; step < rows * columns; step++)
         {
-            
+
             foreach (GameObject obj in gridArray)
             {
                 obj.GetComponent<GridStat>().stepLimit = limitNum;
-                
+
                 if (obj && obj.GetComponent<GridStat>().visit == step - 1)
-                    TestFourDirections(obj.GetComponent<GridStat>().x, obj.GetComponent<GridStat>().y, step);
+                {
+                    bool a; 
+
+                    a=TestFourDirections(obj.GetComponent<GridStat>().x, obj.GetComponent<GridStat>().y, step);
+
+                    if (a == true)
+                    {
+                        tempOfInteractableBlocks.Add(obj);
+                    }
+                }
             }
         }
     }
@@ -249,7 +256,7 @@ public class GridBehavior : MonoBehaviour
         return false;
     }
 
-    void TestFourDirections(int x, int y, int step)
+    bool TestFourDirections(int x, int y, int step)
     {
         if (TestDirection(x, y, -1, 1))
             SetVisited(x, y + 1, step);
@@ -262,6 +269,15 @@ public class GridBehavior : MonoBehaviour
 
         if (TestDirection(x, y, -1, 4))
             SetVisited(x - 1, y, step);
+
+        if (step > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     void SetVisited(int x, int y, int step)

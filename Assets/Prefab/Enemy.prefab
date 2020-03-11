@@ -111,18 +111,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particleChildAttackable: {fileID: 0}
   particleChildMouseOver: {fileID: 0}
+  gm: {fileID: 0}
+  parent: {fileID: 0}
   gridBehaviorCode: {fileID: 0}
   enemyStats: {fileID: 0}
-  mouseOver: 0
-  canBeAttacked: 0
-  gm: {fileID: 0}
   gmCode: {fileID: 0}
+  positions: []
+  mouseOver: 0
   triggerMoving: 0
   triggerForLerp: 0
-  parent: {fileID: 0}
-  targetForMoving: {fileID: 0}
-  tempList: []
-  positions: []
 --- !u!114 &8488044808579786564
 MonoBehaviour:
   m_ObjectHideFlags: 0

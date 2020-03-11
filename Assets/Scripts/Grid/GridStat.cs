@@ -21,8 +21,6 @@ public class GridStat : MonoBehaviour
     public bool inAttackRange;
     public bool resourceNode = false; //turn on if is a resource node
     
-
-    
     public GridBehavior gridBehaviorCode;
     public GameObject gc;
     public GameManager gm;
@@ -30,17 +28,17 @@ public class GridStat : MonoBehaviour
 
     void Start()
     {
+        gc = GameObject.FindGameObjectWithTag("GameController");
+        gm = gc.GetComponent<GameManager>();
+        gridBehaviorCode = gc.GetComponent<GridBehavior>();
+
         inAttackRange = false;
         stepLimit = 0;
-        gc = GameObject.FindGameObjectWithTag("GameController");
-        gridBehaviorCode = gc.GetComponent<GridBehavior>();
-        gm = gc.GetComponent<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
         VisitedColor();
         checkOccupied();
 

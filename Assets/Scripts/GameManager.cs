@@ -9,43 +9,47 @@ public class GameManager : MonoBehaviour
 
     public GameObject[] players;
     public GameObject[] enemies;
-    public bool runRaycast;
     public GameObject currentPlayer;
     public GameObject menuPanel;
     public GameObject menuPanel2;
     public GridBehavior gridBehaviorCode;
     public NodeLoot lootResources;
+
     public int turnStatus; // 0 = player , 1 = enemy, 2 = none
     public int numOfPlayer;
     public int countNumOfPlayer;
     public int numOfEnemy;
     public int countNumOfEnemy;
+    public int turnCountdown;
 
+    public bool runRaycast;
     //boolean to trigger whether or not it's a resource grid
     public bool resourceGrid = false;
-    public int turnCountdown;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         gridBehaviorCode = this.GetComponent<GridBehavior>();
-        runRaycast = false;
+
+        players = GameObject.FindGameObjectsWithTag("Player");
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        numOfEnemy = enemies.Length;
+        numOfPlayer = players.Length;
+        countNumOfEnemy = 0;
+        countNumOfPlayer = 0;
+
         menuPanel = GameObject.Find("PlayerMenuPanel");
         if (resourceGrid == false)
         {
             menuPanel2 = GameObject.Find("PlayerMenuPanel2");
         }
+
         setOnOffMenu(menuPanel, false);
         setOnOffMenu(menuPanel2, false);
         turnStatus = 0;
-
-        players = GameObject.FindGameObjectsWithTag("Player");
-        numOfPlayer = players.Length;
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        numOfEnemy = GameObject.FindGameObjectsWithTag("Enemy").Length;
-        countNumOfEnemy = 0;
-        countNumOfPlayer = 0;
-
+        runRaycast = false;
+        
         //set how many turns countdown to countdown until return to base
         if (resourceGrid == true)
         {
@@ -178,6 +182,7 @@ public class GameManager : MonoBehaviour
                 //reset to the start
                 runRaycast = false;
                 gridBehaviorCode.resetVisit();
+                setOnOffMenu(menuPanel,true);
 
             }
         }
@@ -189,6 +194,7 @@ public class GameManager : MonoBehaviour
                 print("nothing to attck there");
                 runRaycast = false;
                 gridBehaviorCode.resetVisit();
+                setOnOffMenu(menuPanel2, true);
 
             }
         }
@@ -235,10 +241,12 @@ public class GameManager : MonoBehaviour
         print("clcik on player");
         if (currentPlayer.GetComponent<PlayerBehavior>().moveOrAttack == 0)
         {
+
             print("cannot walk there. Another player on it");
             //reset to the start
             runRaycast = false;
             gridBehaviorCode.resetVisit();
+            setOnOffMenu(menuPanel, true);
 
 
         }
@@ -247,6 +255,7 @@ public class GameManager : MonoBehaviour
                 print("cannot attack another player");
                 runRaycast = false;
                 gridBehaviorCode.resetVisit();
+            setOnOffMenu(menuPanel2, true);
         }
         else
         {
@@ -263,13 +272,32 @@ public class GameManager : MonoBehaviour
             runRaycast = false;
             gridBehaviorCode.resetVisit();
 
+
         }
         else if (currentPlayer.GetComponent<PlayerBehavior>().moveOrAttack == 1)
         {
-                //attack
-                print("Attacking enemy");
-                currentPlayer.GetComponent<PlayerBehavior>().AttackEnemy(temp);
-                runRaycast = false;
+            //attack
+            GridStat parent;
+            if (temp.transform.parent != null)
+            {
+                parent = temp.transform.parent.gameObject.GetComponent<GridStat>();
+                if (parent.inAttackRange == true)
+                {
+                    print("Attacking enemy");
+                    
+                    currentPlayer.GetComponent<PlayerBehavior>().AttackEnemy(temp);
+                    runRaycast = false;
+                }
+                else {
+
+                    print("enemy not in range");
+                    runRaycast = false;
+                    gridBehaviorCode.resetVisit();
+                    setOnOffMenu(menuPanel2, true);
+                }
+
+            }
+        
         }
         else
         {

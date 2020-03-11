@@ -1553,10 +1553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1005d668c6d9b14390b8aa754005be7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  findDistance: 0
-  rows: 20
-  columns: 20
-  scale: 1
+  one: {fileID: 0}
   gridPrefab: {fileID: 6380733288931972207, guid: b62e0714bb80b5845bfcca4a1078a09e,
     type: 3}
   enemyPrefeb: {fileID: 1660355907761192589, guid: 58e7fe9b41cdf694cad41660ae134e56,
@@ -1564,13 +1561,17 @@ MonoBehaviour:
   playerPrefab: {fileID: 1753900989158655432, guid: 10698deacc745da42baf4f14558f4e26,
     type: 3}
   leftBottomLocation: {x: 0, y: 0, z: 0}
+  path: []
+  AdjacencyList: []
+  tempOfInteractableBlocks: []
+  findDistance: 0
+  rows: 20
+  columns: 20
   startX: 0
   startY: 0
   endX: 0
   endY: 3
-  path: []
-  AdjacencyList: []
-  one: {fileID: 0}
+  scale: 1
   playerSpawn:
   - spawnXY: {x: 0, y: 0}
   - spawnXY: {x: 4, y: 0}
@@ -1595,7 +1596,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   players: []
   enemies: []
-  runRaycast: 0
   currentPlayer: {fileID: 0}
   menuPanel: {fileID: 471868885}
   menuPanel2: {fileID: 709646072}
@@ -1606,8 +1606,9 @@ MonoBehaviour:
   countNumOfPlayer: 0
   numOfEnemy: 0
   countNumOfEnemy: 0
-  resourceGrid: 0
   turnCountdown: 0
+  runRaycast: 0
+  resourceGrid: 0
 --- !u!114 &1444609428
 MonoBehaviour:
   m_ObjectHideFlags: 0
