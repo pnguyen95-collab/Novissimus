@@ -167,6 +167,7 @@ public class GridBehavior : MonoBehaviour
 
                     if (a == true)
                     {
+                        if(step < limitNum && step > 0)
                         tempOfInteractableBlocks.Add(obj);
                     }
                 }

@@ -163,9 +163,41 @@ public class EnemyBehavior : MonoBehaviour
         GameObject target;
         if (gridBehaviorCode.tempOfInteractableBlocks.Count > 0)
         {
-            target = gridBehaviorCode.tempOfInteractableBlocks[Random.Range(0, tempList.Count)];
-            print("target to move X:" + target.GetComponent<GridStat>().x + " Y: " + target.GetComponent<GridStat>().y);
-            return target;
+            //check stanable and occupied
+            
+            int i = 0;
+            bool foundOne = false;
+            GameObject t=null;
+
+            while (i< gridBehaviorCode.tempOfInteractableBlocks.Count)
+            {
+                
+                t = gridBehaviorCode.tempOfInteractableBlocks[Random.Range(0, gridBehaviorCode.tempOfInteractableBlocks.Count)];
+                if (t.GetComponent<GridStat>().occupied == false && t.GetComponent<GridStat>().standable == true)
+                {
+                    
+                    print("target to move X:" + t.GetComponent<GridStat>().x + " Y: " + t.GetComponent<GridStat>().y);
+                    foundOne = true;
+
+                    break;
+                    
+
+                }
+                else { i++; }
+
+
+            }
+
+            if (foundOne == false)
+            {
+                print("the enemy cannot move anywhere");
+                return target = null;
+            }
+            else
+            {
+                target = t;
+                return target;
+            }
         }
         else
         {
