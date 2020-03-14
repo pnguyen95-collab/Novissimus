@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public GameObject menuPanel2;
     public GridBehavior gridBehaviorCode;
     public NodeLoot lootResources;
+    public GameObject currentEnemy;
 
     public int turnStatus; // 0 = player , 1 = enemy, 2 = none
     public int numOfPlayer;
@@ -145,9 +146,12 @@ public class GameManager : MonoBehaviour
 
                         Debug.Log("You are forced to return to base.");
                     }
+                     
                 }
 
                 runRaycast = false;
+
+               
             }
             else
             {
@@ -175,14 +179,18 @@ public class GameManager : MonoBehaviour
                         }
                     }
 
-                    runRaycast = false;
+                    runRaycast = false;  //FIX
+                    gridBehaviorCode.resetVisit();
                 }
-
-                print("cannot walk there");
-                //reset to the start
-                runRaycast = false;
-                gridBehaviorCode.resetVisit();
-                setOnOffMenu(menuPanel,true);
+                else
+                {
+                    print("cannot walk there");
+                    //reset to the start
+                    runRaycast = false;
+                    gridBehaviorCode.resetVisit();
+                    setOnOffMenu(menuPanel,true);
+                }
+                
 
             }
         }
@@ -194,7 +202,11 @@ public class GameManager : MonoBehaviour
                 print("nothing to attck there");
                 runRaycast = false;
                 gridBehaviorCode.resetVisit();
-                setOnOffMenu(menuPanel2, true);
+                if (resourceGrid == false)
+                {
+                    setOnOffMenu(menuPanel2, true);
+                }
+                
 
             }
         }
@@ -327,7 +339,7 @@ public class GameManager : MonoBehaviour
 
                 //check all active enemies/players
                 players = GameObject.FindGameObjectsWithTag("Player");
-                enemies = GameObject.FindGameObjectsWithTag("Enemy");
+               enemies = GameObject.FindGameObjectsWithTag("Enemy");
             }
         }
         else if (turnStatus == 1)

@@ -65,7 +65,12 @@ public class PlayerBehavior : MonoBehaviour
 
             if (gmCode.resourceGrid == false)
             {
-                gmCode.setOnOffMenu(gmCode.menuPanel2, true);
+                
+                gmCode.setOnOffMenu(gmCode.menuPanel2, true);  //FIX
+            }
+            else
+            {
+                gmCode.setCurrentPlayer(null);
             }
             
         }
@@ -76,38 +81,49 @@ public class PlayerBehavior : MonoBehaviour
         //click
         if (Input.GetMouseButtonDown(0))
         {
+            
+
             if (EventSystem.current.IsPointerOverGameObject())
                 return;
-            if(gmCode.currentPlayer==null)
-            if (playerIsPlayable == true && playerIsActive == false)
+
+            if (gmCode.currentPlayer == null)
             {
+                if (playerIsPlayable == true && playerIsActive == false)
+                {
+                    print("player is playable");
+                    gmCode.setOnOffMenu(gmCode.menuPanel, true);
 
-                gmCode.setOnOffMenu(gmCode.menuPanel, true);
 
 
+                    int x = parent.GetComponent<GridStat>().x;
+                    int y = parent.GetComponent<GridStat>().y;
 
-                int x = parent.GetComponent<GridStat>().x;
-                int y = parent.GetComponent<GridStat>().y;
+                    //gridBehaviorCode.FindSelectableBlock(x, y, playerStats.limitNum);
+                    if (gmCode.resourceGrid == false)
+                    {
+                        playerIsActive = true;
 
-                //gridBehaviorCode.FindSelectableBlock(x, y, playerStats.limitNum);
-                playerIsActive = true;
-                gmCode.setCurrentPlayer(this.gameObject);
-            }
-            else if (playerIsActive==true)
-            {
-                print("this is your current player");
-            }
-            else
-            {
-                if (gmCode.turnStatus == 0)
-                    print("player already moved");
-
-                else if (gmCode.turnStatus == 2)
-                    print("Time's Up!");
+                    }
+                    gmCode.setCurrentPlayer(this.gameObject);
+                }
+                else if (playerIsActive == true)
+                {
+                    print("this is your current player");
+                }
                 else
-                    print("Enemy Turn");
+                {
+                    if (gmCode.turnStatus == 0)
+                        print("player already moved");
+
+                    else if (gmCode.turnStatus == 2)
+                        print("Time's Up!");
+                    else
+                        print("Enemy Turn");
+                }
             }
-            
+            else {
+                print("current player is" + gmCode.currentPlayer.name); //FIX put debug here
+            }
 
             
 
@@ -117,11 +133,12 @@ public class PlayerBehavior : MonoBehaviour
             moveOrAttack = 0;
             gmCode.setOnOffMenu(gmCode.menuPanel,false);
             gridBehaviorCode.resetVisit();
+            gmCode.setCurrentPlayer(null); //FIX
             
         }
     }
 
-    public void ShowMoveableBlcoks()
+    public void ShowMoveableBlocks() //FIX NAME
     {
         moveOrAttack = 0;
         int x = parent.GetComponent<GridStat>().x;
@@ -130,7 +147,7 @@ public class PlayerBehavior : MonoBehaviour
         
     }
 
-    public void ShowAttackableBlcoks()
+    public void ShowAttackableBlocks()
     {
         moveOrAttack = 1;
         int x = parent.GetComponent<GridStat>().x;
@@ -178,6 +195,8 @@ public class PlayerBehavior : MonoBehaviour
                 
                 triggerMoving = true;
             }
+
+            
         }
         else
         {
