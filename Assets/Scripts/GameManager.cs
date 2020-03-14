@@ -359,6 +359,7 @@ public class GameManager : MonoBehaviour
             {
                     e.GetComponent<EnemyBehavior>().triggerMoving = true;
                 countNumOfEnemy++;
+                    gridBehaviorCode.resetVisit();
             }
 
           else if (countNumOfEnemy == numOfEnemy)

@@ -126,7 +126,11 @@ public class EnemyBehavior : MonoBehaviour
        yield return new WaitUntil(() => trigger == true);
        GameObject target = SelectOnePositionToMove();
 
-       FinalMove(target.GetComponent<GridStat>().x, target.GetComponent<GridStat>().y);
+        if (target != null)
+            FinalMove(target.GetComponent<GridStat>().x, target.GetComponent<GridStat>().y);
+        else {
+            print("enemy me skip moving");
+        }
     }
 
    
