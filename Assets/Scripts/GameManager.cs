@@ -145,6 +145,8 @@ public class GameManager : MonoBehaviour
 
                         Debug.Log("You are forced to return to base.");
                     }
+
+                    setOnOffMenu(menuPanel, true);
                 }
 
                 runRaycast = false;
