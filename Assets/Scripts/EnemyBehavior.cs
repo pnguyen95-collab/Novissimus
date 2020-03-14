@@ -70,11 +70,14 @@ public class EnemyBehavior : MonoBehaviour
     public void OnMouseOver()
     {
         mouseOver = true;
+        gmCode.currentEnemy = this.gameObject;
+        
     }
 
     public void OnMouseExit()
     {
         mouseOver = false;
+        gmCode.currentEnemy = null;
     }
     public void CheckParticle()
     {
