@@ -769,13 +769,8 @@ RectTransform:
   - {fileID: 828266976}
   - {fileID: 1757373132}
   - {fileID: 1874755136}
-<<<<<<< HEAD
   m_Father: {fileID: 1758364720}
   m_RootOrder: 4
-=======
-  m_Father: {fileID: 1803767686}
-  m_RootOrder: 1
->>>>>>> 63e2b5eb4bd13d98cc79e7bc6f1701b166c3c060
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1954,12 +1949,12 @@ GameObject:
   - component: {fileID: 1261826470}
   - component: {fileID: 1261826469}
   m_Layer: 5
-  m_Name: GridSizeText
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1261826468
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2745,7 +2740,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1758364720
 RectTransform:
   m_ObjectHideFlags: 0
