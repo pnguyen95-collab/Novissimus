@@ -147,7 +147,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 184814956}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5402b775fc72c749b4e1e6225cde8b7, type: 3}
+  m_Script: {fileID: 11500000, guid: dd7809a83c526a94f8844268cc940d50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &184814958
@@ -245,7 +245,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 338096001}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 184814957}
+        m_MethodName: SceneTo
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: PrototypeResource
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &338096001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -693,7 +704,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Prototype
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1160337287

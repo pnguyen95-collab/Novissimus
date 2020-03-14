@@ -19,6 +19,12 @@ public class ButtonsFunctions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            gm.GetComponent<SceneControl>().SceneTo("PrototypeStart");
+        }
+
+
         //check to see if combat/resource grid
         if (gmCode.resourceGrid == false)
         {
