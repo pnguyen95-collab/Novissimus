@@ -5,36 +5,35 @@ using UnityEngine.UI;
 
 public class EnemyDisplay : MonoBehaviour
 {
-    /* public GameManager gmCode;
+    public GameObject gm;
+    public GameManager gmCode;
     public Text enemyName;
     public Text enemyHealth;
     public Text enemySpeed;
     public Text enemyWeapon;
-    public CharacterStats enemyStats;
     public GameObject currentEnemy;
 
     // Start is called before the first frame update
     void Start()
     {
-        gmCode = this.GetComponent<GameManager>();
-        CharacterStats = this.Getcomponent<CharacterStats>();
+        gmCode = gm.GetComponent<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        currentEnemy = gmCode.GetComponent<GameObject>().currentEnemy;
+        currentEnemy = gmCode.currentEnemy;
 
         if (currentEnemy != null)
         {
 
-            if (currentEnemy.GetComponent<enemyBehavior>().enemyIsActive == true)
+            if (currentEnemy.GetComponent<EnemyBehavior>().mouseOver == true)
             {
-                enemyName.text = "Cannibal Grunt";
-                enemyHealth.text = "Health: " + currentEnemy.currentHealth + "/ " + currentEnemy.maxHealth.GetValue();
+                enemyName.text = "Prototype";
+                enemyHealth.text = "Health: " + currentEnemy.GetComponent<CharacterStats>().currentHealth + "/ " + currentEnemy.GetComponent<CharacterStats>().maxHealth.GetValue();
                 enemyWeapon.text = "N/A";
-                enemySpeed.text = "Speed: " + currentEnemy.moveSpeed.GetValue();
+                enemySpeed.text = "Speed: " + currentEnemy.GetComponent<CharacterStats>().moveSpeed.GetValue();
             }
         }
-    } */
+    } 
 }

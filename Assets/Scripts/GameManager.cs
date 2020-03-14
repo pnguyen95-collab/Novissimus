@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public GridBehavior gridBehaviorCode;
     public NodeLoot lootResources;
     public GameObject currentEnemy;
+    public Text displayText;
+    
 
     public int turnStatus; // 0 = player , 1 = enemy, 2 = none
     public int numOfPlayer;
@@ -55,7 +57,7 @@ public class GameManager : MonoBehaviour
         if (resourceGrid == true)
         {
             turnCountdown = 10;
-            Debug.Log("You have " + turnCountdown + " turns remaining!");
+            ChangeDisplayText("Resource harvesting start!");
         }
         
     }
@@ -144,7 +146,7 @@ public class GameManager : MonoBehaviour
                         //return to base function
                         turnStatus = 2;
 
-                        Debug.Log("You are forced to return to base.");
+                        ChangeDisplayText("You are forced to return to base");
                     }
 
                     setOnOffMenu(menuPanel, true);
@@ -167,7 +169,8 @@ public class GameManager : MonoBehaviour
                     if (resourceGrid == true && turnCountdown > 0)
                     {
                         turnCountdown -= 1;
-                        Debug.Log("You have " + turnCountdown + " turns remaining!");
+                        //Debug.Log("You have " + turnCountdown + " turns remaining!");
+                        //ChangeDisplayText("You have " + turnCountdown + " turns remaining!");
 
                         //check if turn countdown is 0
                         if (turnCountdown == 0)
@@ -176,7 +179,7 @@ public class GameManager : MonoBehaviour
                             //return to base function
                             turnStatus = 2;
 
-                            Debug.Log("You are forced to return to base.");
+                            ChangeDisplayText("You are forced to return to base");
                         }
                     }
 
@@ -200,7 +203,7 @@ public class GameManager : MonoBehaviour
 
             if (temp.GetComponent<GridStat>().interactable == true && temp.GetComponent<GridStat>().occupied == false)
             {
-                print("nothing to attck there");
+                ChangeDisplayText("Nothing to attack there");
                 runRaycast = false;
                 gridBehaviorCode.resetVisit();
                 if (resourceGrid == false)
@@ -229,6 +232,7 @@ public class GameManager : MonoBehaviour
                 lootResources.MetalSpawn();
                 Destroy(gridBehaviorCode.gridArray[x, y].transform.GetChild(0).gameObject);
                 temp.GetComponent<GridStat>().resourceNode = false;
+                ChangeDisplayText("Harvested metal resources");
             }
             // gather synthetic resources
             if (gridBehaviorCode.gridArray[x, y].transform.GetChild(0).name.Contains("Synthetic") == true)
@@ -237,6 +241,7 @@ public class GameManager : MonoBehaviour
                 lootResources.SyntheticSpawn();
                 Destroy(gridBehaviorCode.gridArray[x, y].transform.GetChild(0).gameObject);
                 temp.GetComponent<GridStat>().resourceNode = false;
+                ChangeDisplayText("Harvested synthetic polymer resources");
             }
             // gather electronic resources
             if (gridBehaviorCode.gridArray[x, y].transform.GetChild(0).name.Contains("Electronic") == true)
@@ -245,6 +250,7 @@ public class GameManager : MonoBehaviour
                 lootResources.ElectronicSpawn();
                 Destroy(gridBehaviorCode.gridArray[x, y].transform.GetChild(0).gameObject);
                 temp.GetComponent<GridStat>().resourceNode = false;
+                ChangeDisplayText("Harvested electronic resources");
             }
         }
     }
@@ -254,8 +260,7 @@ public class GameManager : MonoBehaviour
         print("clcik on player");
         if (currentPlayer.GetComponent<PlayerBehavior>().moveOrAttack == 0)
         {
-
-            print("cannot walk there. Another player on it");
+            ChangeDisplayText("You cannot walk there. Another Player on it");
             //reset to the start
             runRaycast = false;
             gridBehaviorCode.resetVisit();
@@ -265,8 +270,8 @@ public class GameManager : MonoBehaviour
         }
         else if (currentPlayer.GetComponent<PlayerBehavior>().moveOrAttack == 1)
         {
-                print("cannot attack another player");
-                runRaycast = false;
+            ChangeDisplayText("You cannot attack another player");
+            runRaycast = false;
                 gridBehaviorCode.resetVisit();
             setOnOffMenu(menuPanel2, true);
         }
@@ -280,7 +285,8 @@ public class GameManager : MonoBehaviour
     {
         if (currentPlayer.GetComponent<PlayerBehavior>().moveOrAttack == 0)
         {
-            print("cannot walk there. Enemy on it");
+           
+            ChangeDisplayText("You cannot walk there. Enemy on it");
             //reset to the start
             runRaycast = false;
             gridBehaviorCode.resetVisit();
@@ -296,14 +302,15 @@ public class GameManager : MonoBehaviour
                 parent = temp.transform.parent.gameObject.GetComponent<GridStat>();
                 if (parent.inAttackRange == true)
                 {
-                    print("Attacking enemy");
-                    
+
+                    ChangeDisplayText("Attacked Prototype for "+currentPlayer.GetComponent<CharacterStats>().damage.GetValue()+" damage.");
                     currentPlayer.GetComponent<PlayerBehavior>().AttackEnemy(temp);
                     runRaycast = false;
                 }
                 else {
 
-                    print("enemy not in range");
+                    
+                    ChangeDisplayText("Enemy not in range");
                     runRaycast = false;
                     gridBehaviorCode.resetVisit();
                     setOnOffMenu(menuPanel2, true);
@@ -378,6 +385,12 @@ public class GameManager : MonoBehaviour
                 p.GetComponent<PlayerBehavior>().playerIsPlayable = false;
             }
         }
+    }
+
+    public void ChangeDisplayText(string x)
+    {
+        displayText.text = x;
+
     }
     
     
