@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     public NodeLoot lootResources;
     public GameObject currentEnemy;
     public Text displayText;
+    public Button test;
+    public GameObject menuPanel3;
     
 
     public int turnStatus; // 0 = player , 1 = enemy, 2 = none
@@ -50,6 +52,7 @@ public class GameManager : MonoBehaviour
 
         setOnOffMenu(menuPanel, false);
         setOnOffMenu(menuPanel2, false);
+        setOnOffMenu(menuPanel3, false);
         turnStatus = 0;
         runRaycast = false;
         
@@ -108,6 +111,8 @@ public class GameManager : MonoBehaviour
 
             }
         }
+
+        
 
     }
 
@@ -347,35 +352,46 @@ public class GameManager : MonoBehaviour
 
                 //check all active enemies/players
                 players = GameObject.FindGameObjectsWithTag("Player");
-               enemies = GameObject.FindGameObjectsWithTag("Enemy");
+                enemies = GameObject.FindGameObjectsWithTag("Enemy");
             }
         }
         else if (turnStatus == 1)
         {
             //enemyai start
             //do one enemy one by one
-            if(countNumOfEnemy<numOfEnemy)
-            foreach (GameObject e in enemies)
+            if (countNumOfEnemy < numOfEnemy)
             {
-                    e.GetComponent<EnemyBehavior>().triggerMoving = true;
-                countNumOfEnemy++;
-                    gridBehaviorCode.resetVisit();
-            }
-
-          else if (countNumOfEnemy == numOfEnemy)
-            {
-                turnStatus = 0;
-                countNumOfEnemy = 0;
-
-                //check all active enemies/players
-                players = GameObject.FindGameObjectsWithTag("Player");
-                enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-                foreach (GameObject p in players)
+                //button appear
+                if (countNumOfEnemy == 0)
                 {
-                    p.GetComponent<PlayerBehavior>().playerIsPlayable = true;
+                    TestEnemy();
                 }
+                setOnOffMenu(menuPanel3, true);
             }
+          /*  
+            if (countNumOfEnemy < numOfEnemy)
+                foreach (GameObject e in enemies)
+            {
+                e.GetComponent<EnemyBehavior>().triggerMoving = true;
+                countNumOfEnemy++;
+                gridBehaviorCode.resetVisit();
+            }*/
+        
+        else if (countNumOfEnemy == numOfEnemy)
+        {
+            setOnOffMenu(menuPanel3, false);
+            turnStatus = 0;
+            countNumOfEnemy = 0;
+
+            //check all active enemies/players
+            players = GameObject.FindGameObjectsWithTag("Player");
+            enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+            foreach (GameObject p in players)
+            {
+                p.GetComponent<PlayerBehavior>().playerIsPlayable = true;
+            }
+        }
         }
 
         //neither player or enemy turn
@@ -393,7 +409,14 @@ public class GameManager : MonoBehaviour
         displayText.text = x;
 
     }
-    
-    
+
+    public void TestEnemy()
+    {
+        
+        enemies[countNumOfEnemy].GetComponent<EnemyBehavior>().triggerMoving = true;
+        countNumOfEnemy++;
+        gridBehaviorCode.resetVisit();
+       
+    }
 
 }

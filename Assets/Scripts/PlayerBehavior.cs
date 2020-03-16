@@ -227,6 +227,7 @@ public class PlayerBehavior : MonoBehaviour
         yield return false;
     }
 
+    //attack
     public void AttackEnemy(GameObject target)
     {
         if (target.GetComponent<CharacterStats>() != null)
@@ -240,12 +241,15 @@ public class PlayerBehavior : MonoBehaviour
 
     }
 
+    //player choose to do nothing for the selected vehicle 
     public void DoNothing()
     {
         playerIsActive = false;
         playerIsPlayable = false;
         gmCode.setCurrentPlayer(null);
     }
+
+   
 
     public void CheckParticle()
     {

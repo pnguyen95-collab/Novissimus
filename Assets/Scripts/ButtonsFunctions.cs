@@ -75,7 +75,9 @@ public class ButtonsFunctions : MonoBehaviour
     {
         gmCode.setOnOffMenu(gmCode.menuPanel, false);
         gm.GetComponent<GridBehavior>().resetVisit();
+        gmCode.currentPlayer.GetComponent<PlayerBehavior>().playerIsActive = false;
         gmCode.setCurrentPlayer(null);
+
     }
 
     public void DoNothing()
@@ -84,6 +86,12 @@ public class ButtonsFunctions : MonoBehaviour
         gmCode.setOnOffMenu(gmCode.menuPanel, false);
         gmCode.currentPlayer.GetComponent<PlayerBehavior>().DoNothing();
         gm.GetComponent<GridBehavior>().resetVisit();
+    }
+
+    public void SkipToAttack()
+    {
+        gmCode.setOnOffMenu(gmCode.menuPanel, false);
+        gmCode.setOnOffMenu(gmCode.menuPanel2, true);
     }
 
     public void EnemyMove()

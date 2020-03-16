@@ -13,7 +13,7 @@ public class EnemyBehavior : MonoBehaviour
     public CharacterStats enemyStats;
     public GameManager gmCode;
 
-    private List<GameObject> tempList = new List<GameObject>();
+    public List<GameObject> tempList = new List<GameObject>();
     
 
     public Vector3[] positions;
@@ -125,6 +125,7 @@ public class EnemyBehavior : MonoBehaviour
         
        yield return new WaitUntil(() => trigger == true);
        GameObject target = SelectOnePositionToMove();
+        print(target);
 
         if (target != null)
             FinalMove(target.GetComponent<GridStat>().x, target.GetComponent<GridStat>().y);
@@ -157,18 +158,21 @@ public class EnemyBehavior : MonoBehaviour
 
     public void ShowMoveableBlcoks()
     {
+        tempList.Clear();
         int x = parent.GetComponent<GridStat>().x;
         int y = parent.GetComponent<GridStat>().y;
         //get stat from enemy code
+        print(this.name + " speed is" + enemyStats.moveSpeed.GetValue());
         gridBehaviorCode.FindSelectableBlock(x, y, enemyStats.moveSpeed.GetValue());
-
+       
         trigger = true;
+        tempList = gridBehaviorCode.tempOfInteractableBlocks;
     }
 
     public GameObject SelectOnePositionToMove()
     {
         GameObject target;
-        if (gridBehaviorCode.tempOfInteractableBlocks.Count > 0)
+        if (tempList.Count > 0)
         {
             //check stanable and occupied
             
@@ -176,14 +180,15 @@ public class EnemyBehavior : MonoBehaviour
             bool foundOne = false;
             GameObject t=null;
 
-            while (i< gridBehaviorCode.tempOfInteractableBlocks.Count)
+            while (i< tempList.Count)
             {
+                print("in i loop");
                 
-                t = gridBehaviorCode.tempOfInteractableBlocks[Random.Range(0, gridBehaviorCode.tempOfInteractableBlocks.Count)];
+                t = tempList[Random.Range(0, tempList.Count)];
                 if (t.GetComponent<GridStat>().occupied == false && t.GetComponent<GridStat>().standable == true)
                 {
                     
-                    print("target to move X:" + t.GetComponent<GridStat>().x + " Y: " + t.GetComponent<GridStat>().y);
+                    print(this.name+"-target to move X:" + t.GetComponent<GridStat>().x + " Y: " + t.GetComponent<GridStat>().y);
                     foundOne = true;
 
                     break;
@@ -197,7 +202,7 @@ public class EnemyBehavior : MonoBehaviour
 
             if (foundOne == false)
             {
-                print("the enemy cannot move anywhere");
+                print(this.name+"cannot move anywhere");
                 return target = null;
             }
             else
@@ -222,7 +227,7 @@ public class EnemyBehavior : MonoBehaviour
         currentX = parent.GetComponent<GridStat>().x;
         currentY = parent.GetComponent<GridStat>().y;
         
-        bool walkable = gridBehaviorCode.RunThePath(currentX, currentY, endX, endY, 4);
+        bool walkable = gridBehaviorCode.RunThePath(currentX, currentY, endX, endY, enemyStats.moveSpeed.GetValue());
 
         //check if it over block limit
         if (walkable == true)

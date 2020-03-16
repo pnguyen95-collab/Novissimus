@@ -24,6 +24,8 @@ public class GridBehavior : MonoBehaviour
     public int endY = 3;
     public int scale = 1;
 
+    private int count=0;
+
    
 
     [System.Serializable]
@@ -67,13 +69,16 @@ public class GridBehavior : MonoBehaviour
 
             setPath();
             findDistance = false;
+            print(path.Count + " " + limitNum);
 
-            if (path.Count > limitNum)
+            if (path.Count > (limitNum + 1))
             {
+                print("in hee");
                 return false;
             }
-            else
-                return true;
+            else if (path.Count <= (limitNum + 1))
+            { return true; }
+            else { return false; }
         }
         else { return false; }
     }
@@ -106,22 +111,15 @@ public class GridBehavior : MonoBehaviour
         }
 
         for (int i = 0; i < enemySpawn.Count; i++)
-        {
+        {count = i;
             GenerateEnemy(enemySpawn[i].spawnXY.x, enemySpawn[i].spawnXY.y);
+            
         }
 
         for (int i = 0; i < obstacleSpawn.Count; i++)
         {
             GenerateObstacle(obstacleSpawn[i].spawnXY.x, obstacleSpawn[i].spawnXY.y);
         }
-
-        //GenerateObstacle(2, 0); old system
-        //GenerateObstacle(2, 2);
-        //GeneratePlayer(0, 0);
-        //GeneratePlayer(4, 0);
-        //GeneratePlayer(6, 0);
-        //GenerateEnemy(5, 5);
-        //GenerateEnemy(5, 6);
 
     }
 
@@ -138,8 +136,9 @@ public class GridBehavior : MonoBehaviour
 
     void GenerateEnemy(int x, int y)
     {
-        GameObject player = Instantiate(enemyPrefeb, new Vector3(leftBottomLocation.x + scale * x, leftBottomLocation.y + scale, leftBottomLocation.z + scale * y), Quaternion.identity);
-        player.transform.SetParent(gridArray[x, y].transform);
+        GameObject enemy = Instantiate(enemyPrefeb, new Vector3(leftBottomLocation.x + scale * x, leftBottomLocation.y + scale, leftBottomLocation.z + scale * y), Quaternion.identity);
+        enemy.transform.SetParent(gridArray[x, y].transform);
+        enemy.name = "enemy-" + count;
     }
 
     
@@ -167,12 +166,18 @@ public class GridBehavior : MonoBehaviour
 
                     if (a == true)
                     {
-                        if(step < limitNum && step > 0)
-                        tempOfInteractableBlocks.Add(obj);
+                        if (step <= limitNum+1 && step > 0)
+                        {
+                            
+                            tempOfInteractableBlocks.Add(obj);
+
+                        }
+                       
                     }
                 }
             }
         }
+        //done getting tempList
     }
 
     void InitialSetUp()
@@ -308,7 +313,7 @@ public class GridBehavior : MonoBehaviour
 
     public void FindSelectableBlock(int x,int y,int limitNum)
     {
-        
+        resetVisit();
         GameObject current = gridArray[x, y];
         SetDistance(x,y,limitNum);
 

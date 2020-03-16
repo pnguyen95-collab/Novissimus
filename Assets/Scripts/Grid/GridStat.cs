@@ -34,12 +34,15 @@ public class GridStat : MonoBehaviour
 
         inAttackRange = false;
         stepLimit = 0;
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        VisitedColor();
+        NewVisitColour();
+        //VisitedColor();
         checkOccupied();
 
         if (occupied == true)
@@ -51,11 +54,11 @@ public class GridStat : MonoBehaviour
             else
             SetGridColor(Color.gray);
         }
-
         if (standable == false)
         {
             SetGridColor(Color.red);
         }
+
 
         if (pathActive == true)
         {
@@ -125,6 +128,52 @@ public class GridStat : MonoBehaviour
             interactable = false;
             inAttackRange = false;
         }
+    }
+
+    public void NewVisitColour()
+    {
+        if (gm.currentPlayer != null)
+        {
+            this.MoveOrAttack = gm.currentPlayer.GetComponent<PlayerBehavior>().moveOrAttack;
+        }
+
+        if (gridBehaviorCode.tempOfInteractableBlocks.Count > 0)
+        {
+            if (gridBehaviorCode.tempOfInteractableBlocks.Contains(this.gameObject))
+            {
+                if (mouseOver == true)
+                {
+                    SetGridColor(Color.blue);
+                    interactable = true;
+                }
+                else
+                {
+                    if (MoveOrAttack == 0)
+                    {
+                        SetGridColor(Color.cyan);
+                        interactable = true;
+                    }
+                    else
+                    {
+                        SetGridColor(Color.yellow);
+                        inAttackRange = true;
+                    }
+                }
+            }
+            else
+            {
+                SetGridColor(Color.white);
+                interactable = false;
+                inAttackRange = false;
+            }
+        }
+        else
+        {
+            SetGridColor(Color.white);
+            interactable = false;
+            inAttackRange = false;
+        }
+        
     }
 
     //return x and y of this object
