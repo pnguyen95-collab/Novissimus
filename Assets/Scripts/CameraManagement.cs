@@ -5,12 +5,13 @@ using UnityEngine;
 public class CameraManagement : MonoBehaviour
 {
     public int speed;
+    public Camera m_OrthographicCamera;
 
     //private void Start() don't need this
     //{
     //    speed = 5;
     //}
-      
+
 
     //Moving the camera around with the arrow keys
 
@@ -32,5 +33,15 @@ public class CameraManagement : MonoBehaviour
         {
             transform.Translate(new Vector3(0, speed * Time.deltaTime, 0));
         }
+
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f) // forward
+        {
+            m_OrthographicCamera.orthographicSize--;
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0f) // backwards
+        {
+            m_OrthographicCamera.orthographicSize++;
+        }
+
     }
 }
