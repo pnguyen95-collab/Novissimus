@@ -18,7 +18,7 @@ public class NodeSpawn : MonoBehaviour
 
         GameObject[,] gridArray = gridBehaviorCode.gridArray;
         Vector3 leftBottomLocation = gridBehaviorCode.leftBottomLocation;
-        int scale = gridBehaviorCode.scale;
+        float scale = gridBehaviorCode.scale;
 
         //for loop to spawn resources
         for (int i = 0; i < resourceSpawn; i++)

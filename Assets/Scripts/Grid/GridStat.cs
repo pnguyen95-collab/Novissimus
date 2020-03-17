@@ -35,6 +35,7 @@ public class GridStat : MonoBehaviour
         inAttackRange = false;
         stepLimit = 0;
 
+        this.GetComponent<Renderer>().material.SetFloat("_SecondOutlineWidth", 0.0f);
         
     }
 
@@ -84,12 +85,14 @@ public class GridStat : MonoBehaviour
         if (EventSystem.current.IsPointerOverGameObject())
             return;
 
-        SetGridColor(Color.gray);
+       this.GetComponent<Renderer>().material.SetFloat("_SecondOutlineWidth", 0.05f);
+       // SetGridColor(Color.gray);
         mouseOver = true;
     }
     private void OnMouseExit()
     {
-        SetGridColor(Color.white);
+        //SetGridColor(Color.white);
+        this.GetComponent<Renderer>().material.SetFloat("_SecondOutlineWidth", 0.0f);
         mouseOver = false;
     }
 
@@ -203,6 +206,7 @@ public class GridStat : MonoBehaviour
     void SetGridColor(Color x)
     {
         this.GetComponent<Renderer>().material.color = x;
+       
     }
 
     

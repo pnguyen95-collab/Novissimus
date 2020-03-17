@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GridBehavior : MonoBehaviour
 {
-    public Material one;
+    
     public GameObject gridPrefab;
     public GameObject enemyPrefeb;
     public GameObject playerPrefab;
@@ -22,7 +22,7 @@ public class GridBehavior : MonoBehaviour
     public int startY = 0;
     public int endX = 0;
     public int endY = 3;
-    public int scale = 1;
+    public float scale = 2f;
 
     private int count=0;
 
@@ -321,10 +321,15 @@ public class GridBehavior : MonoBehaviour
 
     public void resetVisit()
     {
+        tempOfInteractableBlocks.Clear();
         foreach (GameObject obj in gridArray)
         {
             obj.GetComponent<GridStat>().visit = -1;
             obj.GetComponent<GridStat>().pathActive=false;
+
+            obj.GetComponent<GridStat>().inAttackRange = false;
+
+            obj.GetComponent<GridStat>().interactable = false;
         }
     }
 

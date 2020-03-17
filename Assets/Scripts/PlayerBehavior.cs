@@ -13,8 +13,6 @@ public class PlayerBehavior : MonoBehaviour
     public GameManager gmCode;
     public GameObject gm;
     public GameObject parent;
-    public GameObject particleChildForSelected;
-    public GameObject particleChildForPlayable;
 
     public Vector3[] positions; //Positions store the Points of blocks that player will walk through
 
@@ -27,12 +25,7 @@ public class PlayerBehavior : MonoBehaviour
     
     void Start()
     {
-        if (this.transform.childCount > 0)
-        {
-            particleChildForSelected = this.transform.GetChild(0).gameObject;
-            particleChildForPlayable = this.transform.GetChild(1).gameObject;
-
-        }
+        
 
         gm = GameObject.FindGameObjectWithTag("GameController");
         gridBehaviorCode = gm.GetComponent<GridBehavior>();
@@ -45,11 +38,12 @@ public class PlayerBehavior : MonoBehaviour
         speedOfBallMoving = 1;
         moveOrAttack = 0;
 
+        SetOutline("_FirstOutlineWidth", 0.0f);
     }
     
     void Update()
     {
-        CheckParticle();
+        CheckOutline();
 
         //finding parent's block of the player
         parent = this.transform.parent.gameObject;
@@ -78,11 +72,12 @@ public class PlayerBehavior : MonoBehaviour
 
     void OnMouseOver()
     {
+        
+        SetOutline("_FirstOutlineWidth", 0.12f);
+
         //click
         if (Input.GetMouseButtonDown(0))
         {
-            
-
             if (EventSystem.current.IsPointerOverGameObject())
                 return;
 
@@ -136,6 +131,12 @@ public class PlayerBehavior : MonoBehaviour
             gmCode.setCurrentPlayer(null); //FIX
             
         }
+    }
+
+    
+    private void OnMouseExit()
+    {
+        SetOutline("_FirstOutlineWidth", 0.0f);
     }
 
     public void ShowMoveableBlocks() //FIX NAME
@@ -195,15 +196,12 @@ public class PlayerBehavior : MonoBehaviour
                 
                 triggerMoving = true;
             }
-
-            
         }
         else
         {
             print("over block limit");
         }
-
-
+        
     }
 
     //function to move player
@@ -248,29 +246,25 @@ public class PlayerBehavior : MonoBehaviour
         playerIsPlayable = false;
         gmCode.setCurrentPlayer(null);
     }
+    
 
-   
-
-    public void CheckParticle()
+    public void CheckOutline()
     {
-        if (playerIsActive == true)
+        if (playerIsPlayable == true)
         {
-            this.particleChildForSelected.SetActive(true);
+
+            SetOutline("_SecondOutlineWidth", 0.05f);
         }
         else
         {
-            this.particleChildForSelected.SetActive(false);
+            SetOutline("_SecondOutlineWidth", 0.0f);
         }
+        
+    }
 
-        if (playerIsPlayable==true)
-        {
-            this.particleChildForPlayable.SetActive(true);
-        }
-        else
-        {
-            this.particleChildForPlayable.SetActive(false);
-        }
-
+    public void SetOutline(string o,float a)
+    {
+        this.GetComponent<Renderer>().material.SetFloat(o, a);
     }
 
 

@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class EnemyBehavior : MonoBehaviour
 {
-    //should add one more particle for mouseOVer
-    public GameObject particleChildAttackable;
-    public GameObject particleChildMouseOver;
     public GameObject gm;
     public GameObject parent;
     public GridBehavior gridBehaviorCode;
@@ -24,7 +21,6 @@ public class EnemyBehavior : MonoBehaviour
 
     private bool trigger;
     
-    
 
     // Start is called before the first frame update
     void Start()
@@ -34,13 +30,12 @@ public class EnemyBehavior : MonoBehaviour
         gridBehaviorCode = gm.GetComponent<GridBehavior>();
         enemyStats = this.GetComponent<CharacterStats>();
 
-        if (this.transform.childCount > 0)
-        {
-            particleChildMouseOver = this.transform.GetChild(1).gameObject;
-            particleChildAttackable = this.transform.GetChild(0).gameObject;
-        }
 
-        
+        SetOutline("_FirstOutlineWidth", 0.0f);
+
+        SetOutline("_SecondOutlineWidth", 0.0f);
+
+
         triggerMoving = false;
         triggerForLerp = false;
         mouseOver = false;
@@ -48,9 +43,7 @@ public class EnemyBehavior : MonoBehaviour
     }
     void Update()
     {
-       
-        CheckParticle();
-
+        CheckOutline();
         parent = this.transform.parent.gameObject;
         if (triggerMoving == true)
         {
@@ -79,29 +72,28 @@ public class EnemyBehavior : MonoBehaviour
         mouseOver = false;
         gmCode.currentEnemy = null;
     }
-    public void CheckParticle()
+    
+    public void CheckOutline()
     {
         if (mouseOver == true)
         {
-            particleChildMouseOver.SetActive(true);
-        }
-        else if (mouseOver == false)
-        {
-            particleChildMouseOver.SetActive(false);
 
-        }
-
-        //if true and attackable (need to figure out the enemy is attackable)
-        if (CheckIfCanBeAttack())
-        {
-            particleChildAttackable.SetActive(true);
+            SetOutline("_FirstOutlineWidth", 0.12f);
         }
         else
         {
-            particleChildAttackable.SetActive(false);
+            SetOutline("_FirstOutlineWidth", 0.0f);
+        }
+        if (CheckIfCanBeAttack())
+        {
+            SetOutline("_SecondOutlineWidth", 0.05f);
+        }
+        else
+        {
+           
+            SetOutline("_SecondOutlineWidth", 0.0f);
         }
     }
-
     private bool CheckIfCanBeAttack()
     {
         if (this.transform.parent.tag == "Block")
@@ -182,7 +174,7 @@ public class EnemyBehavior : MonoBehaviour
 
             while (i< tempList.Count)
             {
-                print("in i loop");
+                
                 
                 t = tempList[Random.Range(0, tempList.Count)];
                 if (t.GetComponent<GridStat>().occupied == false && t.GetComponent<GridStat>().standable == true)
@@ -259,7 +251,10 @@ public class EnemyBehavior : MonoBehaviour
         
     }
 
-   
+    public void SetOutline(string o, float a)
+    {
+        this.GetComponent<Renderer>().material.SetFloat(o, a);
+    }
 
 
 
