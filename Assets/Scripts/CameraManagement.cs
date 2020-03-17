@@ -7,13 +7,7 @@ public class CameraManagement : MonoBehaviour
     public int speed;
     public Camera m_OrthographicCamera;
 
-    //private void Start() don't need this
-    //{
-    //    speed = 5;
-    //}
-
-
-    //Moving the camera around with the arrow keys
+    //Moving the camera around with the WASD keys & scrolling
 
     void Update()
     {

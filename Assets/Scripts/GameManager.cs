@@ -4,6 +4,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+//message class
+public class Message
+{
+    public string text;
+    public Text textObject;
+}
+
 public class GameManager : MonoBehaviour
 {
 
@@ -15,10 +22,14 @@ public class GameManager : MonoBehaviour
     public GridBehavior gridBehaviorCode;
     public NodeLoot lootResources;
     public GameObject currentEnemy;
-    public Text displayText;
     public Button test;
     public GameObject menuPanel3;
-    
+    public GameObject textDisplay;
+    public GameObject textPanel;
+    List<Message> messageList = new List<Message>();
+
+    //maximum number of messages to display
+    int maxMessages = 15;
 
     public int turnStatus; // 0 = player , 1 = enemy, 2 = none
     public int numOfPlayer;
@@ -52,7 +63,12 @@ public class GameManager : MonoBehaviour
 
         setOnOffMenu(menuPanel, false);
         setOnOffMenu(menuPanel2, false);
-        setOnOffMenu(menuPanel3, false);
+
+        if (resourceGrid == false)
+        {
+            setOnOffMenu(menuPanel3, false);
+        }
+
         turnStatus = 0;
         runRaycast = false;
         
@@ -60,7 +76,7 @@ public class GameManager : MonoBehaviour
         if (resourceGrid == true)
         {
             turnCountdown = 10;
-            ChangeDisplayText("Resource harvesting start!");
+            AddMessage("Resource harvesting start!", Color.cyan);
         }
         
     }
@@ -151,15 +167,13 @@ public class GameManager : MonoBehaviour
                         //return to base function
                         turnStatus = 2;
 
-                        ChangeDisplayText("You are forced to return to base");
+                        AddMessage("You are forced to return to base", Color.white);
                     }
 
-                    setOnOffMenu(menuPanel, true);
+                    setCurrentPlayer(null);
                 }
 
                 runRaycast = false;
-
-               
             }
             else
             {
@@ -184,16 +198,17 @@ public class GameManager : MonoBehaviour
                             //return to base function
                             turnStatus = 2;
 
-                            ChangeDisplayText("You are forced to return to base");
+                            AddMessage("You are forced to return to base", Color.white);
                         }
+
+                        setCurrentPlayer(null);
                     }
 
                     runRaycast = false;  //FIX
-                    gridBehaviorCode.resetVisit();
                 }
                 else
                 {
-                    print("cannot walk there");
+                    AddMessage("You cannot move there!", Color.red);
                     //reset to the start
                     runRaycast = false;
                     gridBehaviorCode.resetVisit();
@@ -208,7 +223,7 @@ public class GameManager : MonoBehaviour
 
             if (temp.GetComponent<GridStat>().interactable == true && temp.GetComponent<GridStat>().occupied == false)
             {
-                ChangeDisplayText("Nothing to attack there");
+                AddMessage("Nothing to attack there", Color.red);
                 runRaycast = false;
                 gridBehaviorCode.resetVisit();
                 if (resourceGrid == false)
@@ -237,7 +252,7 @@ public class GameManager : MonoBehaviour
                 lootResources.MetalSpawn();
                 Destroy(gridBehaviorCode.gridArray[x, y].transform.GetChild(0).gameObject);
                 temp.GetComponent<GridStat>().resourceNode = false;
-                ChangeDisplayText("Harvested metal resources");
+                AddMessage("Harvested metal resources", Color.cyan);
             }
             // gather synthetic resources
             if (gridBehaviorCode.gridArray[x, y].transform.GetChild(0).name.Contains("Synthetic") == true)
@@ -246,7 +261,7 @@ public class GameManager : MonoBehaviour
                 lootResources.SyntheticSpawn();
                 Destroy(gridBehaviorCode.gridArray[x, y].transform.GetChild(0).gameObject);
                 temp.GetComponent<GridStat>().resourceNode = false;
-                ChangeDisplayText("Harvested synthetic polymer resources");
+                AddMessage("Harvested synthetic polymer resources", Color.cyan);
             }
             // gather electronic resources
             if (gridBehaviorCode.gridArray[x, y].transform.GetChild(0).name.Contains("Electronic") == true)
@@ -255,7 +270,7 @@ public class GameManager : MonoBehaviour
                 lootResources.ElectronicSpawn();
                 Destroy(gridBehaviorCode.gridArray[x, y].transform.GetChild(0).gameObject);
                 temp.GetComponent<GridStat>().resourceNode = false;
-                ChangeDisplayText("Harvested electronic resources");
+                AddMessage("Harvested electronic resources", Color.cyan);
             }
         }
     }
@@ -265,7 +280,7 @@ public class GameManager : MonoBehaviour
         print("clcik on player");
         if (currentPlayer.GetComponent<PlayerBehavior>().moveOrAttack == 0)
         {
-            ChangeDisplayText("You cannot walk there. Another Player on it");
+            AddMessage("You cannot move there. Another Player is on it", Color.red);
             //reset to the start
             runRaycast = false;
             gridBehaviorCode.resetVisit();
@@ -275,7 +290,7 @@ public class GameManager : MonoBehaviour
         }
         else if (currentPlayer.GetComponent<PlayerBehavior>().moveOrAttack == 1)
         {
-            ChangeDisplayText("You cannot attack another player");
+            AddMessage("You cannot attack another player", Color.red);
             runRaycast = false;
                 gridBehaviorCode.resetVisit();
             setOnOffMenu(menuPanel2, true);
@@ -291,7 +306,7 @@ public class GameManager : MonoBehaviour
         if (currentPlayer.GetComponent<PlayerBehavior>().moveOrAttack == 0)
         {
            
-            ChangeDisplayText("You cannot walk there. Enemy on it");
+            AddMessage("You cannot move there. An enemy is on it", Color.red);
             //reset to the start
             runRaycast = false;
             gridBehaviorCode.resetVisit();
@@ -308,14 +323,14 @@ public class GameManager : MonoBehaviour
                 if (parent.inAttackRange == true)
                 {
 
-                    ChangeDisplayText("Attacked Prototype for "+currentPlayer.GetComponent<CharacterStats>().damage.GetValue()+" damage.");
+                    AddMessage("Attacked Prototype for "+currentPlayer.GetComponent<CharacterStats>().damage.GetValue()+" damage.", Color.white);
                     currentPlayer.GetComponent<PlayerBehavior>().AttackEnemy(temp);
                     runRaycast = false;
                 }
                 else {
 
                     
-                    ChangeDisplayText("Enemy not in range");
+                    AddMessage("Enemy not in range", Color.red);
                     runRaycast = false;
                     gridBehaviorCode.resetVisit();
                     setOnOffMenu(menuPanel2, true);
@@ -404,10 +419,32 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ChangeDisplayText(string x)
+    //add a new message to the display log
+    public void AddMessage(string x, Color y)
     {
-        displayText.text = x;
+        //check to see if message list is at capacity and if so destroy the earliest entry
+        if (messageList.Count >= maxMessages)
+        {
+            Destroy(messageList[0].textObject.gameObject);
+            messageList.Remove(messageList[0]);
+        }
 
+        Message displayMessage = new Message();
+
+        //set the message to display
+        displayMessage.text = x;
+
+        //instantiate text prefab
+        GameObject newText = Instantiate(textDisplay, textPanel.transform);
+
+        displayMessage.textObject = newText.GetComponent<Text>();
+
+        displayMessage.textObject.text = displayMessage.text;
+        displayMessage.textObject.color = y;
+        GameObject.Find("Scroll View").GetComponent<ScrollRect>().verticalNormalizedPosition = 0f;
+
+        //adds display text to the message list
+        messageList.Add(displayMessage);
     }
 
     public void TestEnemy()
