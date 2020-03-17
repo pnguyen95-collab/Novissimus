@@ -2832,7 +2832,7 @@ MonoBehaviour:
   startY: 0
   endX: 0
   endY: 3
-  scale: 1.1
+  scale: 1.03
   playerSpawn:
   - spawnXY: {x: 10, y: 3}
   enemySpawn: []
