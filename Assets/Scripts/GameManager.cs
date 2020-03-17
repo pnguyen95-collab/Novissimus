@@ -21,11 +21,13 @@ public class GameManager : MonoBehaviour
     public GameObject currentPlayer;
     public GameObject menuPanel;
     public GameObject menuPanel2;
+    public GameObject menuPanel3;
+    public GameObject blockClickingPanel;
     public GridBehavior gridBehaviorCode;
     public NodeLoot lootResources;
     public GameObject currentEnemy;
     public Button test;
-    public GameObject menuPanel3;
+    
     public GameObject textDisplay;
     public GameObject textPanel;
     List<Message> messageList = new List<Message>();
@@ -40,11 +42,9 @@ public class GameManager : MonoBehaviour
     public int countNumOfEnemy;
     public int turnCountdown;
 
-    public bool runRaycast;
-    //boolean to trigger whether or not it's a resource grid
+    public bool runRaycast; //boolean to trigger whether or not it's a resource grid
     public bool resourceGrid = false;
     
-
     // Start is called before the first frame update
     void Start()
     {
@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
         }
 
         menuPanel = GameObject.Find("PlayerMenuPanel");
+        
         if (resourceGrid == false)
         {
             menuPanel2 = GameObject.Find("PlayerMenuPanel2");
@@ -75,6 +76,7 @@ public class GameManager : MonoBehaviour
 
         setOnOffMenu(menuPanel, false);
         setOnOffMenu(menuPanel2, false);
+        setOnOffMenu(blockClickingPanel, false);
 
         if (resourceGrid == false)
         {
@@ -112,7 +114,7 @@ public class GameManager : MonoBehaviour
                     if (EventSystem.current.IsPointerOverGameObject())
                         return;
                     GameObject temp = hit.transform.gameObject;
-
+                    
                     if (hit.transform.tag == "Block")
                     {
                         ClickOnBlock(temp);
@@ -133,15 +135,8 @@ public class GameManager : MonoBehaviour
 
             }
         
-            else // If Raycast did not return anything
-            {
-            //Debug.Log("NULL");
-
-            }
         }
-
         
-
     }
 
     public void setCurrentPlayer(GameObject c)
@@ -156,8 +151,6 @@ public class GameManager : MonoBehaviour
 
     private void ClickOnBlock(GameObject temp)
     {
-        //print("in raycast block");
-
         //check if the order is move or attack
         if (currentPlayer.GetComponent<PlayerBehavior>().moveOrAttack == 0)
         {
@@ -200,9 +193,8 @@ public class GameManager : MonoBehaviour
                     if (resourceGrid == true && turnCountdown > 0)
                     {
                         turnCountdown -= 1;
-                        //Debug.Log("You have " + turnCountdown + " turns remaining!");
-                        //ChangeDisplayText("You have " + turnCountdown + " turns remaining!");
-
+                        
+                        AddMessage("You have " + turnCountdown + " turns remaining!", Color.white);
                         //check if turn countdown is 0
                         if (turnCountdown == 0)
                         {
@@ -220,11 +212,8 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
-                    AddMessage("You cannot move there!", Color.red);
-                    //reset to the start
-                    runRaycast = false;
-                    gridBehaviorCode.resetVisit();
-                    setOnOffMenu(menuPanel,true);
+                    AddMessage("Out of range. Please choose in-range Block",Color.red);
+
                 }
                 
 
@@ -289,72 +278,89 @@ public class GameManager : MonoBehaviour
 
     private void ClickOnPlayer(GameObject temp)
     {
-        print("clcik on player");
-        if (currentPlayer.GetComponent<PlayerBehavior>().moveOrAttack == 0)
+        //check first if the player's block is interactable
+        if (temp.transform.parent.GetComponent<GridStat>().interactable == false)
         {
-            AddMessage("You cannot move there. Another Player is on it", Color.red);
-            //reset to the start
-            runRaycast = false;
-            gridBehaviorCode.resetVisit();
-            setOnOffMenu(menuPanel, true);
-
-
-        }
-        else if (currentPlayer.GetComponent<PlayerBehavior>().moveOrAttack == 1)
-        {
-            AddMessage("You cannot attack another player", Color.red);
-            runRaycast = false;
-                gridBehaviorCode.resetVisit();
-            setOnOffMenu(menuPanel2, true);
+            AddMessage("Not in range. Please choose in-range Block",Color.red);
         }
         else
         {
-            print("moveOrAttack error");
+
+            if (currentPlayer.GetComponent<PlayerBehavior>().moveOrAttack == 0)
+            {
+                AddMessage("You cannot move there. Another Player is on it", Color.red);
+                //reset to the start
+                runRaycast = false;
+                gridBehaviorCode.resetVisit();
+                setOnOffMenu(menuPanel, true);
+
+
+            }
+            else if (currentPlayer.GetComponent<PlayerBehavior>().moveOrAttack == 1)
+            {
+                AddMessage("You cannot attack another player", Color.red);
+                runRaycast = false;
+                gridBehaviorCode.resetVisit();
+                setOnOffMenu(menuPanel2, true);
+            }
+            else
+            {
+                print("moveOrAttack error");
+            }
         }
     }
 
     private void ClickOnEnemy(GameObject temp)
     {
-        if (currentPlayer.GetComponent<PlayerBehavior>().moveOrAttack == 0)
+        //check first if the player's block is interactable
+        if (temp.transform.parent.GetComponent<GridStat>().interactable == false)
         {
-           
-            AddMessage("You cannot move there. An enemy is on it", Color.red);
-            //reset to the start
-            runRaycast = false;
-            gridBehaviorCode.resetVisit();
-            setOnOffMenu(menuPanel, true);
-
-
-        }
-        else if (currentPlayer.GetComponent<PlayerBehavior>().moveOrAttack == 1)
-        {
-            //attack
-            GridStat parent;
-            if (temp.transform.parent != null)
-            {
-                parent = temp.transform.parent.gameObject.GetComponent<GridStat>();
-                if (parent.inAttackRange == true)
-                {
-
-                    AddMessage("Attacked Prototype for "+currentPlayer.GetComponent<CharacterStats>().damage.GetValue()+" damage.", Color.white);
-                    currentPlayer.GetComponent<PlayerBehavior>().AttackEnemy(temp);
-                    runRaycast = false;
-                }
-                else {
-
-                    
-                    AddMessage("Enemy not in range", Color.red);
-                    runRaycast = false;
-                    gridBehaviorCode.resetVisit();
-                    setOnOffMenu(menuPanel2, true);
-                }
-
-            }
-        
+            AddMessage("Not in range. Please choose in-range Block", Color.red);
         }
         else
         {
-            print("moveOrAttack error");
+            if (currentPlayer.GetComponent<PlayerBehavior>().moveOrAttack == 0)
+            {
+
+                AddMessage("You cannot move there. An enemy is on it", Color.red);
+                //reset to the start
+                runRaycast = false;
+                gridBehaviorCode.resetVisit();
+                setOnOffMenu(menuPanel, true);
+
+
+            }
+            else if (currentPlayer.GetComponent<PlayerBehavior>().moveOrAttack == 1)
+            {
+                //attack
+                GridStat parent;
+                if (temp.transform.parent != null)
+                {
+                    parent = temp.transform.parent.gameObject.GetComponent<GridStat>();
+                    if (parent.inAttackRange == true)
+                    {
+
+                        AddMessage("Attacked Prototype for " + currentPlayer.GetComponent<CharacterStats>().damage.GetValue() + " damage.", Color.white);
+                        currentPlayer.GetComponent<PlayerBehavior>().AttackEnemy(temp);
+                        runRaycast = false;
+                    }
+                    else
+                    {
+
+
+                        AddMessage("Enemy not in range", Color.red);
+                        runRaycast = false;
+                        gridBehaviorCode.resetVisit();
+                        setOnOffMenu(menuPanel2, true);
+                    }
+
+                }
+
+            }
+            else
+            {
+                print("moveOrAttack error");
+            }
         }
     }
 

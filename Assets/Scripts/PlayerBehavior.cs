@@ -52,10 +52,12 @@ public class PlayerBehavior : MonoBehaviour
         //trigger player to move (must be used in Update function in order to use Lerp)
         if(triggerMoving==true)
         {
+            gmCode.setOnOffMenu(gmCode.blockClickingPanel, true);
             StartCoroutine(MultipleLerp(positions, speedOfBallMoving));
 
             triggerMoving = false;
             gridBehaviorCode.resetVisit();
+            
 
             if (gmCode.resourceGrid == false)
             {
@@ -66,7 +68,7 @@ public class PlayerBehavior : MonoBehaviour
             {
                 gmCode.setCurrentPlayer(null);
             }
-            
+            gmCode.setOnOffMenu(gmCode.blockClickingPanel, false);
         }
     }
 
