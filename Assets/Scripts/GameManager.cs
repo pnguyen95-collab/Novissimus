@@ -15,7 +15,9 @@ public class GameManager : MonoBehaviour
 {
 
     public GameObject[] players;
+    public List<GameObject> playersList;
     public GameObject[] enemies;
+    public List<GameObject> enemiesList;
     public GameObject currentPlayer;
     public GameObject menuPanel;
     public GameObject menuPanel2;
@@ -54,6 +56,16 @@ public class GameManager : MonoBehaviour
         numOfPlayer = players.Length;
         countNumOfEnemy = 0;
         countNumOfPlayer = 0;
+
+        for (int i = 0; i < countNumOfPlayer; i++)
+        {
+            playersList.Add(players[i]);
+        }
+
+        for (int i = 0; i < countNumOfEnemy; i++)
+        {
+            enemiesList.Add(enemies[i]);
+        }
 
         menuPanel = GameObject.Find("PlayerMenuPanel");
         if (resourceGrid == false)
@@ -310,6 +322,7 @@ public class GameManager : MonoBehaviour
             //reset to the start
             runRaycast = false;
             gridBehaviorCode.resetVisit();
+            setOnOffMenu(menuPanel, true);
 
 
         }
@@ -372,6 +385,7 @@ public class GameManager : MonoBehaviour
         }
         else if (turnStatus == 1)
         {
+            numOfEnemy = enemies.Length;
             //enemyai start
             //do one enemy one by one
             if (countNumOfEnemy < numOfEnemy)
@@ -455,5 +469,13 @@ public class GameManager : MonoBehaviour
         gridBehaviorCode.resetVisit();
        
     }
+
+    public void ReCountEnemies()
+    {
+        numOfEnemy = enemies.Length;
+        countNumOfEnemy = 0;
+    }
+
+
 
 }

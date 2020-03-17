@@ -230,7 +230,22 @@ public class PlayerBehavior : MonoBehaviour
     {
         if (target.GetComponent<CharacterStats>() != null)
         {
+            bool resetEnemies = false;
+            //has to check if the target will be destoy or no
+            if (target.GetComponent<CharacterStats>().currentHealth - playerStats.damage.GetValue() <= 0)
+            {
+                resetEnemies = true;
+                gmCode.enemiesList.Remove(target);
+            }
+            
             target.GetComponent<CharacterStats>().TakeDamage(playerStats.damage.GetValue());
+
+            if (resetEnemies == true)
+            {
+
+                gmCode.ReCountEnemies();
+            }
+
             this.playerIsPlayable = false;
             this.playerIsActive = false;
             gmCode.setCurrentPlayer(null);
