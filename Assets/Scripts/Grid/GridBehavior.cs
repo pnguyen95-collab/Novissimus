@@ -70,7 +70,7 @@ public class GridBehavior : MonoBehaviour
 
             setPath();
             findDistance = false;
-            print(path.Count + " " + limitNum);
+            //print(path.Count + " " + limitNum);
 
             if (path.Count > (limitNum + 1))
             {

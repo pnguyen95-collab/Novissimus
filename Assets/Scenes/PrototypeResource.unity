@@ -357,53 +357,54 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   metalSpawns:
-  - name: Iron
+  - itemType: 2
     rarity: 50
     minQuantity: 1
     maxQuantity: 3
-  - name: Steel
+  - itemType: 3
     rarity: 35
     minQuantity: 1
     maxQuantity: 2
-  - name: Brass
+  - itemType: 4
     rarity: 15
     minQuantity: 1
     maxQuantity: 1
   syntheticSpawns:
-  - name: Plastic
+  - itemType: 5
     rarity: 45
     minQuantity: 2
     maxQuantity: 4
-  - name: Rubber
+  - itemType: 6
     rarity: 45
     minQuantity: 2
     maxQuantity: 4
-  - name: Nylon
+  - itemType: 7
     rarity: 10
     minQuantity: 1
     maxQuantity: 1
   electronicSpawns:
-  - name: Wires
+  - itemType: 8
     rarity: 70
     minQuantity: 5
     maxQuantity: 8
-  - name: Circuit Board
+  - itemType: 9
     rarity: 15
     minQuantity: 1
     maxQuantity: 1
-  - name: Electronic Chip
+  - itemType: 10
     rarity: 15
     minQuantity: 1
     maxQuantity: 1
   coreResource:
-  - name: Scrap
+  - itemType: 1
     rarity: 0
     minQuantity: 25
     maxQuantity: 50
-  - name: Fuel
+  - itemType: 0
     rarity: 0
     minQuantity: 10
     maxQuantity: 20
+  gmCode: {fileID: 1976581625}
 --- !u!4 &143323879
 Transform:
   m_ObjectHideFlags: 0
@@ -2600,7 +2601,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1130.4, y: -877.64}
+  m_AnchoredPosition: {x: 1096, y: -877.64}
   m_SizeDelta: {x: 732.6, y: 137.35999}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1805941968

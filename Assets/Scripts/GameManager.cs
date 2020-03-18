@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour
     //maximum number of messages to display
     int maxMessages = 15;
 
+    public Inventory inventory;
+
     public int turnStatus; // 0 = player , 1 = enemy, 2 = none
     public int numOfPlayer;
     public int countNumOfPlayer;
@@ -85,6 +87,8 @@ public class GameManager : MonoBehaviour
 
         turnStatus = 0;
         runRaycast = false;
+
+        inventory = new Inventory();
         
         //set how many turns countdown to countdown until return to base
         if (resourceGrid == true)
@@ -98,7 +102,24 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        checkTurn(); 
+        checkTurn();
+
+        //inventory testing
+        if (Input.GetKeyDown(KeyCode.I))
+          {
+            if (inventory.inventoryList.Count >= 1)
+            {
+                for (int i = 0; i < inventory.inventoryList.Count; i++)
+                {
+                    print("You have " + inventory.inventoryList[i].amount + " " + inventory.inventoryList[i].type + " in your inventory.");
+                }
+            }
+            else
+            {
+                print("Your inventory is empty :(");
+            }
+
+          }
 
         if (runRaycast == true)
         {
@@ -163,7 +184,7 @@ public class GameManager : MonoBehaviour
                 if (resourceGrid == true && turnCountdown > 0)
                 {
                     turnCountdown -= 1;
-                    Debug.Log("You have " + turnCountdown + " turns remaining!");
+                    AddMessage("You have " + turnCountdown + " turns remaining!", Color.white);
 
                     //check if turn countdown is 0
                     if (turnCountdown == 0)
@@ -253,7 +274,6 @@ public class GameManager : MonoBehaviour
                 lootResources.MetalSpawn();
                 Destroy(gridBehaviorCode.gridArray[x, y].transform.GetChild(0).gameObject);
                 temp.GetComponent<GridStat>().resourceNode = false;
-                AddMessage("Harvested metal resources", Color.cyan);
             }
             // gather synthetic resources
             if (gridBehaviorCode.gridArray[x, y].transform.GetChild(0).name.Contains("Synthetic") == true)
@@ -262,7 +282,6 @@ public class GameManager : MonoBehaviour
                 lootResources.SyntheticSpawn();
                 Destroy(gridBehaviorCode.gridArray[x, y].transform.GetChild(0).gameObject);
                 temp.GetComponent<GridStat>().resourceNode = false;
-                AddMessage("Harvested synthetic polymer resources", Color.cyan);
             }
             // gather electronic resources
             if (gridBehaviorCode.gridArray[x, y].transform.GetChild(0).name.Contains("Electronic") == true)
@@ -271,7 +290,6 @@ public class GameManager : MonoBehaviour
                 lootResources.ElectronicSpawn();
                 Destroy(gridBehaviorCode.gridArray[x, y].transform.GetChild(0).gameObject);
                 temp.GetComponent<GridStat>().resourceNode = false;
-                AddMessage("Harvested electronic resources", Color.cyan);
             }
         }
     }
@@ -461,10 +479,10 @@ public class GameManager : MonoBehaviour
 
         displayMessage.textObject.text = displayMessage.text;
         displayMessage.textObject.color = y;
-        GameObject.Find("Scroll View").GetComponent<ScrollRect>().verticalNormalizedPosition = 0f;
 
         //adds display text to the message list
         messageList.Add(displayMessage);
+        GameObject.Find("Scroll View").GetComponent<ScrollRect>().verticalNormalizedPosition = 0f;
     }
 
     public void TestEnemy()
@@ -481,7 +499,5 @@ public class GameManager : MonoBehaviour
         numOfEnemy = enemies.Length;
         countNumOfEnemy = 0;
     }
-
-
 
 }

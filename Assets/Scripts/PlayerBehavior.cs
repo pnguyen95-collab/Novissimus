@@ -87,7 +87,7 @@ public class PlayerBehavior : MonoBehaviour
             {
                 if (playerIsPlayable == true && playerIsActive == false)
                 {
-                    print("player is playable");
+                    //print("player is playable");
                     gmCode.setOnOffMenu(gmCode.menuPanel, true);
 
 

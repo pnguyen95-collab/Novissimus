@@ -7,7 +7,7 @@ public class NodeLoot : MonoBehaviour
     [System.Serializable]
     public class ResourceTable
     {
-        public string name;
+        public Item.Type itemType;
         public int rarity;
         public int minQuantity;
         public int maxQuantity;
@@ -17,6 +17,7 @@ public class NodeLoot : MonoBehaviour
     public List<ResourceTable> syntheticSpawns;
     public List<ResourceTable> electronicSpawns;
     public List<ResourceTable> coreResource;
+    public GameManager gmCode;
 
     public void MetalSpawn()
     {
@@ -30,8 +31,14 @@ public class NodeLoot : MonoBehaviour
                 //check how many of the resource spawns
                 int quantityDrop = Random.Range(metalSpawns[i].minQuantity, metalSpawns[i].maxQuantity);
 
-                //give spawned resources to play and end loop
-                Debug.Log("You have gotten " + quantityDrop + " " + metalSpawns[i].name + "!");
+                //set the type and amount values for the player to add to inventory
+                Item spawnedItem = new Item();
+                spawnedItem.type = metalSpawns[i].itemType;
+                spawnedItem.amount = quantityDrop;
+
+                //give spawned resources to player and end loop
+                gmCode.inventory.AddItem(spawnedItem);
+                gmCode.AddMessage("You have gotten " + quantityDrop + " " + metalSpawns[i].itemType + "!", Color.yellow);
                 CoreResourceAdd();
                 return;
             }
@@ -60,8 +67,14 @@ public class NodeLoot : MonoBehaviour
                 //check how many of the resource spawns
                 int quantityDrop = Random.Range(syntheticSpawns[i].minQuantity, syntheticSpawns[i].maxQuantity);
 
-                //give spawned resources to play and end loop
-                Debug.Log("You have gotten " + quantityDrop + " " + syntheticSpawns[i].name + "!");
+                //set the type and amount values for the player to add to inventory
+                Item spawnedItem = new Item();
+                spawnedItem.type = syntheticSpawns[i].itemType;
+                spawnedItem.amount = quantityDrop;
+
+                //give spawned resources to player and end loop
+                gmCode.inventory.AddItem(spawnedItem);
+                gmCode.AddMessage("You have gotten " + quantityDrop + " " + syntheticSpawns[i].itemType + "!", Color.yellow);
                 CoreResourceAdd();
                 return;
             }
@@ -90,8 +103,14 @@ public class NodeLoot : MonoBehaviour
                 //check how many of the resource spawns
                 int quantityDrop = Random.Range(electronicSpawns[i].minQuantity, electronicSpawns[i].maxQuantity);
 
-                //give spawned resources to play and end loop
-                Debug.Log("You have gotten " + quantityDrop + " " + electronicSpawns[i].name + "!");
+                //set the type and amount values for the player to add to inventory
+                Item spawnedItem = new Item();
+                spawnedItem.type = electronicSpawns[i].itemType;
+                spawnedItem.amount = quantityDrop;
+
+                //give spawned resources to player and end loop
+                gmCode.inventory.AddItem(spawnedItem);
+                gmCode.AddMessage("You have gotten " + quantityDrop + " " + electronicSpawns[i].itemType + "!", Color.yellow);
                 CoreResourceAdd();
                 return;
             }
@@ -116,8 +135,14 @@ public class NodeLoot : MonoBehaviour
             //check quantity to give
             int quantityDrop = Random.Range(coreResource[i].minQuantity, coreResource[i].maxQuantity);
 
-            //give players core resources
-            Debug.Log("You have gotten " + quantityDrop + " " + coreResource[i].name + ".");
+            //set the type and amount values for the player to add to inventory
+            Item spawnedItem = new Item();
+            spawnedItem.type = coreResource[i].itemType;
+            spawnedItem.amount = quantityDrop;
+
+            //give player core resources
+            gmCode.inventory.AddItem(spawnedItem);
+            gmCode.AddMessage("You have gotten " + quantityDrop + " " + coreResource[i].itemType + ".", Color.yellow);
         }
 
         return;

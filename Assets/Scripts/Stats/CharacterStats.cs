@@ -15,7 +15,6 @@ public class CharacterStats : MonoBehaviour
         currentHealth = maxHealth.GetValue();
     }
 
-
     //Damage calculation method
     public void TakeDamage (int damage)
     {
@@ -33,6 +32,7 @@ public class CharacterStats : MonoBehaviour
     {
         // What happens when vehicle is destroyed
         Destroy(this.gameObject);
+        GameObject.Find("GameManagement").GetComponent<GameManager>().AddMessage(this.gameObject.name + " is destroyed.", Color.white);
         Debug.Log(transform.name + " is destroyed.");
     }
 }
