@@ -155,7 +155,7 @@ public class EnemyBehavior : MonoBehaviour
         int y = parent.GetComponent<GridStat>().y;
         //get stat from enemy code
         print(this.name + " speed is" + enemyStats.moveSpeed.GetValue());
-        gridBehaviorCode.FindSelectableBlock(x, y, enemyStats.moveSpeed.GetValue());
+        gridBehaviorCode.FindSelectableBlock(x, y, enemyStats.moveSpeed.GetValue(),false);
        
         trigger = true;
         tempList = gridBehaviorCode.tempOfInteractableBlocks;

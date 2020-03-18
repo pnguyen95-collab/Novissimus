@@ -87,6 +87,11 @@ PrefabInstance:
       propertyPath: moveSpeed.baseValue
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5759600858116839322, guid: 5197d9f534bbe734a9ab195c0471aa40,
+        type: 3}
+      propertyPath: weaponNumber
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8875479615302304535, guid: 5197d9f534bbe734a9ab195c0471aa40, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5197d9f534bbe734a9ab195c0471aa40, type: 3}

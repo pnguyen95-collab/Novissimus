@@ -25,6 +25,7 @@ public class GridBehavior : MonoBehaviour
     public float scale = 2f;
 
     private int count=0;
+    private bool isWeapon;
 
    
 
@@ -160,10 +161,16 @@ public class GridBehavior : MonoBehaviour
 
                 if (obj && obj.GetComponent<GridStat>().visit == step - 1)
                 {
-                    bool a; 
+                    bool a;
 
-                    a=TestFourDirections(obj.GetComponent<GridStat>().x, obj.GetComponent<GridStat>().y, step);
-
+                    if (isWeapon == false)
+                    {
+                        a = TestFourDirections(obj.GetComponent<GridStat>().x, obj.GetComponent<GridStat>().y, step);
+                    }
+                    else
+                    {
+                        a = TestEightDirection(obj.GetComponent<GridStat>().x, obj.GetComponent<GridStat>().y,step);
+                    }
                     if (a == true)
                     {
                         if (step <= limitNum+1 && step > 0)
@@ -258,6 +265,28 @@ public class GridBehavior : MonoBehaviour
                     return true;
                 else
                     return false;
+
+            case 5:
+                if (x - 1 > -1 && y+1<rows && gridArray[x - 1, y+1] && gridArray[x - 1, y+1].GetComponent<GridStat>().standable && gridArray[x - 1, y+1].GetComponent<GridStat>().visit == step)
+                    return true;
+                else
+                    return false;
+            case 6:
+                if (x + 1 < columns && y + 1 < rows && gridArray[x + 1, y + 1] && gridArray[x + 1, y + 1].GetComponent<GridStat>().standable && gridArray[x + 1, y + 1].GetComponent<GridStat>().visit == step)
+                    return true;
+                else
+                    return false;
+            case 7:
+                if (x + 1 < columns && y - 1 > -1 && gridArray[x + 1, y - 1] && gridArray[x + 1, y - 1].GetComponent<GridStat>().standable && gridArray[x + 1, y - 1].GetComponent<GridStat>().visit == step)
+                    return true;
+                else
+                    return false;
+            case 8:
+                if (x - 1 > -1 && y - 1 > -1 && gridArray[x - 1, y - 1] && gridArray[x - 1, y - 1].GetComponent<GridStat>().standable && gridArray[x - 1, y - 1].GetComponent<GridStat>().visit == step)
+                    return true;
+                else
+                    return false;
+                
         }
         return false;
     }
@@ -275,6 +304,42 @@ public class GridBehavior : MonoBehaviour
 
         if (TestDirection(x, y, -1, 4))
             SetVisited(x - 1, y, step);
+
+        if (step > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    bool TestEightDirection(int x,int y, int step)
+    {
+        if (TestDirection(x, y, -1, 1))
+            SetVisited(x, y + 1, step);
+
+        if (TestDirection(x, y, -1, 2))
+            SetVisited(x + 1, y, step);
+
+        if (TestDirection(x, y, -1, 3))
+            SetVisited(x, y - 1, step);
+
+        if (TestDirection(x, y, -1, 4))
+            SetVisited(x - 1, y, step);
+
+        if (TestDirection(x, y, -1, 5))
+            SetVisited(x-1, y + 1, step);
+
+        if (TestDirection(x, y, -1, 6))
+            SetVisited(x + 1, y+1, step);
+
+        if (TestDirection(x, y, -1, 7))
+            SetVisited(x+1, y - 1, step);
+
+        if (TestDirection(x, y, -1, 8))
+            SetVisited(x - 1, y-1, step);
 
         if (step > 0)
         {
@@ -311,8 +376,10 @@ public class GridBehavior : MonoBehaviour
 
    
 
-    public void FindSelectableBlock(int x,int y,int limitNum)
+    public void FindSelectableBlock(int x,int y,int limitNum,bool isWeapons)
     {
+        isWeapon = isWeapons;
+
         resetVisit();
         GameObject current = gridArray[x, y];
         SetDistance(x,y,limitNum);
@@ -332,5 +399,7 @@ public class GridBehavior : MonoBehaviour
             obj.GetComponent<GridStat>().interactable = false;
         }
     }
+
+
 
 }

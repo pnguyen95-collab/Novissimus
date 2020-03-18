@@ -146,16 +146,22 @@ public class PlayerBehavior : MonoBehaviour
         moveOrAttack = 0;
         int x = parent.GetComponent<GridStat>().x;
         int y = parent.GetComponent<GridStat>().y;
-        gridBehaviorCode.FindSelectableBlock(x, y, playerStats.moveSpeed.GetValue());
+        gridBehaviorCode.FindSelectableBlock(x, y, playerStats.moveSpeed.GetValue(),false);
         
     }
 
     public void ShowAttackableBlocks()
     {
         moveOrAttack = 1;
-        int x = parent.GetComponent<GridStat>().x;
-        int y = parent.GetComponent<GridStat>().y;
-        gridBehaviorCode.FindSelectableBlock(x, y, playerStats.attackRange.GetValue());
+        
+        //x and y will be change based on weapon
+       
+        int attackRange = gmCode.GetComponent<WeaponStats>().GiveAttackRange(playerStats.weaponNumber);
+        int x = gmCode.GetComponent<WeaponStats>().GiveXValue(parent.GetComponent<GridStat>().x, playerStats.weaponNumber);
+        int y = gmCode.GetComponent<WeaponStats>().GiveYValue(parent.GetComponent<GridStat>().y, playerStats.weaponNumber);
+        print(x+" "+ y);
+
+        gridBehaviorCode.FindSelectableBlock(x, y, attackRange,true);
         
     }
 

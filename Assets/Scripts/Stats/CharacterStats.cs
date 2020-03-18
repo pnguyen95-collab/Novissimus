@@ -6,6 +6,7 @@ public class CharacterStats : MonoBehaviour
     public Stat damage;
     public Stat moveSpeed;
     public Stat attackRange;
+    public int weaponNumber; //must assign
 
     public int currentHealth;
 
@@ -14,15 +15,6 @@ public class CharacterStats : MonoBehaviour
         currentHealth = maxHealth.GetValue();
     }
 
-    /*/Damage Testing
-     public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            TakeDamage(2);
-        }
-    }
-    */
 
     //Damage calculation method
     public void TakeDamage (int damage)

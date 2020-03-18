@@ -1989,6 +1989,7 @@ GameObject:
   - component: {fileID: 1254068308}
   - component: {fileID: 1254068307}
   - component: {fileID: 1254068311}
+  - component: {fileID: 1254068312}
   m_Layer: 0
   m_Name: GameManagement
   m_TagString: GameController
@@ -2114,6 +2115,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd7809a83c526a94f8844268cc940d50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1254068312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254068306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8884803933835504c866ac83593c609e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: 
+  weaponNumber: 0
 --- !u!1 &1294174081
 GameObject:
   m_ObjectHideFlags: 0
