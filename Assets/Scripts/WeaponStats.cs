@@ -6,7 +6,10 @@ public class WeaponStats : MonoBehaviour
 {
     public string Name;
     
-    public int weaponNumber; 
+    public int weaponNumber;
+
+    public List<int> xValues;
+    public List<int> yValues;
 
     /*
     weapons
@@ -14,34 +17,45 @@ public class WeaponStats : MonoBehaviour
     number 2 = Pivot Giant hammer
     */
 
-    public int GiveXValue(int x,int itsWeaponNumber)
+    public List<int> GiveXValue(int x,int itsWeaponNumber)
     {
+        xValues.Clear();
+
         switch (itsWeaponNumber)
         {
             case 1:
-                return x;
+                xValues.Add(x);
+                xValues.Add(x - 2);
+                xValues.Add(x + 2);
+                xValues.Add(x);
+                return xValues;
             case 2:
-                return x;
+                xValues.Add(x);
+                return xValues;
                 
         }
 
 
-        return 0;
+        return null;
     }
-    public int GiveYValue(int y, int itsWeaponNumber)
+    public List<int> GiveYValue(int y, int itsWeaponNumber)
     {
+        yValues.Clear();
         switch (itsWeaponNumber)
         {
             case 1:
-                print("in here");
-                return y + 2;
+                yValues.Add(y + 2);
+                yValues.Add(y);
+                yValues.Add(y);
+                yValues.Add(y - 2);
+                return yValues;
             case 2:
-                return y;
+                return yValues;
 
 
 
         }
-        return 0;
+        return null;
     }
 
     public int GiveAttackRange(int itsWeaponNumber)

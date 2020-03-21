@@ -160,6 +160,7 @@ public class GridStat : MonoBehaviour
                     {
                         SetGridColor(Color.yellow);
                         inAttackRange = true;
+                        interactable = true;
                     }
                 }
             }

@@ -16,8 +16,8 @@ public class GridBehavior : MonoBehaviour
     public List<GameObject> tempOfInteractableBlocks = new List<GameObject>();
 
     public bool findDistance = false;
-    public int rows = 20;
-    public int columns = 20;
+    public int rows = 30;
+    public int columns = 30;
     public int startX = 0;
     public int startY = 0;
     public int endX = 0;
@@ -104,22 +104,30 @@ public class GridBehavior : MonoBehaviour
             }
         }
 
-
-        //Generates players/enemies/obstacles according to list
-        for (int i = 0; i < playerSpawn.Count; i++)
+        if (playerSpawn.Count > 0 && enemySpawn.Count > 0 && obstacleSpawn.Count > 0)
         {
-           GeneratePlayer(playerSpawn[i].spawnXY.x, playerSpawn[i].spawnXY.y);
-        }
 
-        for (int i = 0; i < enemySpawn.Count; i++)
-        {count = i;
-            GenerateEnemy(enemySpawn[i].spawnXY.x, enemySpawn[i].spawnXY.y);
-            
-        }
+            //Generates players/enemies/obstacles according to list
+            for (int i = 0; i < playerSpawn.Count; i++)
+            {
+                GeneratePlayer(playerSpawn[i].spawnXY.x, playerSpawn[i].spawnXY.y);
+            }
 
-        for (int i = 0; i < obstacleSpawn.Count; i++)
-        {
-            GenerateObstacle(obstacleSpawn[i].spawnXY.x, obstacleSpawn[i].spawnXY.y);
+            for (int i = 0; i < enemySpawn.Count; i++)
+            {
+                count = i;
+                GenerateEnemy(enemySpawn[i].spawnXY.x, enemySpawn[i].spawnXY.y);
+
+            }
+
+            for (int i = 0; i < obstacleSpawn.Count; i++)
+            {
+                GenerateObstacle(obstacleSpawn[i].spawnXY.x, obstacleSpawn[i].spawnXY.y);
+            }
+
+        }
+        else {
+            print("no spawn value");
         }
 
     }
@@ -145,7 +153,7 @@ public class GridBehavior : MonoBehaviour
     
     void SetDistance(int pointX,int pointY,int limitNum)
     {
-        tempOfInteractableBlocks.Clear();
+        //tempOfInteractableBlocks.Clear();
          startX = pointX;
          startY = pointY;
 
@@ -376,19 +384,39 @@ public class GridBehavior : MonoBehaviour
 
    
 
-    public void FindSelectableBlock(int x,int y,int limitNum,bool isWeapons)
+    public void FindSelectableBlock(int x,int y,int limitNum,bool isWeapons,bool isNeedReset)
     {
         isWeapon = isWeapons;
-
-        resetVisit();
-        GameObject current = gridArray[x, y];
-        SetDistance(x,y,limitNum);
-
+        if (isNeedReset == true)
+        {
+            resetVisit();
+        }
+        if (x < 0 || x>=30 || y < 0||y>=30)
+        {
+            print("it is out of grid range");
+        }
+        else
+        {
+            GameObject current = gridArray[x, y];
+            SetDistance(x, y, limitNum);
+        }
      }
 
     public void resetVisit()
     {
+        
+        foreach (GameObject obj in tempOfInteractableBlocks)
+        {
+            obj.GetComponent<GridStat>().visit = -1;
+            obj.GetComponent<GridStat>().pathActive = false;
+
+            obj.GetComponent<GridStat>().inAttackRange = false;
+
+            obj.GetComponent<GridStat>().interactable = false;
+
+        }
         tempOfInteractableBlocks.Clear();
+        /*
         foreach (GameObject obj in gridArray)
         {
             obj.GetComponent<GridStat>().visit = -1;
@@ -397,7 +425,7 @@ public class GridBehavior : MonoBehaviour
             obj.GetComponent<GridStat>().inAttackRange = false;
 
             obj.GetComponent<GridStat>().interactable = false;
-        }
+        }*/
     }
 
 

@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Prototype.unity
     guid: 993fcf355bb3e2142a26e245eb1a782c
+  - enabled: 1
+    path: Assets/Scenes/Testing_Hub.unity
+    guid: 9d8f5fa6defc82b4f895dc6eefa1f8db
+  - enabled: 1
+    path: Assets/Scenes/Testing_desert_1.unity
+    guid: 132e5be8a267d214dacb42c6ab75cc00
   m_configObjects: {}

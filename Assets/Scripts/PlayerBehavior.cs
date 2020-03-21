@@ -146,7 +146,7 @@ public class PlayerBehavior : MonoBehaviour
         moveOrAttack = 0;
         int x = parent.GetComponent<GridStat>().x;
         int y = parent.GetComponent<GridStat>().y;
-        gridBehaviorCode.FindSelectableBlock(x, y, playerStats.moveSpeed.GetValue(),false);
+        gridBehaviorCode.FindSelectableBlock(x, y, playerStats.moveSpeed.GetValue(),false,false);
         
     }
 
@@ -154,14 +154,17 @@ public class PlayerBehavior : MonoBehaviour
     {
         moveOrAttack = 1;
         
-        //x and y will be change based on weapon
+        //x and y will be change based on weapon. some might be array?
        
         int attackRange = gmCode.GetComponent<WeaponStats>().GiveAttackRange(playerStats.weaponNumber);
-        int x = gmCode.GetComponent<WeaponStats>().GiveXValue(parent.GetComponent<GridStat>().x, playerStats.weaponNumber);
-        int y = gmCode.GetComponent<WeaponStats>().GiveYValue(parent.GetComponent<GridStat>().y, playerStats.weaponNumber);
-        print(x+" "+ y);
+        List<int> x = gmCode.GetComponent<WeaponStats>().GiveXValue(parent.GetComponent<GridStat>().x, playerStats.weaponNumber);
+        List<int> y = gmCode.GetComponent<WeaponStats>().GiveYValue(parent.GetComponent<GridStat>().y, playerStats.weaponNumber);
 
-        gridBehaviorCode.FindSelectableBlock(x, y, attackRange,true);
+        for (int i = 0; i < x.Count; i++)
+        {
+            gridBehaviorCode.FindSelectableBlock(x[i], y[i], attackRange, true,false);
+        }
+        
         
     }
 

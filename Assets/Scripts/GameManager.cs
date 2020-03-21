@@ -331,7 +331,7 @@ public class GameManager : MonoBehaviour
     private void ClickOnEnemy(GameObject temp)
     {
         //check first if the player's block is interactable
-        if (temp.transform.parent.GetComponent<GridStat>().interactable == false)
+        if (temp.transform.parent.GetComponent<GridStat>().interactable == false|| temp.transform.parent.GetComponent<GridStat>().inAttackRange == false)
         {
             AddMessage("Not in range. Please choose in-range Block", Color.red);
         }

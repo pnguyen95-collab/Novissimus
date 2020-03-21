@@ -30,11 +30,13 @@ public class CameraManagement : MonoBehaviour
 
         if (Input.GetAxis("Mouse ScrollWheel") > 0f) // forward
         {
+            if(m_OrthographicCamera.orthographicSize>4)
             m_OrthographicCamera.orthographicSize--;
         }
         else if (Input.GetAxis("Mouse ScrollWheel") < 0f) // backwards
         {
-            m_OrthographicCamera.orthographicSize++;
+            if (m_OrthographicCamera.orthographicSize < 11)
+                m_OrthographicCamera.orthographicSize++;
         }
 
     }
