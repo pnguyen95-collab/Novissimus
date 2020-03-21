@@ -110,7 +110,16 @@ public class GridBehavior : MonoBehaviour
             //Generates players/enemies/obstacles according to list
             for (int i = 0; i < playerSpawn.Count; i++)
             {
-                GeneratePlayer(playerSpawn[i].spawnXY.x, playerSpawn[i].spawnXY.y);
+                GameObject obj = GeneratePlayer(playerSpawn[i].spawnXY.x, playerSpawn[i].spawnXY.y);
+                if (i == 2)
+                {
+                    obj.GetComponent<CharacterStats>().weaponNumber = 2;
+                }
+                if (i == 3)
+                {
+                    obj.GetComponent<CharacterStats>().weaponNumber = 3;
+
+                }
             }
 
             for (int i = 0; i < enemySpawn.Count; i++)
@@ -137,10 +146,11 @@ public class GridBehavior : MonoBehaviour
         gridArray[x, y].GetComponent<GridStat>().standable = false;
     }
 
-    void GeneratePlayer(int x, int y)
+    GameObject GeneratePlayer(int x, int y)
     {
         GameObject player = Instantiate(playerPrefab, new Vector3(leftBottomLocation.x + scale * x, leftBottomLocation.y + scale, leftBottomLocation.z + scale * y), Quaternion.identity);
         player.transform.SetParent(gridArray[x, y].transform);
+        return player;
     }
 
     void GenerateEnemy(int x, int y)

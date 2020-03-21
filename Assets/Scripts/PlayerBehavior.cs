@@ -153,8 +153,6 @@ public class PlayerBehavior : MonoBehaviour
     public void ShowAttackableBlocks()
     {
         moveOrAttack = 1;
-        
-        //x and y will be change based on weapon. some might be array?
        
         int attackRange = gmCode.GetComponent<WeaponStats>().GiveAttackRange(playerStats.weaponNumber);
         List<int> x = gmCode.GetComponent<WeaponStats>().GiveXValue(parent.GetComponent<GridStat>().x, playerStats.weaponNumber);
@@ -162,9 +160,17 @@ public class PlayerBehavior : MonoBehaviour
 
         for (int i = 0; i < x.Count; i++)
         {
+            print(x.Count+" "+x[0]);
+
+            if(x[i]!=-1 && y[i]!=-1)
             gridBehaviorCode.FindSelectableBlock(x[i], y[i], attackRange, true,false);
         }
-        
+
+        if (playerStats.weaponNumber == 3)
+        {
+            gmCode.setOnOffMenu(gmCode.menuPanel3, true);
+        }
+
         
     }
 
@@ -237,25 +243,35 @@ public class PlayerBehavior : MonoBehaviour
     }
 
     //attack
-    public void AttackEnemy(GameObject target)
+    public void AttackEnemy(List<GameObject> target)
     {
-        if (target.GetComponent<CharacterStats>() != null)
+        for (int i = 0; i < target.Count; i++)
         {
-            bool resetEnemies = false;
-            //has to check if the target will be destoy or no
-            if (target.GetComponent<CharacterStats>().currentHealth - playerStats.damage.GetValue() <= 0)
-            {
-                resetEnemies = true;
-                gmCode.enemiesList.Remove(target);
-            }
-            
-            target.GetComponent<CharacterStats>().TakeDamage(playerStats.damage.GetValue());
+            int damageValue, visitValue;
 
-            if (resetEnemies == true)
-            {
+            visitValue = target[i].transform.parent.GetComponent<GridStat>().visit;
+            damageValue = gmCode.GetComponent<WeaponStats>().GiveDamageValue(playerStats.weaponNumber, visitValue);
 
-                gmCode.ReCountEnemies();
+            if (target[i].GetComponent<CharacterStats>() != null)
+            {
+                bool resetEnemies = false;
+                //has to check if the target will be destoy or no
+                if (target[i].GetComponent<CharacterStats>().currentHealth - damageValue <= 0)
+                {
+                    resetEnemies = true;
+                    gmCode.enemiesList.Remove(target[i]);
+                }
+                gmCode.AddMessage("Attacked " + target[i].name + "for " + damageValue + " damage.", Color.white);
+                target[i].GetComponent<CharacterStats>().TakeDamage(damageValue);
+
+                if (resetEnemies == true)
+                {
+
+                    gmCode.ReCountEnemies();
+                }
             }
+
+        
 
             this.playerIsPlayable = false;
             this.playerIsActive = false;
@@ -263,6 +279,39 @@ public class PlayerBehavior : MonoBehaviour
             gridBehaviorCode.resetVisit();
         }
 
+    }
+
+    public void AttackAll()
+    {
+        List<GameObject> enemyTemp = new List<GameObject>();
+        foreach (GameObject obj in gridBehaviorCode.tempOfInteractableBlocks)
+        {
+            if (obj.transform.childCount > 0)
+            {
+                // check if has enemy in attackable blocks
+                if (obj.transform.GetChild(0).tag == "Enemy")
+                {
+                    enemyTemp.Add(obj.transform.GetChild(0).gameObject);
+                }
+            }
+        }
+
+        //start attack if has in enemyTemp
+        if(enemyTemp.Count>0)
+        AttackEnemy(enemyTemp);
+        else
+        {
+            DoNothing();
+            gmCode.AddMessage("No enemy in range. Skipped Attack",Color.red);
+            this.playerIsPlayable = false;
+            this.playerIsActive = false;
+            gmCode.setCurrentPlayer(null);
+            gridBehaviorCode.resetVisit();
+        }
+
+        //set the attack all panel off
+        gmCode.setOnOffMenu(gmCode.menuPanel3, false);
+        
     }
 
     //player choose to do nothing for the selected vehicle 

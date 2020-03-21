@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public GameObject menuPanel;
     public GameObject menuPanel2;
     public GameObject menuPanel3;
+    public GameObject enemyPanel;
     public GameObject blockClickingPanel;
     public GridBehavior gridBehaviorCode;
     public NodeLoot lootResources;
@@ -83,6 +84,7 @@ public class GameManager : MonoBehaviour
         if (resourceGrid == false)
         {
             setOnOffMenu(menuPanel3, false);
+            setOnOffMenu(enemyPanel, false);
         }
 
         turnStatus = 0;
@@ -357,9 +359,9 @@ public class GameManager : MonoBehaviour
                     parent = temp.transform.parent.gameObject.GetComponent<GridStat>();
                     if (parent.inAttackRange == true)
                     {
-
-                        AddMessage("Attacked Prototype for " + currentPlayer.GetComponent<CharacterStats>().damage.GetValue() + " damage.", Color.white);
-                        currentPlayer.GetComponent<PlayerBehavior>().AttackEnemy(temp);
+                        List<GameObject> d = new List<GameObject>();
+                        d.Add(temp);
+                        currentPlayer.GetComponent<PlayerBehavior>().AttackEnemy(d);
                         runRaycast = false;
                     }
                     else
@@ -419,7 +421,7 @@ public class GameManager : MonoBehaviour
                 {
                     TestEnemy();
                 }
-                setOnOffMenu(menuPanel3, true);
+                setOnOffMenu(enemyPanel, true);
             }
           /*  
             if (countNumOfEnemy < numOfEnemy)
@@ -432,7 +434,7 @@ public class GameManager : MonoBehaviour
         
         else if (countNumOfEnemy == numOfEnemy)
         {
-            setOnOffMenu(menuPanel3, false);
+            
             turnStatus = 0;
             countNumOfEnemy = 0;
 
@@ -444,6 +446,7 @@ public class GameManager : MonoBehaviour
             {
                 p.GetComponent<PlayerBehavior>().playerIsPlayable = true;
             }
+            setOnOffMenu(enemyPanel, false);
         }
         }
 
