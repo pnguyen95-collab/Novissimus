@@ -134,7 +134,8 @@ MonoBehaviour:
   damage:
     baseValue: 2
   moveSpeed:
-    baseValue: 3
+    baseValue: 4
   attackRange:
     baseValue: 0
+  weaponNumber: 0
   currentHealth: 0

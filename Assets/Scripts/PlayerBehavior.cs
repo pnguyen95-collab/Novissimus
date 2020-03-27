@@ -164,6 +164,7 @@ public class PlayerBehavior : MonoBehaviour
 
             if(x[i]!=-1 && y[i]!=-1)
             gridBehaviorCode.FindSelectableBlock(x[i], y[i], attackRange, true,false);
+            print(attackRange);
         }
 
         if (playerStats.weaponNumber == 3)

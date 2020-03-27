@@ -2045,15 +2045,10 @@ MonoBehaviour:
   playerSpawn:
   - spawnXY: {x: 5, y: 1}
   - spawnXY: {x: 7, y: 1}
-  - spawnXY: {x: 9, y: 1}
-  - spawnXY: {x: 11, y: 1}
-  - spawnXY: {x: 13, y: 1}
   enemySpawn:
   - spawnXY: {x: 4, y: 12}
   - spawnXY: {x: 10, y: 9}
   - spawnXY: {x: 2, y: 5}
-  - spawnXY: {x: 11, y: 2}
-  - spawnXY: {x: 12, y: 2}
   obstacleSpawn:
   - spawnXY: {x: 4, y: 4}
   - spawnXY: {x: 4, y: 5}

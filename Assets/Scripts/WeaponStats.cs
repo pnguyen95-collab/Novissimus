@@ -17,6 +17,7 @@ public class WeaponStats : MonoBehaviour
     weapons
     number 1 = Normal bullet machine guns
     number 2 = Pivot Giant hammer
+    number 3 = Blade
     */
     private void Start()
     {
@@ -136,6 +137,20 @@ public class WeaponStats : MonoBehaviour
 
         }
         return null;
+    }
+
+    public int GiveFarestRange(int itsWeaponNumber)
+    {
+        switch (itsWeaponNumber)
+        {
+            case 1:
+                return 3;
+            case 2:
+                return 1;
+            case 3:
+                return 1; 
+        }
+        return 0;
     }
 
     public int GiveAttackRange(int itsWeaponNumber)

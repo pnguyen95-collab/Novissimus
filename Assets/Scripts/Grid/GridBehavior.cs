@@ -74,12 +74,16 @@ public class GridBehavior : MonoBehaviour
 
             if (path.Count > (limitNum + 1))
             {
-                print("in hee");
+                
                 return false;
             }
             else if (path.Count <= (limitNum + 1))
-            { return true; }
-            else { return false; }
+            {
+                return true;
+            }
+
+            else
+            { return false;}
         }
         else { return false; }
     }
@@ -111,6 +115,7 @@ public class GridBehavior : MonoBehaviour
             for (int i = 0; i < playerSpawn.Count; i++)
             {
                 GameObject obj = GeneratePlayer(playerSpawn[i].spawnXY.x, playerSpawn[i].spawnXY.y);
+                //force assign weapon number here
                 if (i == 2)
                 {
                     obj.GetComponent<CharacterStats>().weaponNumber = 2;
@@ -125,7 +130,8 @@ public class GridBehavior : MonoBehaviour
             for (int i = 0; i < enemySpawn.Count; i++)
             {
                 count = i;
-                GenerateEnemy(enemySpawn[i].spawnXY.x, enemySpawn[i].spawnXY.y);
+                GameObject obj = GenerateEnemy(enemySpawn[i].spawnXY.x, enemySpawn[i].spawnXY.y);
+                obj.GetComponent<CharacterStats>().weaponNumber = 1;
 
             }
 
@@ -150,14 +156,16 @@ public class GridBehavior : MonoBehaviour
     {
         GameObject player = Instantiate(playerPrefab, new Vector3(leftBottomLocation.x + scale * x, leftBottomLocation.y + scale, leftBottomLocation.z + scale * y), Quaternion.identity);
         player.transform.SetParent(gridArray[x, y].transform);
+        player.name = "Player-" + count;
         return player;
     }
 
-    void GenerateEnemy(int x, int y)
+   GameObject GenerateEnemy(int x, int y)
     {
         GameObject enemy = Instantiate(enemyPrefeb, new Vector3(leftBottomLocation.x + scale * x, leftBottomLocation.y + scale, leftBottomLocation.z + scale * y), Quaternion.identity);
         enemy.transform.SetParent(gridArray[x, y].transform);
         enemy.name = "enemy-" + count;
+        return enemy;
     }
 
     
@@ -200,6 +208,11 @@ public class GridBehavior : MonoBehaviour
                        
                     }
                 }
+            }
+
+            if (step > limitNum+1)
+            {
+                break;
             }
         }
         //done getting tempList
@@ -396,7 +409,7 @@ public class GridBehavior : MonoBehaviour
 
     public void FindSelectableBlock(int x,int y,int limitNum,bool isWeapons,bool isNeedReset)
     {
-        isWeapon = isWeapons;
+        this.isWeapon = isWeapons;
         if (isNeedReset == true)
         {
             resetVisit();
@@ -407,7 +420,7 @@ public class GridBehavior : MonoBehaviour
         }
         else
         {
-            GameObject current = gridArray[x, y];
+            //GameObject current = gridArray[x, y];
             SetDistance(x, y, limitNum);
         }
      }

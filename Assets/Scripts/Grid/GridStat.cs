@@ -66,12 +66,12 @@ public class GridStat : MonoBehaviour
             SetGridColor(Color.yellow);
             
         }
-
+        /*
         if (standable == true && occupied==false && visit==-1)
         {
             SetGridColor(Color.white);
         }
-
+        */
         if (resourceNode == true)
         {
             SetGridColor(Color.gray);

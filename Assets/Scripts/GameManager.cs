@@ -491,7 +491,7 @@ public class GameManager : MonoBehaviour
     public void TestEnemy()
     {
         
-        enemies[countNumOfEnemy].GetComponent<EnemyBehavior>().triggerMoving = true;
+        enemies[countNumOfEnemy].GetComponent<EnemyBehavior>().triggerEnemyToFunction = true;
         countNumOfEnemy++;
         gridBehaviorCode.resetVisit();
        
@@ -501,6 +501,11 @@ public class GameManager : MonoBehaviour
     {
         numOfEnemy = enemies.Length;
         countNumOfEnemy = 0;
+    }
+    public void ReCountPlayers()
+    {
+        numOfPlayer = players.Length;
+        countNumOfPlayer = 0;
     }
 
 }
