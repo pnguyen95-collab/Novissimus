@@ -303,7 +303,7 @@ public class PlayerBehavior : MonoBehaviour
         else
         {
             DoNothing();
-            gmCode.AddMessage("No enemy in range. Skipped Attack",Color.red);
+            gmCode.PopupText("No enemy in range. Skipped Attack");
             this.playerIsPlayable = false;
             this.playerIsActive = false;
             gmCode.setCurrentPlayer(null);

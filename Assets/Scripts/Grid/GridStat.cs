@@ -95,7 +95,7 @@ public class GridStat : MonoBehaviour
         this.GetComponent<Renderer>().material.SetFloat("_SecondOutlineWidth", 0.0f);
         mouseOver = false;
     }
-
+    /*
     //associate with the color of the grid based on player's speed limit
     void VisitedColor()
     {
@@ -132,7 +132,7 @@ public class GridStat : MonoBehaviour
             inAttackRange = false;
         }
     }
-
+    */
     public void NewVisitColour()
     {
         if (gm.currentPlayer != null)
@@ -158,7 +158,8 @@ public class GridStat : MonoBehaviour
                     }
                     else
                     {
-                        SetGridColor(Color.yellow);
+                        SetGridColor(Color.magenta);
+                        
                         inAttackRange = true;
                         interactable = true;
                     }

@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     public NodeLoot lootResources;
     public GameObject currentEnemy;
     public Button test;
+    public GameObject alertText;
     
     public GameObject textDisplay;
     public GameObject textPanel;
@@ -80,11 +81,12 @@ public class GameManager : MonoBehaviour
         setOnOffMenu(menuPanel, false);
         setOnOffMenu(menuPanel2, false);
         setOnOffMenu(blockClickingPanel, false);
-
+        alertText.SetActive(false);
         if (resourceGrid == false)
         {
             setOnOffMenu(menuPanel3, false);
             setOnOffMenu(enemyPanel, false);
+            
         }
 
         turnStatus = 0;
@@ -186,7 +188,7 @@ public class GameManager : MonoBehaviour
                 if (resourceGrid == true && turnCountdown > 0)
                 {
                     turnCountdown -= 1;
-                    AddMessage("You have " + turnCountdown + " turns remaining!", Color.white);
+                    StartCoroutine(PopupText("You have " + turnCountdown + " turns remaining!"));
 
                     //check if turn countdown is 0
                     if (turnCountdown == 0)
@@ -195,7 +197,8 @@ public class GameManager : MonoBehaviour
                         //return to base function
                         turnStatus = 2;
 
-                        AddMessage("You are forced to return to base", Color.white);
+                        
+                        StartCoroutine(PopupText("You are forced to return to base"));
                     }
 
                     setCurrentPlayer(null);
@@ -217,7 +220,9 @@ public class GameManager : MonoBehaviour
                     {
                         turnCountdown -= 1;
                         
-                        AddMessage("You have " + turnCountdown + " turns remaining!", Color.white);
+                        
+                        StartCoroutine(PopupText("You have " + turnCountdown + " turns remaining!"));
+
                         //check if turn countdown is 0
                         if (turnCountdown == 0)
                         {
@@ -225,7 +230,8 @@ public class GameManager : MonoBehaviour
                             //return to base function
                             turnStatus = 2;
 
-                            AddMessage("You are forced to return to base", Color.white);
+                            
+                            StartCoroutine(PopupText("You are forced to return to base"));
                         }
 
                         setCurrentPlayer(null);
@@ -235,7 +241,8 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
-                    AddMessage("Out of range. Please choose in-range Block",Color.red);
+                    
+                    StartCoroutine(PopupText("Please choose in-range Block"));
 
                 }
                 
@@ -247,7 +254,8 @@ public class GameManager : MonoBehaviour
 
             if (temp.GetComponent<GridStat>().interactable == true && temp.GetComponent<GridStat>().occupied == false)
             {
-                AddMessage("Nothing to attack there", Color.red);
+                
+                StartCoroutine(PopupText("Nothing to attack there"));
                 runRaycast = false;
                 gridBehaviorCode.resetVisit();
                 if (resourceGrid == false)
@@ -256,6 +264,10 @@ public class GameManager : MonoBehaviour
                 }
                 
 
+            }
+            else
+            {
+                StartCoroutine(PopupText("Cannot attack there"));
             }
         }
         else
@@ -301,14 +313,14 @@ public class GameManager : MonoBehaviour
         //check first if the player's block is interactable
         if (temp.transform.parent.GetComponent<GridStat>().interactable == false)
         {
-            AddMessage("Not in range. Please choose in-range Block",Color.red);
+            StartCoroutine(PopupText("Please choose in-range Block"));
         }
         else
         {
 
             if (currentPlayer.GetComponent<PlayerBehavior>().moveOrAttack == 0)
             {
-                AddMessage("You cannot move there. Another Player is on it", Color.red);
+                StartCoroutine(PopupText("You cannot move there."));
                 //reset to the start
                 runRaycast = false;
                 gridBehaviorCode.resetVisit();
@@ -318,7 +330,7 @@ public class GameManager : MonoBehaviour
             }
             else if (currentPlayer.GetComponent<PlayerBehavior>().moveOrAttack == 1)
             {
-                AddMessage("You cannot attack another player", Color.red);
+                StartCoroutine(PopupText("You cannot attack another player"));
                 runRaycast = false;
                 gridBehaviorCode.resetVisit();
                 setOnOffMenu(menuPanel2, true);
@@ -335,14 +347,14 @@ public class GameManager : MonoBehaviour
         //check first if the player's block is interactable
         if (temp.transform.parent.GetComponent<GridStat>().interactable == false|| temp.transform.parent.GetComponent<GridStat>().inAttackRange == false)
         {
-            AddMessage("Not in range. Please choose in-range Block", Color.red);
+            StartCoroutine(PopupText("Please choose in-range Block"));
         }
         else
         {
             if (currentPlayer.GetComponent<PlayerBehavior>().moveOrAttack == 0)
             {
-
-                AddMessage("You cannot move there. An enemy is on it", Color.red);
+                
+                StartCoroutine(PopupText("You cannot move there."));
                 //reset to the start
                 runRaycast = false;
                 gridBehaviorCode.resetVisit();
@@ -368,7 +380,8 @@ public class GameManager : MonoBehaviour
                     {
 
 
-                        AddMessage("Enemy not in range", Color.red);
+
+                        StartCoroutine(PopupText("Enemy not in range"));
                         runRaycast = false;
                         gridBehaviorCode.resetVisit();
                         setOnOffMenu(menuPanel2, true);
@@ -506,6 +519,18 @@ public class GameManager : MonoBehaviour
     {
         numOfPlayer = players.Length;
         countNumOfPlayer = 0;
+    }
+
+    public IEnumerator PopupText(string x)
+    {
+        alertText.SetActive(true);
+        alertText.GetComponent<Text>().text = x;
+
+        alertText.GetComponent<Text>().canvasRenderer.SetAlpha(1);
+        alertText.GetComponent<Text>().CrossFadeAlpha(0.0f, 2.5f, false);
+        yield return new WaitForSeconds(4f);
+        alertText.SetActive(false);
+        alertText.GetComponent<Text>().canvasRenderer.SetAlpha(1);
     }
 
 }

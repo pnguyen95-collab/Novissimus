@@ -42,8 +42,7 @@ public class EnemyBehavior : MonoBehaviour
 
         SetOutline("_SecondOutlineWidth", 0.0f);
 
-        detectableRange = this.enemyStats.moveSpeed.GetValue();
-            //gmCode.GetComponent<WeaponStats>().GiveFarestRange(this.enemyStats.weaponNumber)+this.enemyStats.moveSpeed.GetValue();
+        detectableRange = gmCode.GetComponent<WeaponStats>().GiveFarestRange(this.enemyStats.weaponNumber)+this.enemyStats.moveSpeed.GetValue();
 
 
         triggerEnemyToFunction = false;
@@ -151,16 +150,35 @@ public class EnemyBehavior : MonoBehaviour
         else
         {
             bool playerInRange;
-            ShowAttackShowAttackableBlocks(parent.GetComponent<GridStat>().x, parent.GetComponent<GridStat>().y);
+            ShowAttackableBlocks(parent.GetComponent<GridStat>().x, parent.GetComponent<GridStat>().y);
             playerInRange = IsPlayerInRange();
 
             if (playerInRange == true)//attack
             {
+                //before attack check
+                GameObject toMoveBlock;
+                toMoveBlock = MoveFurther();
                 
-                List<GameObject> o = new List<GameObject>();
-                o.Add(playerTarget);
-                Attack(o);
-                print("end enemy action");
+
+                if (toMoveBlock == null)
+                {
+                    List<GameObject> o = new List<GameObject>();
+                    o.Add(playerTarget);
+                    Attack(o);
+                    print("end enemy action");
+                }
+                else
+                {
+                    print("location is " + toMoveBlock.GetComponent<GridStat>().x+","+ toMoveBlock.GetComponent<GridStat>().y);
+                    FinalMove(toMoveBlock.GetComponent<GridStat>().x, toMoveBlock.GetComponent<GridStat>().y);
+                    List<GameObject> o = new List<GameObject>();
+                    o.Add(playerTarget);
+                    Attack(o);
+                    print("end enemy action");
+
+                   
+
+                }
             }
             else// find the block to be in attack range
             {
@@ -393,7 +411,7 @@ public class EnemyBehavior : MonoBehaviour
         
     }
 
-    public void ShowAttackShowAttackableBlocks(int startX,int startY)
+    public void ShowAttackableBlocks(int startX,int startY)
     {
         attackAbleBlocks.Clear();
         
@@ -471,6 +489,235 @@ public class EnemyBehavior : MonoBehaviour
 
     }
 
+    private GameObject MoveFurther()
+    {
+        int furthestRange; GameObject b;
+        GameObject tempBlock;
+        GameObject toMoveBlock = null;
+        //pathToPlayer.Clear();
+        pathToPlayer = getPathTo(playerTarget);
+        furthestRange = gmCode.GetComponent<WeaponStats>().GiveFarestRange(this.enemyStats.weaponNumber);
+        if (((pathToPlayer.Count) - 1) == furthestRange)
+        {
+            //no need to move
+            return toMoveBlock;
+        }
+        else
+        {
+            int i = 0; int j = 0; int keepInLoop = 0; 
+            bool pleaseCheckLeft = false;
+            bool pleaseCheckRight = false;
+            //need to move. check if to move back or forward
+            if (this.parent.GetComponent<GridStat>().y > playerTarget.transform.parent.GetComponent<GridStat>().y)
+            {
+                while (keepInLoop == 0)
+                {
+                    b = gridBehaviorCode.gridArray[this.parent.GetComponent<GridStat>().x + i, this.parent.GetComponent<GridStat>().y + j + 1];
+                    print(b.name);
+                    if (CheckStandable(b) == true)
+                    {
+                        bool a;
+                        tempBlock = b;
+                        ShowAttackableBlocks(b.GetComponent<GridStat>().x, b.GetComponent<GridStat>().y);
+                        a = IsPlayerInRange();
+                        if (a == true)
+                        {
+                            j++;
+                            toMoveBlock = tempBlock;
+                            
+                        }
+                        else
+                        {
+                            //a= false
+                            return toMoveBlock;
+                        }
+                    }
+                    else
+                    {
+                        pleaseCheckLeft = true;
+                    }
+
+                    if (pleaseCheckLeft == true)
+                    {
+                        
+
+                        b = gridBehaviorCode.gridArray[this.parent.GetComponent<GridStat>().x + i - 1, this.parent.GetComponent<GridStat>().y + j];
+                        if (CheckStandable(b) == true)
+                        {
+                            bool a;
+                            tempBlock = b;
+                            ShowAttackableBlocks(b.GetComponent<GridStat>().x, b.GetComponent<GridStat>().y);
+                            a = IsPlayerInRange();
+                            if (a == true)
+                            {
+                                i--;
+                                toMoveBlock = tempBlock;
+                                
+                            }
+                            else
+                            {
+                                //a= false
+                                return toMoveBlock;
+                            }
+                        }
+                        else
+                        {
+                            pleaseCheckRight = true;
+                        }
+
+                        pleaseCheckLeft = false;
+                    }
+
+                    if (pleaseCheckRight == true)
+                    {
+
+
+                        b = gridBehaviorCode.gridArray[this.parent.GetComponent<GridStat>().x + i + 1, this.parent.GetComponent<GridStat>().y + j];
+                        if (CheckStandable(b) == true)
+                        {
+                            bool a;
+                            tempBlock = b;
+                            ShowAttackableBlocks(b.GetComponent<GridStat>().x, b.GetComponent<GridStat>().y);
+                            a = IsPlayerInRange();
+                            if (a == true)
+                            {
+                                i++;
+                                toMoveBlock = tempBlock;
+                                
+                            }
+                            else
+                            {
+                                //a= false
+                                return toMoveBlock;
+                            }
+                        }
+                        else
+                        {
+                            keepInLoop = 1;
+                            return toMoveBlock;
+                            
+                        }
+
+                        pleaseCheckRight = false;
+                    }
+
+
+                }
+            }
+            
+            else
+            {
+                while (keepInLoop == 0)
+                {
+                    b = gridBehaviorCode.gridArray[this.parent.GetComponent<GridStat>().x + i, this.parent.GetComponent<GridStat>().y + j - 1];
+                    if (CheckStandable(b) == true)
+                    {
+                        bool a;
+                        tempBlock = b;
+                        ShowAttackableBlocks(b.GetComponent<GridStat>().x, b.GetComponent<GridStat>().y);
+                        a = IsPlayerInRange();
+                        if (a == true)
+                        {
+                            j--;
+                            toMoveBlock = tempBlock;
+
+                        }
+                        else
+                        {
+                            //a= false
+                            return toMoveBlock;
+                        }
+                    }
+                    else
+                    {
+                        pleaseCheckLeft = true;
+                    }
+
+                    if (pleaseCheckLeft == true)
+                    {
+
+
+                        b = gridBehaviorCode.gridArray[this.parent.GetComponent<GridStat>().x + i - 1, this.parent.GetComponent<GridStat>().y + j];
+                        if (CheckStandable(b) == true)
+                        {
+                            bool a;
+                            tempBlock = b;
+                            ShowAttackableBlocks(b.GetComponent<GridStat>().x, b.GetComponent<GridStat>().y);
+                            a = IsPlayerInRange();
+                            if (a == true)
+                            {
+                                i--;
+                                toMoveBlock = tempBlock;
+
+                            }
+                            else
+                            {
+                                //a= false
+                                return toMoveBlock;
+                            }
+                        }
+                        else
+                        {
+                            pleaseCheckRight = true;
+                        }
+
+                        pleaseCheckLeft = false;
+                    }
+
+                    if (pleaseCheckRight == true)
+                    {
+
+
+                        b = gridBehaviorCode.gridArray[this.parent.GetComponent<GridStat>().x + i + 1, this.parent.GetComponent<GridStat>().y + j];
+                        if (CheckStandable(b) == true)
+                        {
+                            bool a;
+                            tempBlock = b;
+                            ShowAttackableBlocks(b.GetComponent<GridStat>().x, b.GetComponent<GridStat>().y);
+                            a = IsPlayerInRange();
+                            if (a == true)
+                            {
+                                i++;
+                                toMoveBlock = tempBlock;
+
+                            }
+                            else
+                            {
+                                //a= false
+                                return toMoveBlock;
+                            }
+                        }
+                        else
+                        {
+                            keepInLoop = 1;
+                            return toMoveBlock;
+
+                        }
+
+                        pleaseCheckRight = false;
+                    }
+
+
+                }
+            }
+           
+        }
+
+        return toMoveBlock;
+    }
+
+    private bool CheckStandable(GameObject d)
+    {
+        if (d.GetComponent<GridStat>().standable == true && d.GetComponent<GridStat>().occupied == false)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     private List<GameObject> getPathTo(GameObject p)
     {
         List<GameObject> toBeReturn = new List<GameObject>();
@@ -503,32 +750,42 @@ public class EnemyBehavior : MonoBehaviour
         List<GameObject> tempInteractableList = new List<GameObject>();
         int playerX = playerTarget.transform.parent.GetComponent<GridStat>().x;
         int playerY = playerTarget.transform.parent.GetComponent<GridStat>().y;
-        
+        int count = 1; int j=-1;
+
         for (int i = path.Count-2; i >0; i--)
         {
-            if (i != 1)
-            {
-                print("path" + path[i].GetComponent<GridStat>().x + ", " + path[i].GetComponent<GridStat>().y);
-
-                ShowAttackShowAttackableBlocks(path[i].GetComponent<GridStat>().x, path[i].GetComponent<GridStat>().y);
-                tempInteractableList = attackAbleBlocks;
-                foreach (GameObject obj in tempInteractableList)
+                j = i;
+            
+                if (i != 1)
                 {
-                    if (obj.GetComponent<GridStat>().x == playerX && obj.GetComponent<GridStat>().y == playerY)
+                    print("path" + path[i].GetComponent<GridStat>().x + ", " + path[i].GetComponent<GridStat>().y);
+
+                    ShowAttackableBlocks(path[i].GetComponent<GridStat>().x, path[i].GetComponent<GridStat>().y);
+                    tempInteractableList = attackAbleBlocks;
+                    foreach (GameObject obj in tempInteractableList)
                     {
-                        
-                        foundOne = true;
-                        attackNext = true;
-                        return path[i];
+                        if (obj.GetComponent<GridStat>().x == playerX && obj.GetComponent<GridStat>().y == playerY)
+                        {
+
+                            foundOne = true;
+                            attackNext = true;
+                            return path[i];
+                        }
                     }
                 }
+            if (count == this.enemyStats.moveSpeed.GetValue())
+            {
+                break;
             }
-           
+            else
+            {
+                count++;
+            }  
         }
         if (foundOne == false)
         {
             //return in closest block
-            return path[1];
+            return path[j];
         }
 
         return null;
