@@ -2044,17 +2044,66 @@ MonoBehaviour:
   endY: 3
   scale: 1.03
   playerSpawn:
-  - spawnXY: {x: 5, y: 1}
-  - spawnXY: {x: 7, y: 1}
+  - spawnXY: {x: 12, y: 1}
+  - spawnXY: {x: 14, y: 1}
+  - spawnXY: {x: 16, y: 1}
+  - spawnXY: {x: 18, y: 1}
+  - spawnXY: {x: 20, y: 1}
   enemySpawn:
-  - spawnXY: {x: 4, y: 12}
-  - spawnXY: {x: 10, y: 9}
-  - spawnXY: {x: 2, y: 5}
+  - spawnXY: {x: 10, y: 14}
+  - spawnXY: {x: 16, y: 11}
+  - spawnXY: {x: 24, y: 14}
   obstacleSpawn:
-  - spawnXY: {x: 4, y: 4}
-  - spawnXY: {x: 4, y: 5}
-  - spawnXY: {x: 5, y: 4}
-  - spawnXY: {x: 5, y: 5}
+  - spawnXY: {x: 3, y: 25}
+  - spawnXY: {x: 4, y: 25}
+  - spawnXY: {x: 5, y: 25}
+  - spawnXY: {x: 3, y: 24}
+  - spawnXY: {x: 4, y: 24}
+  - spawnXY: {x: 5, y: 24}
+  - spawnXY: {x: 4, y: 23}
+  - spawnXY: {x: 5, y: 23}
+  - spawnXY: {x: 5, y: 9}
+  - spawnXY: {x: 6, y: 9}
+  - spawnXY: {x: 7, y: 9}
+  - spawnXY: {x: 5, y: 8}
+  - spawnXY: {x: 6, y: 8}
+  - spawnXY: {x: 7, y: 8}
+  - spawnXY: {x: 8, y: 8}
+  - spawnXY: {x: 7, y: 7}
+  - spawnXY: {x: 8, y: 7}
+  - spawnXY: {x: 13, y: 20}
+  - spawnXY: {x: 14, y: 20}
+  - spawnXY: {x: 13, y: 19}
+  - spawnXY: {x: 14, y: 19}
+  - spawnXY: {x: 14, y: 19}
+  - spawnXY: {x: 13, y: 18}
+  - spawnXY: {x: 13, y: 17}
+  - spawnXY: {x: 14, y: 17}
+  - spawnXY: {x: 15, y: 17}
+  - spawnXY: {x: 16, y: 17}
+  - spawnXY: {x: 14, y: 16}
+  - spawnXY: {x: 15, y: 16}
+  - spawnXY: {x: 16, y: 16}
+  - spawnXY: {x: 17, y: 16}
+  - spawnXY: {x: 18, y: 16}
+  - spawnXY: {x: 19, y: 16}
+  - spawnXY: {x: 20, y: 16}
+  - spawnXY: {x: 16, y: 15}
+  - spawnXY: {x: 17, y: 15}
+  - spawnXY: {x: 18, y: 15}
+  - spawnXY: {x: 19, y: 15}
+  - spawnXY: {x: 20, y: 15}
+  - spawnXY: {x: 21, y: 15}
+  - spawnXY: {x: 20, y: 14}
+  - spawnXY: {x: 21, y: 14}
+  - spawnXY: {x: 27, y: 12}
+  - spawnXY: {x: 28, y: 12}
+  - spawnXY: {x: 29, y: 12}
+  - spawnXY: {x: 27, y: 11}
+  - spawnXY: {x: 28, y: 11}
+  - spawnXY: {x: 29, y: 11}
+  - spawnXY: {x: 28, y: 10}
+  - spawnXY: {x: 29, y: 10}
 --- !u!114 &1140795399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3986,7 +4035,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6
+  orthographic size: 11
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -4010,7 +4059,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1944918505}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 5.8, y: 11.47, z: 2.28}
+  m_LocalPosition: {x: 16.261581, y: 11.47, z: 8.845419}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
