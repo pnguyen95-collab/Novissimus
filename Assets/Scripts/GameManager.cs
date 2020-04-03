@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
         numOfPlayer = players.Length;
         countNumOfEnemy = 0;
         countNumOfPlayer = 0;
+        
 
         for (int i = 0; i < countNumOfPlayer; i++)
         {
@@ -70,6 +71,20 @@ public class GameManager : MonoBehaviour
         {
             enemiesList.Add(enemies[i]);
         }
+
+        //INVENTORY
+        if (GameObject.Find("PlayerInventory") != null)
+        {
+            GameObject temp = GameObject.Find("PlayerInventory");
+
+            inventory = temp.GetComponent<PlayerData>().inventory;
+        }
+        else
+        {
+            print("Missing Inventory object");
+        }
+        
+        //PANELs
 
         menuPanel = GameObject.Find("PlayerMenuPanel");
         
@@ -92,7 +107,7 @@ public class GameManager : MonoBehaviour
         turnStatus = 0;
         runRaycast = false;
 
-        inventory = new Inventory();
+       
         
         //set how many turns countdown to countdown until return to base
         if (resourceGrid == true)
@@ -109,21 +124,9 @@ public class GameManager : MonoBehaviour
         checkTurn();
 
         //inventory testing
-        if (Input.GetKeyDown(KeyCode.I))
-          {
-            if (inventory.inventoryList.Count >= 1)
-            {
-                for (int i = 0; i < inventory.inventoryList.Count; i++)
-                {
-                    print("You have " + inventory.inventoryList[i].amount + " " + inventory.inventoryList[i].type + " in your inventory.");
-                }
-            }
-            else
-            {
-                print("Your inventory is empty :(");
-            }
+        
 
-          }
+       
 
         if (runRaycast == true)
         {
