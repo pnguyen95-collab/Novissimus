@@ -108,7 +108,7 @@ public class GridBehavior : MonoBehaviour
             }
         }
 
-        if (playerSpawn.Count > 0 && enemySpawn.Count > 0 && obstacleSpawn.Count > 0)
+        if (playerSpawn.Count > 0)
         {
 
             //Generates players/enemies/obstacles according to list
