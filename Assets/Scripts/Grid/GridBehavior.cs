@@ -74,7 +74,7 @@ public class GridBehavior : MonoBehaviour
 
             if (path.Count > (limitNum + 1))
             {
-                
+                print("in here");
                 return false;
             }
             else if (path.Count <= (limitNum + 1))

@@ -182,7 +182,11 @@ public class EnemyBehavior : MonoBehaviour
             }
             else// find the block to be in attack range
             {
-               pathToPlayer = getPathTo(playerTarget);
+               pathToPlayer = getPathTo(playerTarget,detectableRange);
+                if (pathToPlayer == null)
+                {
+                    print("pathToPlayer = null");
+                }
                 print("going to "+playerTarget.name);
                GameObject toMoveBlock =  FindTheAttackableBlock(pathToPlayer);
                 //move first then check attackNext
@@ -347,7 +351,15 @@ public class EnemyBehavior : MonoBehaviour
     public GameObject SelectOnePositionToMove()
     {
         GameObject target;
-        
+
+        foreach (GameObject b in tempList)
+        {
+            if (b.GetComponent<GridStat>().standable == false && b.GetComponent<GridStat>().occupied == true)
+            {
+                tempList.Remove(b);
+            }
+        }
+
         //if = 0 thats mean no possible location to move
         if (tempList.Count > 0)
         {
@@ -495,7 +507,7 @@ public class EnemyBehavior : MonoBehaviour
         GameObject tempBlock;
         GameObject toMoveBlock = null;
         //pathToPlayer.Clear();
-        pathToPlayer = getPathTo(playerTarget);
+        pathToPlayer = getPathTo(playerTarget,this.enemyStats.moveSpeed.GetValue());
         furthestRange = gmCode.GetComponent<WeaponStats>().GiveFarestRange(this.enemyStats.weaponNumber);
         if (((pathToPlayer.Count) - 1) == furthestRange)
         {
@@ -718,7 +730,7 @@ public class EnemyBehavior : MonoBehaviour
         }
     }
 
-    private List<GameObject> getPathTo(GameObject p)
+    private List<GameObject> getPathTo(GameObject p,int limit)
     {
         List<GameObject> toBeReturn = new List<GameObject>();
         int startX = this.parent.GetComponent<GridStat>().x;
@@ -730,8 +742,8 @@ public class EnemyBehavior : MonoBehaviour
 
         gridBehaviorCode.findDistance = true;
 
-        bool a = gridBehaviorCode.RunThePath(startX, startY, endX, endY, this.enemyStats.moveSpeed.GetValue());
-        
+        bool a = gridBehaviorCode.RunThePath(startX, startY, endX, endY, limit);
+        print("a= " + a);
         if (a == true)
         {
             return gridBehaviorCode.path;
@@ -746,6 +758,10 @@ public class EnemyBehavior : MonoBehaviour
 
     private GameObject FindTheAttackableBlock(List<GameObject> path)
     {
+        if (path == null)
+        {
+            print("path = null");
+        }
         bool foundOne = false;
         List<GameObject> tempInteractableList = new List<GameObject>();
         int playerX = playerTarget.transform.parent.GetComponent<GridStat>().x;
