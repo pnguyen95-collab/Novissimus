@@ -8,12 +8,19 @@ public class ButtonsFunctions : MonoBehaviour
     public GameObject gm;
     public GameManager gmCode;
     public Text turnStatus;
+    public GameObject pausePanel;
+    public GameObject holdPanel;
+    public GameObject holdPanel2;
 
     // Start is called before the first frame update
     void Start()
     {
         gm = GameObject.FindGameObjectWithTag("GameController");
         gmCode = gm.GetComponent<GameManager>();
+
+        pausePanel.SetActive(false);
+        holdPanel.SetActive(false);
+        holdPanel2.SetActive(false);
     }
 
     // Update is called once per frame
@@ -21,7 +28,10 @@ public class ButtonsFunctions : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            gm.GetComponent<SceneControl>().SceneTo("PrototypeStart");
+            //pause menu up
+            pausePanel.SetActive(true);
+            holdPanel.SetActive(true);
+            holdPanel2.SetActive(false);
         }
 
 
@@ -109,6 +119,21 @@ public class ButtonsFunctions : MonoBehaviour
         gmCode.countNumOfEnemy++;
     }
 
+    public void ExitThelevel()
+    {
+        pausePanel.SetActive(true);
+        holdPanel.SetActive(false);
+        holdPanel2.SetActive(true);
+    }
+    
+    public void YesExit()
+    {
 
+    }
+
+    public void ResumeTheGame()
+    {
+        pausePanel.SetActive(false);
+    }
     
 }
