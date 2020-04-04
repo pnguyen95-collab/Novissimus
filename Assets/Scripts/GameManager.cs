@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
     public GameObject menuPanel3;
     public GameObject enemyPanel;
     public GameObject blockClickingPanel;
+    public GameObject winPanel;
+    public GameObject losePanel;
     public GridBehavior gridBehaviorCode;
     public NodeLoot lootResources;
     public GameObject currentEnemy;
@@ -62,12 +64,12 @@ public class GameManager : MonoBehaviour
         countNumOfPlayer = 0;
         
 
-        for (int i = 0; i < countNumOfPlayer; i++)
+        for (int i = 0; i < numOfPlayer; i++)
         {
             playersList.Add(players[i]);
         }
 
-        for (int i = 0; i < countNumOfEnemy; i++)
+        for (int i = 0; i < numOfEnemy; i++)
         {
             enemiesList.Add(enemies[i]);
         }
@@ -97,10 +99,13 @@ public class GameManager : MonoBehaviour
         setOnOffMenu(menuPanel2, false);
         setOnOffMenu(blockClickingPanel, false);
         alertText.SetActive(false);
+        
         if (resourceGrid == false)
         {
             setOnOffMenu(menuPanel3, false);
             setOnOffMenu(enemyPanel, false);
+            setOnOffMenu(winPanel, false);
+            setOnOffMenu(losePanel, false);
             
         }
 
@@ -122,7 +127,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         checkTurn();
-
+        checkWinLose();
         if (runRaycast == true)
         {
 
@@ -507,16 +512,29 @@ public class GameManager : MonoBehaviour
         gridBehaviorCode.resetVisit();
        
     }
-
+    public void checkWinLose()
+    {
+        if (enemiesList.Count == 0)
+        {
+            setOnOffMenu(winPanel, true);
+        }
+        if (playersList.Count == 0)
+        {
+            setOnOffMenu(losePanel, true);
+        }
+    }
     public void ReCountEnemies()
     {
         numOfEnemy = enemies.Length;
         countNumOfEnemy = 0;
+
+        
     }
     public void ReCountPlayers()
     {
         numOfPlayer = players.Length;
         countNumOfPlayer = 0;
+      
     }
 
     public IEnumerator PopupText(string x)
