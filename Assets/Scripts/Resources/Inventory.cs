@@ -11,6 +11,7 @@ public class Inventory
         inventoryList = new List<Item>();
     }
 
+    //function used to add an item to your inventory
     public void AddItem(Item item)
     {
         if (inventoryList.Count > 0)
@@ -38,5 +39,18 @@ public class Inventory
         {
             inventoryList.Add(item);
         }
+    }
+
+    //function used to check if you have an item and its quantity in your inventory - returns the int number of quantity
+    public int CheckItem(Item item)
+    {
+        foreach (Item itemCheck in inventoryList)
+        {
+            if (itemCheck.type == item.type)
+            {
+                return itemCheck.amount;
+            }
+        }
+        return 0;
     }
 }

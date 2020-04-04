@@ -123,11 +123,6 @@ public class GameManager : MonoBehaviour
     {
         checkTurn();
 
-        //inventory testing
-        
-
-       
-
         if (runRaycast == true)
         {
 

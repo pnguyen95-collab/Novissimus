@@ -27,36 +27,15 @@ public class CoreResourceDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(inventory.inventoryList.Count);
-
         //checks to see if an inventory exists
         if (inventory != null)
         {
-            //finds fuel/scrap in inventory
-            for (int i = 0; i < inventory.inventoryList.Count; i++)
-            {
-                print("Checking Inventory");
+            //checks if you have any fuel/scrap and displays the amount you have
+            int tempFuel = inventory.CheckItem(new Item { type = Item.Type.Fuel });
+            int tempScrap = inventory.CheckItem(new Item { type = Item.Type.Scrap });
 
-                //checks and displays amount of fuel
-                if (inventory.inventoryList[i].type == Item.Type.Fuel)
-                {
-                    fuelAmount.text = "Fuel: " + inventory.inventoryList[i].amount;
-                }
-                else
-                {
-                    fuelAmount.text = "Fuel: 0";
-                }
-
-                //checks and displays amount of scrap
-                if (inventory.inventoryList[i].type == Item.Type.Scrap)
-                {
-                    scrapAmount.text = "Scrap: " + inventory.inventoryList[i].amount;
-                }
-                else
-                {
-                    scrapAmount.text = "Scrap: 0";
-                }
-            }
+            fuelAmount.text = "Fuel: " + tempFuel;
+            scrapAmount.text = "Scrap: " + tempScrap;
         }
     }
 }
