@@ -22,6 +22,13 @@ public class PlayerData : MonoBehaviour
         {
             CheckInInventory();
         }
+
+        //testing grant players scrap & fuel
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            inventory.AddItem(new Item { type = Item.Type.Fuel, amount = 3 });
+            inventory.AddItem(new Item { type = Item.Type.Scrap, amount = 5 });
+        }
     }
 
     public void CheckInInventory()
@@ -40,9 +47,5 @@ public class PlayerData : MonoBehaviour
 
         
     }
-
-    
-
-
 
 }
