@@ -240,12 +240,14 @@ public class GridBehavior : MonoBehaviour
         {
             path.Add(gridArray[x, y]);
             step = gridArray[x, y].GetComponent<GridStat>().visit - 1;
+            print("step:"+step);
         }
         else {
             print("cant reach because of block's standable = false"); return;
         }
         for (int i = step; step > -1; step--)
         {
+
             if (TestDirection(x, y, step, 1))
                 tempList.Add(gridArray[x, y + 1]);
 
@@ -258,14 +260,16 @@ public class GridBehavior : MonoBehaviour
             if (TestDirection(x, y, step, 4))
                 tempList.Add(gridArray[x - 1, y]);
 
+            print("tempList .count:" + tempList.Count);
+
             GameObject tempObj = FindClosest(gridArray[endX, endY].transform, tempList);
             path.Add(tempObj);
             tempObj.GetComponent<GridStat>().pathActive = true;
             x = tempObj.GetComponent<GridStat>().x;
             y = tempObj.GetComponent<GridStat>().y;
-            tempList.Clear();
+           
 
-        }
+        } tempList.Clear();
 
     }
 
@@ -286,34 +290,34 @@ public class GridBehavior : MonoBehaviour
                     return false;
 
             case 3:
-                if (y - 1 > -1 && gridArray[x, y - 1] && gridArray[x, y - 1].GetComponent<GridStat>().standable && gridArray[x, y - 1].GetComponent<GridStat>().visit == step)
+                if (y - 1 > -1 && gridArray[x, y - 1] && gridArray[x, y - 1].GetComponent<GridStat>().standable &&  gridArray[x, y - 1].GetComponent<GridStat>().visit == step)
                     return true;
                 else
                     return false;
 
             case 4:
-                if (x - 1 > -1 && gridArray[x - 1, y] && gridArray[x - 1, y].GetComponent<GridStat>().standable && gridArray[x - 1, y].GetComponent<GridStat>().visit == step)
+                if (x - 1 > -1 && gridArray[x - 1, y] && gridArray[x - 1, y].GetComponent<GridStat>().standable &&  gridArray[x - 1, y].GetComponent<GridStat>().visit == step)
                     return true;
                 else
                     return false;
 
             case 5:
-                if (x - 1 > -1 && y+1<rows && gridArray[x - 1, y+1] && gridArray[x - 1, y+1].GetComponent<GridStat>().standable && gridArray[x - 1, y+1].GetComponent<GridStat>().visit == step)
+                if (x - 1 > -1 && y+1<rows && gridArray[x - 1, y+1] && gridArray[x - 1, y+1].GetComponent<GridStat>().standable&& gridArray[x - 1, y+1].GetComponent<GridStat>().visit == step)
                     return true;
                 else
                     return false;
             case 6:
-                if (x + 1 < columns && y + 1 < rows && gridArray[x + 1, y + 1] && gridArray[x + 1, y + 1].GetComponent<GridStat>().standable && gridArray[x + 1, y + 1].GetComponent<GridStat>().visit == step)
+                if (x + 1 < columns && y + 1 < rows && gridArray[x + 1, y + 1] && gridArray[x + 1, y + 1].GetComponent<GridStat>().standable &&  gridArray[x + 1, y + 1].GetComponent<GridStat>().visit == step)
                     return true;
                 else
                     return false;
             case 7:
-                if (x + 1 < columns && y - 1 > -1 && gridArray[x + 1, y - 1] && gridArray[x + 1, y - 1].GetComponent<GridStat>().standable && gridArray[x + 1, y - 1].GetComponent<GridStat>().visit == step)
+                if (x + 1 < columns && y - 1 > -1 && gridArray[x + 1, y - 1] && gridArray[x + 1, y - 1].GetComponent<GridStat>().standable&& gridArray[x + 1, y - 1].GetComponent<GridStat>().visit == step)
                     return true;
                 else
                     return false;
             case 8:
-                if (x - 1 > -1 && y - 1 > -1 && gridArray[x - 1, y - 1] && gridArray[x - 1, y - 1].GetComponent<GridStat>().standable && gridArray[x - 1, y - 1].GetComponent<GridStat>().visit == step)
+                if (x - 1 > -1 && y - 1 > -1 && gridArray[x - 1, y - 1] && gridArray[x - 1, y - 1].GetComponent<GridStat>().standable  && gridArray[x - 1, y - 1].GetComponent<GridStat>().visit == step)
                     return true;
                 else
                     return false;
@@ -391,6 +395,7 @@ public class GridBehavior : MonoBehaviour
     }
     GameObject FindClosest(Transform targetLocation, List<GameObject> list)
     {
+        print("this is list count:"+list.Count);
         float currentDistance = scale * rows * columns;
         int indexNumber = 0;
         for (int i = 0; i < list.Count; i++)
@@ -401,6 +406,8 @@ public class GridBehavior : MonoBehaviour
                 indexNumber = i;
             }
         }
+
+        
 
         return list[indexNumber];
     }

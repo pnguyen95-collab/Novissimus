@@ -738,7 +738,7 @@ public class EnemyBehavior : MonoBehaviour
         int endX = p.transform.parent.GetComponent<GridStat>().x;
         int endY = p.transform.parent.GetComponent<GridStat>().y;
 
-        print("going from" + startX + "," + startY + " and to " + endX +","+endY);
+        print("going from" + startX + "," + startY + " and to " + endX +","+endY+" with limit of "+limit);
 
         gridBehaviorCode.findDistance = true;
 
