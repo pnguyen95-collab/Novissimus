@@ -2,8 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//enum of current progression of player in the narrative
+public enum Progression
+{
+    Starting,
+    FirstStoryEvent,
+    PlainsUnlocked,
+    SecondStoryEvent,
+    CannibalBossFight,
+    StoryEvent
+}
+
 public class PlayerData : MonoBehaviour
 {
+    //hashset of game progression elements to check
+    public HashSet<Progression> gameProgression = new HashSet<Progression>();
+
     public Inventory inventory;
 
     private void Awake()
@@ -14,6 +28,7 @@ public class PlayerData : MonoBehaviour
     private void Start()
     {
         inventory = new Inventory();
+        gameProgression.Add(Progression.Starting);
     }
 
     private void Update()
