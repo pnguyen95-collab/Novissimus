@@ -38,11 +38,21 @@ public class PlayerData : MonoBehaviour
             CheckInInventory();
         }
 
-        //testing grant players scrap & fuel
+        //testing grant players resources
         if (Input.GetKeyDown(KeyCode.T))
         {
             inventory.AddItem(new Item { type = Item.Type.Fuel, amount = 3 });
             inventory.AddItem(new Item { type = Item.Type.Scrap, amount = 5 });
+
+            inventory.AddItem(new Item { type = Item.Type.Iron, amount = 3 });
+            inventory.AddItem(new Item { type = Item.Type.Steel, amount = 2 });
+            inventory.AddItem(new Item { type = Item.Type.Brass, amount = 1 });
+            inventory.AddItem(new Item { type = Item.Type.Rubber, amount = 3 });
+            inventory.AddItem(new Item { type = Item.Type.Plastic, amount = 3 });
+            inventory.AddItem(new Item { type = Item.Type.Nylon, amount = 1 });
+            inventory.AddItem(new Item { type = Item.Type.Wires, amount = 5 });
+            inventory.AddItem(new Item { type = Item.Type.CircuitBoard, amount = 1 });
+            inventory.AddItem(new Item { type = Item.Type.ElectronicChip, amount = 1 });
         }
     }
 
