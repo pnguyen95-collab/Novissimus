@@ -128,6 +128,7 @@ public class EnemyBehavior : MonoBehaviour
         attackNext = false;
 
         gridBehaviorCode.resetVisit();
+        pathToPlayer.Clear();
         //thats mean no player in range
         if (p == null)
         {
@@ -182,13 +183,31 @@ public class EnemyBehavior : MonoBehaviour
             }
             else// find the block to be in attack range
             {
-               pathToPlayer = getPathTo(playerTarget,detectableRange);
+                int currentX = parent.GetComponent<GridStat>().x;
+                int currentY = parent.GetComponent<GridStat>().y;
+                gridBehaviorCode.FindSelectableBlock(currentX, currentY, enemyStats.moveSpeed.GetValue(), false, true);
+                tempList.Clear();
+                tempList = gridBehaviorCode.tempOfInteractableBlocks;
+
+                foreach (GameObject t in tempList)
+                {
+                    //now tempList has all the possible position to go
+                    if (t.GetComponent<GridStat>().occupied == true && t.GetComponent<GridStat>().standable == false)
+                    {
+                        tempList.Remove(t);
+                    }
+                }
+
+
+                pathToPlayer = getPathTo(playerTarget,detectableRange);
+
+               
                 if (pathToPlayer == null)
                 {
                     print("pathToPlayer = null");
                 }
                 print("going to "+playerTarget.name);
-               GameObject toMoveBlock =  FindTheAttackableBlock(pathToPlayer);
+                GameObject toMoveBlock =  FindTheAttackableBlock(pathToPlayer);
                 //move first then check attackNext
 
                 if (toMoveBlock != null)
@@ -742,6 +761,7 @@ public class EnemyBehavior : MonoBehaviour
 
         gridBehaviorCode.findDistance = true;
 
+
         bool a = gridBehaviorCode.RunThePath(startX, startY, endX, endY, limit);
         print("a= " + a);
         if (a == true)
@@ -758,6 +778,7 @@ public class EnemyBehavior : MonoBehaviour
 
     private GameObject FindTheAttackableBlock(List<GameObject> path)
     {
+        // must check if over walk limit
         if (path == null)
         {
             print("path = null");
@@ -770,6 +791,7 @@ public class EnemyBehavior : MonoBehaviour
 
         for (int i = path.Count-2; i >0; i--)
         {
+            print("count is " + count);
                 j = i;
             
                 if (i != 1)
@@ -791,6 +813,7 @@ public class EnemyBehavior : MonoBehaviour
                 }
             if (count == this.enemyStats.moveSpeed.GetValue())
             {
+                print("in here: count=" + count);
                 break;
             }
             else

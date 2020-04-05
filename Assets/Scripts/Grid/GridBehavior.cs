@@ -63,7 +63,6 @@ public class GridBehavior : MonoBehaviour
         startY = sY;
         endX = eX;
         endY = eY;
-
         if (findDistance)
         {
             SetDistance(sX,sY,limitNum);
@@ -239,6 +238,7 @@ public class GridBehavior : MonoBehaviour
         if (gridArray[endX, endY] && gridArray[endX, endY].GetComponent<GridStat>().visit > 0)
         {
             path.Add(gridArray[x, y]);
+            print("path add:" + "x=" + x +" y="+y);
             step = gridArray[x, y].GetComponent<GridStat>().visit - 1;
             print("step:"+step);
         }
@@ -264,12 +264,13 @@ public class GridBehavior : MonoBehaviour
 
             GameObject tempObj = FindClosest(gridArray[endX, endY].transform, tempList);
             path.Add(tempObj);
+            print("path add:" + "x=" + x + " y=" + y);
             tempObj.GetComponent<GridStat>().pathActive = true;
             x = tempObj.GetComponent<GridStat>().x;
             y = tempObj.GetComponent<GridStat>().y;
-           
+            tempList.Clear();
 
-        } tempList.Clear();
+        }
 
     }
 
