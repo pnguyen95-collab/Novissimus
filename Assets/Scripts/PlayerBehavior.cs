@@ -261,6 +261,7 @@ public class PlayerBehavior : MonoBehaviour
                 {
                     resetEnemies = true;
                     gmCode.enemiesList.Remove(target[i]);
+                    gmCode.PopupText("You killed "+target[i].name);
                 }
                 gmCode.AddMessage("Attacked " + target[i].name + "for " + damageValue + " damage.", Color.white);
                 target[i].GetComponent<CharacterStats>().TakeDamage(damageValue);

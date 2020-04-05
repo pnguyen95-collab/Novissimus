@@ -170,6 +170,22 @@ public class EnemyBehavior : MonoBehaviour
                 }
                 else
                 {
+                    int currentX = parent.GetComponent<GridStat>().x;
+                    int currentY = parent.GetComponent<GridStat>().y;
+                    gridBehaviorCode.FindSelectableBlock(currentX, currentY, enemyStats.moveSpeed.GetValue(), false, true);
+                    tempList.Clear();
+                    tempList = gridBehaviorCode.tempOfInteractableBlocks;
+
+                    foreach (GameObject t in tempList)
+                    {
+                        //now tempList has all the possible position to go
+                        if (t.GetComponent<GridStat>().occupied == true && t.GetComponent<GridStat>().standable == false)
+                        {
+                            tempList.Remove(t);
+                        }
+                    }
+
+
                     print("location is " + toMoveBlock.GetComponent<GridStat>().x+","+ toMoveBlock.GetComponent<GridStat>().y);
                     FinalMove(toMoveBlock.GetComponent<GridStat>().x, toMoveBlock.GetComponent<GridStat>().y);
                     List<GameObject> o = new List<GameObject>();
@@ -403,13 +419,20 @@ public class EnemyBehavior : MonoBehaviour
 
     public void FinalMove(int endX, int endY)
     {
+        
+       
+        
+        
+
         gridBehaviorCode.findDistance = true;
         int currentX;
         int currentY;
 
         currentX = parent.GetComponent<GridStat>().x;
         currentY = parent.GetComponent<GridStat>().y;
-        
+
+        gridBehaviorCode.FindSelectableBlock(currentX, currentY, enemyStats.moveSpeed.GetValue(), false, true);
+
         bool walkable = gridBehaviorCode.RunThePath(currentX, currentY, endX, endY, enemyStats.moveSpeed.GetValue());
 
         //check if it over block limit
@@ -503,6 +526,7 @@ public class EnemyBehavior : MonoBehaviour
                 {
                     resetPlayers = true;
                     gmCode.playersList.Remove(target[i]);
+                    gmCode.PopupText(target[i].name+" got killed!");
                 }
                 gmCode.AddMessage(this.name+" Attacked " + target[i].name + "for " + damageValue + " damage.", Color.white);
                 target[i].GetComponent<CharacterStats>().TakeDamage(damageValue);
@@ -525,6 +549,22 @@ public class EnemyBehavior : MonoBehaviour
         int furthestRange; GameObject b;
         GameObject tempBlock;
         GameObject toMoveBlock = null;
+
+        int currentX = parent.GetComponent<GridStat>().x;
+        int currentY = parent.GetComponent<GridStat>().y;
+        gridBehaviorCode.FindSelectableBlock(currentX, currentY, enemyStats.moveSpeed.GetValue(), false, true);
+        tempList.Clear();
+        tempList = gridBehaviorCode.tempOfInteractableBlocks;
+
+        foreach (GameObject t in tempList)
+        {
+            //now tempList has all the possible position to go
+            if (t.GetComponent<GridStat>().occupied == true && t.GetComponent<GridStat>().standable == false)
+            {
+                tempList.Remove(t);
+            }
+        }
+
         //pathToPlayer.Clear();
         pathToPlayer = getPathTo(playerTarget,this.enemyStats.moveSpeed.GetValue());
         furthestRange = gmCode.GetComponent<WeaponStats>().GiveFarestRange(this.enemyStats.weaponNumber);

@@ -126,8 +126,9 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        checkTurn();
         checkWinLose();
+        checkTurn();
+        
         if (runRaycast == true)
         {
 
@@ -407,7 +408,7 @@ public class GameManager : MonoBehaviour
 
         if (turnStatus == 0)
         {
-            foreach (GameObject p in players)
+            foreach (GameObject p in playersList)
             {
                 if (p.GetComponent<PlayerBehavior>().playerIsPlayable == false)
                 {
@@ -458,7 +459,7 @@ public class GameManager : MonoBehaviour
             players = GameObject.FindGameObjectsWithTag("Player");
             enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-            foreach (GameObject p in players)
+            foreach (GameObject p in playersList)
             {
                 p.GetComponent<PlayerBehavior>().playerIsPlayable = true;
             }
@@ -469,7 +470,7 @@ public class GameManager : MonoBehaviour
         //neither player or enemy turn
         if (turnStatus == 2)
         {
-            foreach (GameObject p in players)
+            foreach (GameObject p in playersList)
             {
                 p.GetComponent<PlayerBehavior>().playerIsPlayable = false;
             }
