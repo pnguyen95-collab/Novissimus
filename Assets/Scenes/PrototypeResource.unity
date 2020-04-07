@@ -3935,11 +3935,14 @@ MonoBehaviour:
   enemies: []
   enemiesList: []
   currentPlayer: {fileID: 0}
+  currentPlayerDataToShow: {fileID: 0}
   menuPanel: {fileID: 591859079}
   menuPanel2: {fileID: 758496971}
   menuPanel3: {fileID: 0}
   enemyPanel: {fileID: 0}
   blockClickingPanel: {fileID: 308846115}
+  winPanel: {fileID: 0}
+  losePanel: {fileID: 0}
   gridBehaviorCode: {fileID: 1976581626}
   lootResources: {fileID: 143323878}
   currentEnemy: {fileID: 0}
@@ -3970,9 +3973,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridPrefab: {fileID: 6380733288931972207, guid: b62e0714bb80b5845bfcca4a1078a09e,
     type: 3}
-  enemyPrefeb: {fileID: 1660355907761192589, guid: 58e7fe9b41cdf694cad41660ae134e56,
+  enemyPrefeb: {fileID: 6926802993482032328, guid: c2e712bdbf90bd04888bf00c1958b4cf,
     type: 3}
-  playerPrefab: {fileID: 1753900989158655432, guid: 10698deacc745da42baf4f14558f4e26,
+  playerVehicle1: {fileID: 5113287817647597860, guid: 675a9043787bd8a468a812e33c7e8345,
+    type: 3}
+  playerVehicle2: {fileID: 8332107909907706604, guid: e794f81e5a760f04dad002275316657a,
+    type: 3}
+  playerVehicle3: {fileID: 3343905440000192067, guid: 963c1ecd55984214eb93c4e5e5bc50fb,
+    type: 3}
+  playerVehicle4: {fileID: 957220833650175722, guid: 43cf67bb402309047ad76ab4706e5125,
+    type: 3}
+  playerVehicle5: {fileID: 4334263319823155955, guid: 1a0e1f6ed4b9bb24b99fac8d3e0f2c4b,
     type: 3}
   leftBottomLocation: {x: 0, y: 0, z: 0}
   path: []

@@ -18,7 +18,8 @@ public class PlayerBehavior : MonoBehaviour
 
     public float speedOfBallMoving; //just for speed of the object movement
     public int moveOrAttack;
-    
+
+    public bool mouseOver;
     public bool triggerMoving;
     public bool playerIsActive; //to check if this player is selected
     public bool playerIsPlayable; //still can perform actions (walk,attack)
@@ -35,6 +36,7 @@ public class PlayerBehavior : MonoBehaviour
         triggerMoving = false;
         playerIsActive = false;
         playerIsPlayable = true;
+        mouseOver = false;
         speedOfBallMoving = 1;
         moveOrAttack = 0;
 
@@ -74,7 +76,8 @@ public class PlayerBehavior : MonoBehaviour
 
     void OnMouseOver()
     {
-        
+        mouseOver = true;
+        gmCode.currentPlayerDataToShow = this.gameObject;
         SetOutline("_FirstOutlineWidth", 0.12f);
 
         //click
@@ -138,6 +141,7 @@ public class PlayerBehavior : MonoBehaviour
     
     private void OnMouseExit()
     {
+        mouseOver = false;
         SetOutline("_FirstOutlineWidth", 0.0f);
     }
 
@@ -261,9 +265,11 @@ public class PlayerBehavior : MonoBehaviour
                 {
                     resetEnemies = true;
                     gmCode.enemiesList.Remove(target[i]);
-                    gmCode.PopupText("You killed "+target[i].name);
+                    gmCode.CallPopupTextOutsideGm("You killed " + target[i].name);
+                    
                 }
-                gmCode.AddMessage("Attacked " + target[i].name + "for " + damageValue + " damage.", Color.white);
+                gmCode.AddMessage("Attacked " + target[i].name + " for " + damageValue + " damage.", Color.white);
+
                 target[i].GetComponent<CharacterStats>().TakeDamage(damageValue);
 
                 if (resetEnemies == true)
@@ -285,6 +291,7 @@ public class PlayerBehavior : MonoBehaviour
 
     public void AttackAll()
     {
+        print("doing attack all");
         List<GameObject> enemyTemp = new List<GameObject>();
         foreach (GameObject obj in gridBehaviorCode.tempOfInteractableBlocks)
         {
@@ -303,11 +310,9 @@ public class PlayerBehavior : MonoBehaviour
         AttackEnemy(enemyTemp);
         else
         {
+            gmCode.CallPopupTextOutsideGm("No enemy in range. Skipped Attack");
+           
             DoNothing();
-            gmCode.PopupText("No enemy in range. Skipped Attack");
-            this.playerIsPlayable = false;
-            this.playerIsActive = false;
-            gmCode.setCurrentPlayer(null);
             gridBehaviorCode.resetVisit();
         }
 

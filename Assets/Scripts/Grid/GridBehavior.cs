@@ -7,7 +7,12 @@ public class GridBehavior : MonoBehaviour
     
     public GameObject gridPrefab;
     public GameObject enemyPrefeb;
-    public GameObject playerPrefab;
+    public GameObject playerVehicle1;
+    public GameObject playerVehicle2;
+    public GameObject playerVehicle3;
+    public GameObject playerVehicle4;
+    public GameObject playerVehicle5;
+
     public GameObject[,] gridArray;
     public Vector3 leftBottomLocation = new Vector3(0, 0, 0);
 
@@ -113,15 +118,30 @@ public class GridBehavior : MonoBehaviour
             //Generates players/enemies/obstacles according to list
             for (int i = 0; i < playerSpawn.Count; i++)
             {
-                GameObject obj = GeneratePlayer(playerSpawn[i].spawnXY.x, playerSpawn[i].spawnXY.y);
+                GameObject obj;
                 //force assign weapon number here
-                if (i == 2)
+                if (i == 0)
                 {
-                    obj.GetComponent<CharacterStats>().weaponNumber = 2;
+                    obj = GeneratePlayer(playerVehicle1, playerSpawn[i].spawnXY.x, playerSpawn[i].spawnXY.y);
                 }
-                if (i == 3)
+                else if (i == 1)
                 {
-                    obj.GetComponent<CharacterStats>().weaponNumber = 3;
+                     obj = GeneratePlayer(playerVehicle2, playerSpawn[i].spawnXY.x, playerSpawn[i].spawnXY.y);
+
+                }
+                else if (i == 2)
+                {
+                     obj = GeneratePlayer(playerVehicle3, playerSpawn[i].spawnXY.x, playerSpawn[i].spawnXY.y);
+
+                }
+                else if (i == 3)
+                {
+                     obj = GeneratePlayer(playerVehicle4, playerSpawn[i].spawnXY.x, playerSpawn[i].spawnXY.y);
+
+                }
+                else if (i == 4)
+                {
+                    obj = GeneratePlayer(playerVehicle5, playerSpawn[i].spawnXY.x, playerSpawn[i].spawnXY.y);
 
                 }
             }
@@ -151,11 +171,11 @@ public class GridBehavior : MonoBehaviour
         gridArray[x, y].GetComponent<GridStat>().standable = false;
     }
 
-    GameObject GeneratePlayer(int x, int y)
+    GameObject GeneratePlayer(GameObject p,int x, int y)
     {
-        GameObject player = Instantiate(playerPrefab, new Vector3(leftBottomLocation.x + scale * x, leftBottomLocation.y + scale, leftBottomLocation.z + scale * y), Quaternion.identity);
+        GameObject player = Instantiate(p, new Vector3(leftBottomLocation.x + scale * x, leftBottomLocation.y + scale, leftBottomLocation.z + scale * y), Quaternion.identity);
         player.transform.SetParent(gridArray[x, y].transform);
-        player.name = "Player-" + count;
+        
         return player;
     }
 
@@ -163,7 +183,7 @@ public class GridBehavior : MonoBehaviour
     {
         GameObject enemy = Instantiate(enemyPrefeb, new Vector3(leftBottomLocation.x + scale * x, leftBottomLocation.y + scale, leftBottomLocation.z + scale * y), Quaternion.identity);
         enemy.transform.SetParent(gridArray[x, y].transform);
-        enemy.name = "enemy-" + count;
+       
         return enemy;
     }
 

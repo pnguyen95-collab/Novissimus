@@ -18,6 +18,8 @@ public class WeaponStats : MonoBehaviour
     number 1 = Normal bullet machine guns
     number 2 = Pivot Giant hammer
     number 3 = Blade
+    number 4 = sniper
+    number 5 = Runner weapon
     */
     private void Start()
     {
@@ -76,7 +78,59 @@ public class WeaponStats : MonoBehaviour
             case 3:
                 xValues.Add(x);
                 return xValues;
-                
+            case 4:
+                xValues.Add(x);
+
+                if (x - 5 < 0)
+                {
+                    if (x - 4 < 0)
+                    {
+                        
+                                    //shouldskip this direction
+                                    xValues.Add(-1);
+                                
+                        
+                    }
+                    else
+                    {
+                        xValues.Add(x - 4);
+
+                    }
+                }
+                else
+                {
+                    xValues.Add(x - 5);
+                }
+
+                if (x + 5 > gridBehaviorCode.columns)
+                {
+                    if (x + 4 > gridBehaviorCode.columns)
+                    {
+                          
+                                
+                                    //should skip this direction
+                                    xValues.Add(-1);
+                                
+                                
+                            
+                            
+                        
+                    }
+                    else
+                    {
+                        xValues.Add(x + 4);
+
+                    }
+                }
+                else
+                {
+                    xValues.Add(x + 5);
+                }
+                xValues.Add(x);
+                return xValues;
+            case 5:
+                xValues.Add(x);
+                return xValues;
         }
 
 
@@ -132,8 +186,55 @@ public class WeaponStats : MonoBehaviour
             case 3:
                 yValues.Add(y);
                 return yValues;
+            case 4:
+                
+                if (y + 5 > gridBehaviorCode.rows)
+                {
+                    if (y + 4 > gridBehaviorCode.rows)
+                    {
+                        
+                            
+                                    //should skip this direction
+                                    yValues.Add(-1);
+                               
+                        
+                    }
+                    else
+                    {
+                        yValues.Add(y + 4);
 
+                    }
+                }
+                else
+                {
+                    yValues.Add(y + 5);
+                }
+                yValues.Add(y);
+                yValues.Add(y);
+                if (y - 5 < 0)
+                {
+                    if (y - 4 < 0)
+                    {
+                         
+                                    //should skip this direction
+                                    yValues.Add(-1);
+                              
+                        
+                    }
+                    else
+                    {
+                        yValues.Add(y - 4);
 
+                    }
+                }
+                else
+                {
+                    yValues.Add(y - 5);
+                }
+                return yValues;
+            case 5:
+                yValues.Add(y);
+                return yValues;
 
         }
         return null;
@@ -148,7 +249,11 @@ public class WeaponStats : MonoBehaviour
             case 2:
                 return 1;
             case 3:
-                return 1; 
+                return 1;
+            case 4:
+                return 6;
+            case 5:
+                return 1;
         }
         return 0;
     }
@@ -162,6 +267,10 @@ public class WeaponStats : MonoBehaviour
             case 2:
                 return 2;
             case 3:
+                return 1;
+            case 4:
+                return 1;
+            case 5:
                 return 1;
 
 
@@ -183,11 +292,35 @@ public class WeaponStats : MonoBehaviour
                     return 5;
             case 3:
                 return 5;
+            case 4:
+                return 8;
+            case 5:
+                return 2;
 
 
 
         }
         return 0;
+    }
+
+    public string GiveNameOfTheWeapon(int itsWeaponNumber)
+    {
+        switch (itsWeaponNumber)
+        {
+            case 1:
+                return "Auto Machine Gun";
+            case 2:
+                return "Pivot Giant Hammer";
+            case 3:
+                return "Eater Blade";
+            case 4:
+                return "Sniper";
+            case 5:
+                return "Some Blade";
+
+        }
+
+        return null;
     }
 
 }

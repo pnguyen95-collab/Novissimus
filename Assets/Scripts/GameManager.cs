@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] enemies;
     public List<GameObject> enemiesList;
     public GameObject currentPlayer;
+    public GameObject currentPlayerDataToShow;
     public GameObject menuPanel;
     public GameObject menuPanel2;
     public GameObject menuPanel3;
@@ -54,6 +55,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentPlayerDataToShow = null;
         gridBehaviorCode = this.GetComponent<GridBehavior>();
 
         players = GameObject.FindGameObjectsWithTag("Player");
@@ -540,6 +542,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator PopupText(string x)
     {
+        print("doing pop up text");
         alertText.SetActive(true);
         alertText.GetComponent<Text>().text = x;
 
@@ -550,4 +553,8 @@ public class GameManager : MonoBehaviour
         alertText.GetComponent<Text>().canvasRenderer.SetAlpha(1);
     }
 
+    public void CallPopupTextOutsideGm(string x)
+    {
+        StartCoroutine(PopupText(x));
+    }
 }

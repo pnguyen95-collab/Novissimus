@@ -11,6 +11,7 @@ public class PlayerDisplay : MonoBehaviour
     public Text playerHealth;
     public Text playerSpeed;
     public Text playerWeapon;
+    private GameObject currentPlayer;
 
     // Start is called before the first frame update
     void Start()
@@ -24,15 +25,17 @@ public class PlayerDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gmCode.currentPlayer != null)
+        currentPlayer = gmCode.currentPlayerDataToShow;
+
+        if (currentPlayer != null)
         {
 
-            if (gmCode.currentPlayer.GetComponent<PlayerBehavior>().playerIsActive == true)
+            if (currentPlayer.GetComponent<PlayerBehavior>().mouseOver == true)
             {
-                playerName.text = "Car";
-                playerHealth.text = "Health: " + gmCode.currentPlayer.GetComponent<CharacterStats>().currentHealth + "/ " + gmCode.currentPlayer.GetComponent<CharacterStats>().maxHealth.GetValue();
-                playerWeapon.text = "Weapon: Machine Gun";
-                playerSpeed.text = "Speed: " + gmCode.currentPlayer.GetComponent<CharacterStats>().moveSpeed.GetValue();
+                playerName.text = currentPlayer.name;
+                playerHealth.text = "Health: " + currentPlayer.GetComponent<CharacterStats>().currentHealth + "/ " + currentPlayer.GetComponent<CharacterStats>().maxHealth.GetValue();
+                playerWeapon.text = "Weapon: "+ gmCode.GetComponent<WeaponStats>().GiveNameOfTheWeapon(currentPlayer.GetComponent<CharacterStats>().weaponNumber); ;
+                playerSpeed.text = "Speed: " + currentPlayer.GetComponent<CharacterStats>().moveSpeed.GetValue();
             }
         }
     }

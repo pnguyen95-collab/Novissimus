@@ -29,9 +29,9 @@ public class EnemyDisplay : MonoBehaviour
 
             if (currentEnemy.GetComponent<EnemyBehavior>().mouseOver == true)
             {
-                enemyName.text = "Prototype";
+                enemyName.text = currentEnemy.name;
                 enemyHealth.text = "Health: " + currentEnemy.GetComponent<CharacterStats>().currentHealth + "/ " + currentEnemy.GetComponent<CharacterStats>().maxHealth.GetValue();
-                enemyWeapon.text = "N/A";
+                enemyWeapon.text = "Weapon: "+gmCode.GetComponent<WeaponStats>().GiveNameOfTheWeapon(currentEnemy.GetComponent<CharacterStats>().weaponNumber);
                 enemySpeed.text = "Speed: " + currentEnemy.GetComponent<CharacterStats>().moveSpeed.GetValue();
             }
         }

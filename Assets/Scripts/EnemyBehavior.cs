@@ -22,13 +22,13 @@ public class EnemyBehavior : MonoBehaviour
     public bool mouseOver;
     public bool triggerEnemyToFunction;
     public bool triggerForLerp;
+    
 
     private int detectableRange;
     private bool triggerSelectOnePositionToMove;
     private bool triggerShowMoveableBlocks;
     private bool attackNext;
-
-
+   
     // Start is called before the first frame update
     void Start()
     {
@@ -40,11 +40,11 @@ public class EnemyBehavior : MonoBehaviour
 
         SetOutline("_FirstOutlineWidth", 0.0f);
 
-        SetOutline("_SecondOutlineWidth", 0.0f);
+        SetOutline("_SecondOutlineWidth", 0.05f);
 
         detectableRange = gmCode.GetComponent<WeaponStats>().GiveFarestRange(this.enemyStats.weaponNumber)+this.enemyStats.moveSpeed.GetValue();
 
-
+       
         triggerEnemyToFunction = false;
         triggerForLerp = false;
         mouseOver = false;
@@ -97,12 +97,12 @@ public class EnemyBehavior : MonoBehaviour
         }
         if (CheckIfCanBeAttack())
         {
-            SetOutline("_SecondOutlineWidth", 0.05f);
+            SetOutline("_SecondOutlineWidth", 0.15f);
         }
         else
         {
            
-            SetOutline("_SecondOutlineWidth", 0.0f);
+            SetOutline("_SecondOutlineWidth", 0.07f);
         }
     }
     private bool CheckIfCanBeAttack()
@@ -526,9 +526,9 @@ public class EnemyBehavior : MonoBehaviour
                 {
                     resetPlayers = true;
                     gmCode.playersList.Remove(target[i]);
-                    gmCode.PopupText(target[i].name+" got killed!");
+                    gmCode.CallPopupTextOutsideGm(target[i].name + " got killed!");
                 }
-                gmCode.AddMessage(this.name+" Attacked " + target[i].name + "for " + damageValue + " damage.", Color.white);
+                gmCode.AddMessage(this.name+" Attacked " + target[i].name + " for " + damageValue + " damage.", Color.white);
                 target[i].GetComponent<CharacterStats>().TakeDamage(damageValue);
 
                 if (resetPlayers == true)
@@ -876,7 +876,9 @@ public class EnemyBehavior : MonoBehaviour
         this.GetComponent<Renderer>().material.SetFloat(o, a);
     }
 
+    
 
+   
 
 
 
