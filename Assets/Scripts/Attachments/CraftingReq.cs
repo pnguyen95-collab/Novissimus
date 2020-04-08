@@ -53,6 +53,59 @@ public class CraftingReq : MonoBehaviour
         spikeBombReq.Add(new Item { type = Item.Type.Plastic, amount = 3 });
         spikeBombReq.Add(new Item { type = Item.Type.ElectronicChip, amount = 1 });
 
+        //Metal Coating requirements
+        metalCoatingReq.Add(new Item { type = Item.Type.Iron, amount = 7 });
+        metalCoatingReq.Add(new Item { type = Item.Type.Wires, amount = 7 });
+
+        //Spikes Coating requirements
+        spikesCoatingReq.Add(new Item { type = Item.Type.Steel, amount = 4 });
+        spikesCoatingReq.Add(new Item { type = Item.Type.Wires, amount = 15 });
+
+        //Glass Coating requirements
+        glassCoatingReq.Add(new Item { type = Item.Type.Plastic, amount = 7 });
+        glassCoatingReq.Add(new Item { type = Item.Type.Nylon, amount = 1 });
+        glassCoatingReq.Add(new Item { type = Item.Type.Wires, amount = 15 });
+
+        //Rubber Tyres requirements
+        rubberTyresReq.Add(new Item { type = Item.Type.Rubber, amount = 5 });
+        rubberTyresReq.Add(new Item { type = Item.Type.Iron, amount = 3 });
+
+        //Off Road Tyres requirements
+        offRoadTyresReq.Add(new Item { type = Item.Type.Rubber, amount = 7 });
+        offRoadTyresReq.Add(new Item { type = Item.Type.Steel, amount = 2 });
+
+        //Crystal Tyres requirements
+        crystalTyresReq.Add(new Item { type = Item.Type.Rubber, amount = 12 });
+        crystalTyresReq.Add(new Item { type = Item.Type.Brass, amount = 1 });
+
+        //Bladed Weaponry requirements
+        bladedWeaponryReq.Add(new Item { type = Item.Type.Iron, amount = 5 });
+        bladedWeaponryReq.Add(new Item { type = Item.Type.Wires, amount = 5 });
+        bladedWeaponryReq.Add(new Item { type = Item.Type.Steel, amount = 2 });
+        bladedWeaponryReq.Add(new Item { type = Item.Type.Brass, amount = 1 });
+
+        //Maggot Farm requirements
+        maggotFarmReq.Add(new Item { type = Item.Type.Rubber, amount = 5 });
+        maggotFarmReq.Add(new Item { type = Item.Type.Plastic, amount = 5 });
+        maggotFarmReq.Add(new Item { type = Item.Type.Wires, amount = 5 });
+        maggotFarmReq.Add(new Item { type = Item.Type.CircuitBoard, amount = 1 });
+
+        //Lightweight requirements
+        lightweightReq.Add(new Item { type = Item.Type.Plastic, amount = 8 });
+        lightweightReq.Add(new Item { type = Item.Type.Nylon, amount = 1 });
+        lightweightReq.Add(new Item { type = Item.Type.CircuitBoard, amount = 1 });
+
+        //Herb Master requirements
+        herbMasterReq.Add(new Item { type = Item.Type.Rubber, amount = 5 });
+        herbMasterReq.Add(new Item { type = Item.Type.Wires, amount = 10 });
+        herbMasterReq.Add(new Item { type = Item.Type.ElectronicChip, amount = 1 });
+        herbMasterReq.Add(new Item { type = Item.Type.CircuitBoard, amount = 1 });
+
+        //Attack Me Sign requirements
+        attackMeSignReq.Add(new Item { type = Item.Type.Plastic, amount = 8 });
+        attackMeSignReq.Add(new Item { type = Item.Type.Steel, amount = 2 });
+        attackMeSignReq.Add(new Item { type = Item.Type.Brass, amount = 1 });
+
         print("To craft the Pivot Hammer you require:");
         foreach ( Item item in pivotHammerReq)
         {

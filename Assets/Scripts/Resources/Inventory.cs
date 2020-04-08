@@ -5,10 +5,12 @@ using UnityEngine;
 public class Inventory
 {
     public List<Item> inventoryList;
+    public List<Attachments> attachmentList;
 
     public Inventory()
     {
         inventoryList = new List<Item>();
+        attachmentList = new List<Attachments>();
     }
 
     //function used to add an item to your inventory
@@ -52,5 +54,11 @@ public class Inventory
             }
         }
         return 0;
+    }
+
+    //function used to add attachments to your inventory
+    public void AddAttachment(Attachments attach)
+    {
+        attachmentList.Add(attach);
     }
 }

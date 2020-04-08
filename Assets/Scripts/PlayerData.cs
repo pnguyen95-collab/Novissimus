@@ -29,6 +29,11 @@ public class PlayerData : MonoBehaviour
     {
         inventory = new Inventory();
         gameProgression.Add(Progression.Starting);
+
+        //base attachments added
+        inventory.AddAttachment(new Attachments { attachmentName = Attachments.Name.MachineGun});
+        inventory.AddAttachment(new Attachments { attachmentName = Attachments.Name.NoCoating});
+        inventory.AddAttachment(new Attachments { attachmentName = Attachments.Name.RegularTyres});
     }
 
     private void Update()
@@ -70,6 +75,16 @@ public class PlayerData : MonoBehaviour
                 print("Your inventory is empty :(");
             }
 
-        
+        if (inventory.attachmentList.Count >= 1)
+        {
+            for (int i = 0; i <inventory.attachmentList.Count; i++)
+            {
+                print("You have crafted " + inventory.attachmentList[i].attachmentName);
+            }
+        }
+        else
+        {
+            print("You have not crafted anything yet");
+        }
     }
 }
