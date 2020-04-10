@@ -38,13 +38,72 @@ public class Attachments
 
     public Name attachmentName;
 
+    //string to make displaying the name neater
+    public string GetName()
+    {
+        switch (attachmentName)
+        {
+            default:
+            case Name.MachineGun:     return "Machine Gun";
+            case Name.PivotHammer:    return "Pivot Hammer";
+            case Name.EaterBlades:    return "Eater Blades";
+            case Name.Sniper:         return "Sniper";
+            case Name.SpikeBomb:      return "Spike Bomb";
+
+            case Name.NoCoating:      return "No Armour";
+            case Name.MetalCoating:   return "Metal Armour";
+            case Name.SpikeCoating:   return "Spike Armour";
+            case Name.GlassCoating:   return "Glass Armour";
+
+            case Name.RegularTyres:   return "Regular Tyres";
+            case Name.RubberTyres:    return "Rubber Tyres";
+            case Name.OffRoadTyres:   return "Off Road Tyres";
+            case Name.CrystalTyres:   return "Crystal Tyres";
+
+            case Name.BladedWeaponry: return "Bladed Weaponry";
+            case Name.MaggotFarm:     return "Maggot Farm";
+            case Name.Lightweight:    return "Lightweight";
+            case Name.HerbMaster:     return "Herb Master";
+            case Name.AttackMeSign:   return "Attack-Me Sign";
+        }
+    }
+
+    //checks whether or not the attachment is craftable
+    public bool CheckCraftable()
+    {
+        switch (attachmentName)
+        {
+            default:
+            case Name.MachineGun:       return false;
+            case Name.PivotHammer:      return true;
+            case Name.EaterBlades:      return true;
+            case Name.Sniper:           return true;
+            case Name.SpikeBomb:        return true;
+
+            case Name.NoCoating:        return false;
+            case Name.MetalCoating:     return true;
+            case Name.SpikeCoating:     return true;
+            case Name.GlassCoating:     return true;
+
+            case Name.RegularTyres:     return false;
+            case Name.RubberTyres:      return true;
+            case Name.OffRoadTyres:     return true;
+            case Name.CrystalTyres:     return true;
+
+            case Name.BladedWeaponry:   return true;
+            case Name.MaggotFarm:       return true;
+            case Name.Lightweight:      return true;
+            case Name.HerbMaster:       return true;
+            case Name.AttackMeSign:     return true;
+        }
+    }
+
     //sprite to display in the crafting menu
     public Sprite GetSprite()
     {
         switch(attachmentName)
         {
             default:
-            case Name.MachineGun:        return AttachmentAssets.Instance.machineGunSprite;
             case Name.PivotHammer:       return AttachmentAssets.Instance.pivotHammerSprite;
             case Name.EaterBlades:       return AttachmentAssets.Instance.eaterBladesSprite;
             case Name.Sniper:            return AttachmentAssets.Instance.sniperSprite;

@@ -34,9 +34,9 @@ public class PlayerData : MonoBehaviour
         gameProgression.Add(Progression.Starting);
 
         //base attachments added
-        inventory.AddAttachment(new Attachments { attachmentName = Attachments.Name.MachineGun});
-        inventory.AddAttachment(new Attachments { attachmentName = Attachments.Name.NoCoating});
-        inventory.AddAttachment(new Attachments { attachmentName = Attachments.Name.RegularTyres});
+        inventory.attachmentList.Add(new Attachments { attachmentName = Attachments.Name.MachineGun});
+        inventory.attachmentList.Add(new Attachments { attachmentName = Attachments.Name.NoCoating});
+        inventory.attachmentList.Add(new Attachments { attachmentName = Attachments.Name.RegularTyres});
     }
 
     private void Update()
