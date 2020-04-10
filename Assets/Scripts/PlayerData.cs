@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 //enum of current progression of player in the narrative
 public enum Progression
 {
@@ -15,6 +16,7 @@ public enum Progression
 
 public class PlayerData : MonoBehaviour
 {
+    public int levelNum;
     //hashset of game progression elements to check
     public HashSet<Progression> gameProgression = new HashSet<Progression>();
 
@@ -27,6 +29,7 @@ public class PlayerData : MonoBehaviour
 
     private void Start()
     {
+        levelNum = 1;
         inventory = new Inventory();
         gameProgression.Add(Progression.Starting);
 

@@ -164,6 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23d943c9393ef054789147f9ece811ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelNum: 1
 --- !u!1 &432393710
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,6 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd7809a83c526a94f8844268cc940d50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 0
 --- !u!4 &432393712
 Transform:
   m_ObjectHideFlags: 0

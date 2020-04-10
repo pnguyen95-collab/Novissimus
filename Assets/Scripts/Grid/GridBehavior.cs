@@ -6,7 +6,8 @@ public class GridBehavior : MonoBehaviour
 {
     
     public GameObject gridPrefab;
-    public GameObject enemyPrefeb;
+    public List<GameObject> enemyPrefabs;
+    
     public GameObject playerVehicle1;
     public GameObject playerVehicle2;
     public GameObject playerVehicle3;
@@ -27,6 +28,7 @@ public class GridBehavior : MonoBehaviour
     public int startY = 0;
     public int endX = 0;
     public int endY = 3;
+    private int level;
     public float scale = 2f;
 
     private int count=0;
@@ -48,6 +50,7 @@ public class GridBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        
         gridArray = new GameObject[columns, rows];
         if (gridPrefab)
         {
@@ -59,6 +62,7 @@ public class GridBehavior : MonoBehaviour
         }
 
     }
+    
     
 
     //execute the finding path
@@ -146,13 +150,40 @@ public class GridBehavior : MonoBehaviour
                 }
             }
 
-            for (int i = 0; i < enemySpawn.Count; i++)
+
+            //different depend on level num
+            switch (this.GetComponent<GameManager>().playerDataObject.GetComponent<PlayerData>().levelNum)
             {
-                count = i;
-                GameObject obj = GenerateEnemy(enemySpawn[i].spawnXY.x, enemySpawn[i].spawnXY.y);
-                obj.GetComponent<CharacterStats>().weaponNumber = 1;
+                case 0:
+                    print("level num is missing");
+                    break;
+                case 1:
+                    //level 1 of desert
+                    for (int i = 0; i < enemySpawn.Count; i++)
+                    {
+                        count = i;
+                        GameObject obj = GenerateEnemy(enemyPrefabs[0],enemySpawn[i].spawnXY.x, enemySpawn[i].spawnXY.y);
+                        obj.GetComponent<CharacterStats>().weaponNumber = 1;
+                    }
+                    break;
+                case 2:
+                    //level 2 of desert
+                    for (int i = 0; i < enemySpawn.Count; i++)
+                    {
+                        count = i;
+                        if (i == 0 || i == 1)
+                        {
+                            GameObject obj = GenerateEnemy(enemyPrefabs[0], enemySpawn[i].spawnXY.x, enemySpawn[i].spawnXY.y);
+                        }
+                        else if (i == 2)
+                        {
+                            GameObject obj = GenerateEnemy(enemyPrefabs[1], enemySpawn[i].spawnXY.x, enemySpawn[i].spawnXY.y);
+                        }
+                    }
+                    break;
 
             }
+            
 
             for (int i = 0; i < obstacleSpawn.Count; i++)
             {
@@ -179,9 +210,9 @@ public class GridBehavior : MonoBehaviour
         return player;
     }
 
-   GameObject GenerateEnemy(int x, int y)
+   GameObject GenerateEnemy(GameObject e,int x, int y)
     {
-        GameObject enemy = Instantiate(enemyPrefeb, new Vector3(leftBottomLocation.x + scale * x, leftBottomLocation.y + scale, leftBottomLocation.z + scale * y), Quaternion.identity);
+        GameObject enemy = Instantiate(e, new Vector3(leftBottomLocation.x + scale * x, leftBottomLocation.y + scale, leftBottomLocation.z + scale * y), Quaternion.identity);
         enemy.transform.SetParent(gridArray[x, y].transform);
        
         return enemy;

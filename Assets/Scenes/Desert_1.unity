@@ -2904,6 +2904,7 @@ MonoBehaviour:
   textDisplay: {fileID: 1378086010798592837, guid: 3fbc5847407b6a049878efedbf9853ff,
     type: 3}
   textPanel: {fileID: 571678398}
+  playerDataObject: {fileID: 0}
   turnStatus: 0
   numOfPlayer: 0
   countNumOfPlayer: 0
@@ -2926,8 +2927,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridPrefab: {fileID: 6380733288931972207, guid: b62e0714bb80b5845bfcca4a1078a09e,
     type: 3}
-  enemyPrefeb: {fileID: 6926802993482032328, guid: c2e712bdbf90bd04888bf00c1958b4cf,
-    type: 3}
+  enemyPrefabs:
+  - {fileID: 6926802993482032328, guid: c2e712bdbf90bd04888bf00c1958b4cf, type: 3}
+  - {fileID: 3109038487105154917, guid: 1a67316c143bbac48bd1f951a17a23ba, type: 3}
   playerVehicle1: {fileID: 5113287817647597860, guid: 675a9043787bd8a468a812e33c7e8345,
     type: 3}
   playerVehicle2: {fileID: 8332107909907706604, guid: e794f81e5a760f04dad002275316657a,
@@ -3011,6 +3013,121 @@ MonoBehaviour:
   - spawnXY: {x: 29, y: 11}
   - spawnXY: {x: 28, y: 10}
   - spawnXY: {x: 29, y: 10}
+  - spawnXY: {x: 17, y: 29}
+  - spawnXY: {x: 18, y: 29}
+  - spawnXY: {x: 19, y: 29}
+  - spawnXY: {x: 20, y: 29}
+  - spawnXY: {x: 21, y: 29}
+  - spawnXY: {x: 22, y: 29}
+  - spawnXY: {x: 23, y: 29}
+  - spawnXY: {x: 24, y: 29}
+  - spawnXY: {x: 25, y: 29}
+  - spawnXY: {x: 26, y: 29}
+  - spawnXY: {x: 27, y: 29}
+  - spawnXY: {x: 28, y: 29}
+  - spawnXY: {x: 29, y: 29}
+  - spawnXY: {x: 17, y: 28}
+  - spawnXY: {x: 18, y: 28}
+  - spawnXY: {x: 19, y: 28}
+  - spawnXY: {x: 20, y: 28}
+  - spawnXY: {x: 21, y: 28}
+  - spawnXY: {x: 22, y: 28}
+  - spawnXY: {x: 23, y: 28}
+  - spawnXY: {x: 24, y: 28}
+  - spawnXY: {x: 25, y: 28}
+  - spawnXY: {x: 26, y: 28}
+  - spawnXY: {x: 27, y: 28}
+  - spawnXY: {x: 28, y: 28}
+  - spawnXY: {x: 29, y: 28}
+  - spawnXY: {x: 18, y: 27}
+  - spawnXY: {x: 19, y: 27}
+  - spawnXY: {x: 20, y: 27}
+  - spawnXY: {x: 21, y: 27}
+  - spawnXY: {x: 22, y: 27}
+  - spawnXY: {x: 23, y: 27}
+  - spawnXY: {x: 24, y: 27}
+  - spawnXY: {x: 25, y: 27}
+  - spawnXY: {x: 26, y: 27}
+  - spawnXY: {x: 27, y: 27}
+  - spawnXY: {x: 28, y: 27}
+  - spawnXY: {x: 29, y: 27}
+  - spawnXY: {x: 20, y: 26}
+  - spawnXY: {x: 21, y: 26}
+  - spawnXY: {x: 22, y: 26}
+  - spawnXY: {x: 23, y: 26}
+  - spawnXY: {x: 24, y: 26}
+  - spawnXY: {x: 25, y: 26}
+  - spawnXY: {x: 26, y: 26}
+  - spawnXY: {x: 27, y: 26}
+  - spawnXY: {x: 28, y: 26}
+  - spawnXY: {x: 29, y: 26}
+  - spawnXY: {x: 21, y: 25}
+  - spawnXY: {x: 22, y: 25}
+  - spawnXY: {x: 23, y: 25}
+  - spawnXY: {x: 24, y: 25}
+  - spawnXY: {x: 25, y: 25}
+  - spawnXY: {x: 26, y: 25}
+  - spawnXY: {x: 27, y: 25}
+  - spawnXY: {x: 28, y: 25}
+  - spawnXY: {x: 29, y: 25}
+  - spawnXY: {x: 21, y: 24}
+  - spawnXY: {x: 22, y: 24}
+  - spawnXY: {x: 23, y: 24}
+  - spawnXY: {x: 24, y: 24}
+  - spawnXY: {x: 25, y: 24}
+  - spawnXY: {x: 26, y: 24}
+  - spawnXY: {x: 27, y: 24}
+  - spawnXY: {x: 28, y: 24}
+  - spawnXY: {x: 29, y: 24}
+  - spawnXY: {x: 21, y: 23}
+  - spawnXY: {x: 22, y: 23}
+  - spawnXY: {x: 23, y: 23}
+  - spawnXY: {x: 24, y: 23}
+  - spawnXY: {x: 25, y: 23}
+  - spawnXY: {x: 26, y: 23}
+  - spawnXY: {x: 27, y: 23}
+  - spawnXY: {x: 28, y: 23}
+  - spawnXY: {x: 29, y: 23}
+  - spawnXY: {x: 20, y: 22}
+  - spawnXY: {x: 21, y: 22}
+  - spawnXY: {x: 22, y: 22}
+  - spawnXY: {x: 23, y: 22}
+  - spawnXY: {x: 24, y: 22}
+  - spawnXY: {x: 25, y: 22}
+  - spawnXY: {x: 26, y: 22}
+  - spawnXY: {x: 27, y: 22}
+  - spawnXY: {x: 28, y: 22}
+  - spawnXY: {x: 29, y: 22}
+  - spawnXY: {x: 20, y: 21}
+  - spawnXY: {x: 21, y: 21}
+  - spawnXY: {x: 22, y: 21}
+  - spawnXY: {x: 23, y: 21}
+  - spawnXY: {x: 24, y: 21}
+  - spawnXY: {x: 25, y: 21}
+  - spawnXY: {x: 26, y: 21}
+  - spawnXY: {x: 27, y: 21}
+  - spawnXY: {x: 28, y: 21}
+  - spawnXY: {x: 29, y: 21}
+  - spawnXY: {x: 20, y: 20}
+  - spawnXY: {x: 21, y: 20}
+  - spawnXY: {x: 22, y: 20}
+  - spawnXY: {x: 25, y: 20}
+  - spawnXY: {x: 26, y: 20}
+  - spawnXY: {x: 27, y: 20}
+  - spawnXY: {x: 28, y: 20}
+  - spawnXY: {x: 29, y: 20}
+  - spawnXY: {x: 21, y: 19}
+  - spawnXY: {x: 22, y: 19}
+  - spawnXY: {x: 26, y: 19}
+  - spawnXY: {x: 27, y: 19}
+  - spawnXY: {x: 28, y: 19}
+  - spawnXY: {x: 29, y: 19}
+  - spawnXY: {x: 21, y: 18}
+  - spawnXY: {x: 27, y: 18}
+  - spawnXY: {x: 28, y: 18}
+  - spawnXY: {x: 29, y: 18}
+  - spawnXY: {x: 28, y: 17}
+  - spawnXY: {x: 29, y: 17}
 --- !u!114 &1140795399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3040,6 +3157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd7809a83c526a94f8844268cc940d50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 0
 --- !u!4 &1140795401
 Transform:
   m_ObjectHideFlags: 0

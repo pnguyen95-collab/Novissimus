@@ -625,6 +625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd7809a83c526a94f8844268cc940d50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 0
 --- !u!4 &416078663
 Transform:
   m_ObjectHideFlags: 0
@@ -2114,14 +2115,14 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 416078662}
-        m_MethodName: SceneTo
+        m_MethodName: SceneToGenerateByLevelNum
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Testing_desert_1
+          m_StringArgument: Desert
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1882107680

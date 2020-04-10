@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
     //maximum number of messages to display
     int maxMessages = 15;
 
+    public GameObject playerDataObject;
     public Inventory inventory;
 
     public int turnStatus; // 0 = player , 1 = enemy, 2 = none
@@ -51,7 +52,21 @@ public class GameManager : MonoBehaviour
 
     public bool runRaycast; //boolean to trigger whether or not it's a resource grid
     public bool resourceGrid = false;
-    
+
+    private void Awake()
+    {
+        //INVENTORY
+        if (GameObject.Find("PlayerInventory") != null)
+        {
+            playerDataObject = GameObject.Find("PlayerInventory");
+
+            inventory = playerDataObject.GetComponent<PlayerData>().inventory;
+        }
+        else
+        {
+            print("Missing Inventory object");
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -76,17 +91,7 @@ public class GameManager : MonoBehaviour
             enemiesList.Add(enemies[i]);
         }
 
-        //INVENTORY
-        if (GameObject.Find("PlayerInventory") != null)
-        {
-            GameObject temp = GameObject.Find("PlayerInventory");
-
-            inventory = temp.GetComponent<PlayerData>().inventory;
-        }
-        else
-        {
-            print("Missing Inventory object");
-        }
+        
         
         //PANELs
 
@@ -520,6 +525,7 @@ public class GameManager : MonoBehaviour
         if (enemiesList.Count == 0)
         {
             setOnOffMenu(winPanel, true);
+            playerDataObject.GetComponent<PlayerData>().levelNum++;
         }
         if (playersList.Count == 0)
         {
