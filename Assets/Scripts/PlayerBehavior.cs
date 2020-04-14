@@ -6,7 +6,6 @@ using UnityEngine.EventSystems;
 
 public class PlayerBehavior : MonoBehaviour
 {
-    
     public GridBehavior gridBehaviorCode;
     public CharacterStats playerStats;
     public CharacterStats enemyStats;
@@ -18,6 +17,7 @@ public class PlayerBehavior : MonoBehaviour
 
     public float speedOfBallMoving; //just for speed of the object movement
     public int moveOrAttack;
+    public int thisActionPoint;
 
     public bool mouseOver;
     public bool triggerMoving;
@@ -26,8 +26,8 @@ public class PlayerBehavior : MonoBehaviour
     
     void Start()
     {
-        
 
+        
         gm = GameObject.FindGameObjectWithTag("GameController");
         gridBehaviorCode = gm.GetComponent<GridBehavior>();
         gmCode = gm.GetComponent<GameManager>();
@@ -41,6 +41,7 @@ public class PlayerBehavior : MonoBehaviour
         moveOrAttack = 0;
 
         SetOutline("_FirstOutlineWidth", 0.0f);
+        thisActionPoint = playerStats.actionPoint;
     }
     
     void Update()
@@ -250,12 +251,27 @@ public class PlayerBehavior : MonoBehaviour
     //attack
     public void AttackEnemy(List<GameObject> target)
     {
+        gameObject.GetComponent<Shake>().ShakeObject();
+        if (GameObject.FindGameObjectsWithTag("Audio") != null)
+        {
+          GameObject a =  GameObject.FindGameObjectWithTag("Audio");
+          a.GetComponent<AudioController>().PlayGunShot();
+
+        }
+       
+
         for (int i = 0; i < target.Count; i++)
         {
             int damageValue, visitValue;
 
             visitValue = target[i].transform.parent.GetComponent<GridStat>().visit;
             damageValue = gmCode.GetComponent<WeaponStats>().GiveDamageValue(playerStats.weaponNumber, visitValue);
+
+            if (playerStats.boosterNumber == 1)
+            {
+                damageValue ++;
+            }
+
 
             if (target[i].GetComponent<CharacterStats>() != null)
             {
@@ -279,12 +295,9 @@ public class PlayerBehavior : MonoBehaviour
                 }
             }
 
-        
 
-            this.playerIsPlayable = false;
-            this.playerIsActive = false;
-            gmCode.setCurrentPlayer(null);
-            gridBehaviorCode.resetVisit();
+            EndCurrentPlayerAction();
+            
         }
 
     }
@@ -316,17 +329,16 @@ public class PlayerBehavior : MonoBehaviour
             gridBehaviorCode.resetVisit();
         }
 
-        //set the attack all panel off
-        gmCode.setOnOffMenu(gmCode.menuPanel3, false);
+        
+
         
     }
 
     //player choose to do nothing for the selected vehicle 
     public void DoNothing()
     {
-        playerIsActive = false;
-        playerIsPlayable = false;
-        gmCode.setCurrentPlayer(null);
+        CheckIfAbleToSelfHeal();
+        EndCurrentPlayerAction();
     }
     
 
@@ -349,10 +361,35 @@ public class PlayerBehavior : MonoBehaviour
         this.GetComponent<Renderer>().material.SetFloat(o, a);
     }
 
+    public void CheckIfAbleToSelfHeal()
+    {
+        if (playerStats.boosterNumber == 2)
+        {
+            if (playerStats.currentHealth < playerStats.maxHealth.GetValue())
+            {
+                playerStats.currentHealth++;
+            }
+        }
+    }
 
 
+    public void EndCurrentPlayerAction()
+    {
+        thisActionPoint--;
+        CheckIfAbleToSelfHeal();
 
-
-
+        if (thisActionPoint >= 1)
+        {
+            this.playerIsPlayable = true;
+        }
+        else
+        {
+            this.playerIsPlayable = false;
+        }
+       
+        this.playerIsActive = false;
+        gmCode.setCurrentPlayer(null);
+        gridBehaviorCode.resetVisit();
+    }
 
 }

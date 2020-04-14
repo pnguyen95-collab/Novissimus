@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &957220833650175722
+--- !u!1 &3985468290615652275
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,50 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 748646064374747094}
-  - component: {fileID: 2321481945196402174}
-  - component: {fileID: 8193035903793055050}
-  - component: {fileID: 624944150156151745}
-  - component: {fileID: 3904428395757004737}
-  - component: {fileID: 8382809236000729717}
+  - component: {fileID: 5296324195516347720}
+  - component: {fileID: 8328211343753633355}
+  - component: {fileID: 2396919987516073848}
+  - component: {fileID: 6619665957404514433}
+  - component: {fileID: 6014329847792843450}
+  - component: {fileID: 7072524607531997271}
+  - component: {fileID: 2080796189099139492}
+  - component: {fileID: 730122323335132200}
   m_Layer: 0
-  m_Name: Vehicle 4
-  m_TagString: Player
+  m_Name: Roadpounder
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &748646064374747094
+--- !u!4 &5296324195516347720
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 957220833650175722}
+  m_GameObject: {fileID: 3985468290615652275}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.788, y: 0, z: 0}
+  m_LocalPosition: {x: 15.778676, y: 6.4454293, z: 10.20389}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &2321481945196402174
+--- !u!33 &8328211343753633355
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 957220833650175722}
+  m_GameObject: {fileID: 3985468290615652275}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &8193035903793055050
+--- !u!23 &2396919987516073848
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 957220833650175722}
+  m_GameObject: {fileID: 3985468290615652275}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -61,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 433282c41b1ac04409faee963a2c0b6a, type: 2}
+  - {fileID: 2100000, guid: 3501d3825099cca42b7dc24f194bde9f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -82,67 +84,98 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &624944150156151745
+--- !u!135 &6619665957404514433
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 957220833650175722}
+  m_GameObject: {fileID: 3985468290615652275}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3904428395757004737
+--- !u!114 &6014329847792843450
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 957220833650175722}
+  m_GameObject: {fileID: 3985468290615652275}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c853365e37ebde4f8fdc656ed753a77, type: 3}
+  m_Script: {fileID: 11500000, guid: 28bc2e45b2acad84d901692605aabea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridBehaviorCode: {fileID: 0}
-  playerStats: {fileID: 0}
-  enemyStats: {fileID: 0}
-  gmCode: {fileID: 0}
   gm: {fileID: 0}
   parent: {fileID: 0}
+  gridBehaviorCode: {fileID: 0}
+  enemyStats: {fileID: 0}
+  gmCode: {fileID: 0}
+  tempList: []
+  detectList: []
+  attackAbleBlocks: []
+  pathToPlayer: []
+  playerTarget: {fileID: 0}
   positions: []
-  speedOfBallMoving: 0
-  moveOrAttack: 0
-  thisActionPoint: 0
   mouseOver: 0
-  triggerMoving: 0
-  playerIsActive: 0
-  playerIsPlayable: 0
---- !u!114 &8382809236000729717
+  triggerEnemyToFunction: 0
+  triggerForLerp: 0
+--- !u!114 &7072524607531997271
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 957220833650175722}
+  m_GameObject: {fileID: 3985468290615652275}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f5e4c0adfa351f45beae66e6a12d376, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth:
-    baseValue: 10
+    baseValue: 13
   damage:
-    baseValue: 0
+    baseValue: 5
   moveSpeed:
-    baseValue: 4
+    baseValue: 2
   attackRange:
     baseValue: 0
-  weaponNumber: 3
-  boosterNumber: 3
-  actionPoint: 0
+  weaponNumber: 7
   checkGotAttack: 0
   currentHealth: 0
+--- !u!95 &2080796189099139492
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3985468290615652275}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e14fa202db6ca3a43b98da35601efe23, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &730122323335132200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3985468290615652275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f57fb94d18765824a940b19bda2a313d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cs: {fileID: 0}
+  checkGotAttack: 0

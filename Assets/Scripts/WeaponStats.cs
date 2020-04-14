@@ -20,6 +20,8 @@ public class WeaponStats : MonoBehaviour
     number 3 = Blade
     number 4 = sniper
     number 5 = Runner weapon
+    number 6 = Hunter 
+    number 7 = Roadpounder
     */
     private void Start()
     {
@@ -81,9 +83,9 @@ public class WeaponStats : MonoBehaviour
             case 4:
                 xValues.Add(x);
 
-                if (x - 5 < 0)
+                if (x - 6 < 0)
                 {
-                    if (x - 4 < 0)
+                    if (x - 5 < 0)
                     {
                         
                                     //shouldskip this direction
@@ -93,18 +95,18 @@ public class WeaponStats : MonoBehaviour
                     }
                     else
                     {
-                        xValues.Add(x - 4);
+                        xValues.Add(x - 5);
 
                     }
                 }
                 else
                 {
-                    xValues.Add(x - 5);
+                    xValues.Add(x - 6);
                 }
 
-                if (x + 5 > gridBehaviorCode.columns)
+                if (x + 6> gridBehaviorCode.columns)
                 {
-                    if (x + 4 > gridBehaviorCode.columns)
+                    if (x + 5 > gridBehaviorCode.columns)
                     {
                           
                                 
@@ -118,17 +120,60 @@ public class WeaponStats : MonoBehaviour
                     }
                     else
                     {
-                        xValues.Add(x + 4);
+                        xValues.Add(x + 5);
 
                     }
                 }
                 else
                 {
-                    xValues.Add(x + 5);
+                    xValues.Add(x + 6);
                 }
                 xValues.Add(x);
                 return xValues;
             case 5:
+                xValues.Add(x);
+                return xValues;
+            case 6:
+
+                xValues.Add(x);
+                if (x - 2 < 0)
+                {
+                    if (x - 1 < 0)
+                    {
+                        //should skip this direction
+                        xValues.Add(-1);
+                    }
+                    else
+                    {
+                        xValues.Add(x - 1);
+
+                    }
+                }
+                else
+                {
+                    xValues.Add(x - 2);
+                }
+
+                if (x + 2 > gridBehaviorCode.columns)
+                {
+                    if (x + 1 > gridBehaviorCode.columns)
+                    {
+                        //should skip this direction
+                        xValues.Add(-1);
+                    }
+                    else
+                    {
+                        xValues.Add(x + 1);
+
+                    }
+                }
+                else
+                {
+                    xValues.Add(x + 2);
+                }
+                xValues.Add(x);
+                return xValues;
+            case 7:
                 xValues.Add(x);
                 return xValues;
         }
@@ -188,9 +233,9 @@ public class WeaponStats : MonoBehaviour
                 return yValues;
             case 4:
                 
-                if (y + 5 > gridBehaviorCode.rows)
+                if (y + 6 > gridBehaviorCode.rows)
                 {
-                    if (y + 4 > gridBehaviorCode.rows)
+                    if (y + 5 > gridBehaviorCode.rows)
                     {
                         
                             
@@ -201,19 +246,19 @@ public class WeaponStats : MonoBehaviour
                     }
                     else
                     {
-                        yValues.Add(y + 4);
+                        yValues.Add(y + 5);
 
                     }
                 }
                 else
                 {
-                    yValues.Add(y + 5);
+                    yValues.Add(y + 6);
                 }
                 yValues.Add(y);
                 yValues.Add(y);
-                if (y - 5 < 0)
+                if (y - 6 < 0)
                 {
-                    if (y - 4 < 0)
+                    if (y - 5 < 0)
                     {
                          
                                     //should skip this direction
@@ -223,16 +268,57 @@ public class WeaponStats : MonoBehaviour
                     }
                     else
                     {
-                        yValues.Add(y - 4);
+                        yValues.Add(y - 5);
 
                     }
                 }
                 else
                 {
-                    yValues.Add(y - 5);
+                    yValues.Add(y - 6);
                 }
                 return yValues;
             case 5:
+                yValues.Add(y);
+                return yValues;
+            case 6:
+                if (y + 2 > gridBehaviorCode.rows)
+                {
+                    if (y + 1 > gridBehaviorCode.rows)
+                    {
+                        //should skip this direction
+                        yValues.Add(-1);
+                    }
+                    else
+                    {
+                        yValues.Add(y + 1);
+
+                    }
+                }
+                else
+                {
+                    yValues.Add(y + 2);
+                }
+                yValues.Add(y);
+                yValues.Add(y);
+                if (y - 2 < 0)
+                {
+                    if (y - 1 < 0)
+                    {
+                        //should skip this direction
+                        yValues.Add(-1);
+                    }
+                    else
+                    {
+                        yValues.Add(y - 1);
+
+                    }
+                }
+                else
+                {
+                    yValues.Add(y - 2);
+                }
+                return yValues;
+            case 7:
                 yValues.Add(y);
                 return yValues;
 
@@ -251,8 +337,12 @@ public class WeaponStats : MonoBehaviour
             case 3:
                 return 1;
             case 4:
-                return 6;
+                return 7;
             case 5:
+                return 1;
+            case 6:
+                return 3;
+            case 7:
                 return 1;
         }
         return 0;
@@ -272,6 +362,10 @@ public class WeaponStats : MonoBehaviour
                 return 1;
             case 5:
                 return 1;
+            case 6:
+                return 1;
+            case 7:
+                return 2;
 
 
 
@@ -296,6 +390,10 @@ public class WeaponStats : MonoBehaviour
                 return 8;
             case 5:
                 return 2;
+            case 6:
+                return 3;
+            case 7:
+                return 5;
 
 
 
@@ -317,6 +415,10 @@ public class WeaponStats : MonoBehaviour
                 return "Sniper";
             case 5:
                 return "Some Blade";
+            case 6:
+                return "Machine Gun";
+            case 7:
+                return "God Hammer";
 
         }
 

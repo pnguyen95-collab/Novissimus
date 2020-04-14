@@ -511,6 +511,8 @@ public class EnemyBehavior : MonoBehaviour
 
     private void Attack(List<GameObject> target)
     {
+        gameObject.GetComponent<Shake>().ShakeObject();
+
         for (int i = 0; i < target.Count; i++)
         {
             int damageValue, visitValue;

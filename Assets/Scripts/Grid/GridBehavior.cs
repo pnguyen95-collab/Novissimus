@@ -150,9 +150,13 @@ public class GridBehavior : MonoBehaviour
                 }
             }
 
-
+            //int a = this.GetComponent<GameManager>().playerDataObject.GetComponent<PlayerData>().levelNum;
+            //for testing
+            int a = 1;
+            
+            
             //different depend on level num
-            switch (this.GetComponent<GameManager>().playerDataObject.GetComponent<PlayerData>().levelNum)
+            switch (a)
             {
                 case 0:
                     print("level num is missing");
@@ -204,7 +208,7 @@ public class GridBehavior : MonoBehaviour
 
     GameObject GeneratePlayer(GameObject p,int x, int y)
     {
-        GameObject player = Instantiate(p, new Vector3(leftBottomLocation.x + scale * x, leftBottomLocation.y + scale, leftBottomLocation.z + scale * y), Quaternion.identity);
+        GameObject player = Instantiate(p, new Vector3(leftBottomLocation.x + scale * x, leftBottomLocation.y + scale, leftBottomLocation.z + scale * y), Quaternion.Euler(90, 0, 0));
         player.transform.SetParent(gridArray[x, y].transform);
         
         return player;
@@ -212,7 +216,7 @@ public class GridBehavior : MonoBehaviour
 
    GameObject GenerateEnemy(GameObject e,int x, int y)
     {
-        GameObject enemy = Instantiate(e, new Vector3(leftBottomLocation.x + scale * x, leftBottomLocation.y + scale, leftBottomLocation.z + scale * y), Quaternion.identity);
+        GameObject enemy = Instantiate(e, new Vector3(leftBottomLocation.x + scale * x, leftBottomLocation.y + scale, leftBottomLocation.z + scale * y), Quaternion.Euler(90, 180, 0));
         enemy.transform.SetParent(gridArray[x, y].transform);
        
         return enemy;

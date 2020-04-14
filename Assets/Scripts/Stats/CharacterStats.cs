@@ -9,6 +9,8 @@ public class CharacterStats : MonoBehaviour
     public Stat moveSpeed;
     public Stat attackRange;
     public int weaponNumber; //must assign
+    public int boosterNumber;
+    public int actionPoint;
     public bool checkGotAttack;
 
     public int currentHealth;
@@ -17,6 +19,15 @@ public class CharacterStats : MonoBehaviour
     {
         currentHealth = maxHealth.GetValue();
         checkGotAttack = false;
+
+        if (boosterNumber == 3)
+        {
+            actionPoint = 2;
+        }
+        else
+        {
+            actionPoint = 1;
+        }
     }
 
     //Damage calculation method
@@ -43,7 +54,12 @@ public class CharacterStats : MonoBehaviour
 
     private IEnumerator GotAttacked()
     {
+        if (GameObject.FindGameObjectsWithTag("Audio") != null)
+        {
+            GameObject a = GameObject.FindGameObjectWithTag("Audio");
+            a.GetComponent<AudioController>().PlayGotHit();
 
+        }
         checkGotAttack = true;
 
         //yield on a new YieldInstruction that waits for 5 seconds.

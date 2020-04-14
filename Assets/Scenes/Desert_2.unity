@@ -863,7 +863,7 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 6926802993482032328, guid: c2e712bdbf90bd04888bf00c1958b4cf, type: 3}
   - {fileID: 3109038487105154917, guid: 1a67316c143bbac48bd1f951a17a23ba, type: 3}
-  playerVehicle1: {fileID: 5113287817647597860, guid: 675a9043787bd8a468a812e33c7e8345,
+  playerVehicle1: {fileID: 5865916723602038048, guid: db4082e0e7bdeb84290ba7944ed1197a,
     type: 3}
   playerVehicle2: {fileID: 8332107909907706604, guid: e794f81e5a760f04dad002275316657a,
     type: 3}

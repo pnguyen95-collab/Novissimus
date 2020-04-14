@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
 
     public bool runRaycast; //boolean to trigger whether or not it's a resource grid
     public bool resourceGrid = false;
+    private bool runEnemy;
 
     private void Awake()
     {
@@ -70,6 +71,13 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (GameObject.FindGameObjectsWithTag("Audio") != null&&resourceGrid==false)
+        {
+            GameObject a = GameObject.FindGameObjectWithTag("Audio");
+            a.GetComponent<AudioController>().PlayBGM();
+
+        }
+
         currentPlayerDataToShow = null;
         gridBehaviorCode = this.GetComponent<GridBehavior>();
 
@@ -118,6 +126,7 @@ public class GameManager : MonoBehaviour
 
         turnStatus = 0;
         runRaycast = false;
+        runEnemy = true;
 
        
         
@@ -436,42 +445,39 @@ public class GameManager : MonoBehaviour
         else if (turnStatus == 1)
         {
             numOfEnemy = enemies.Length;
+            
             //enemyai start
             //do one enemy one by one
             if (countNumOfEnemy < numOfEnemy)
             {
+                StartCoroutine(DoingEnemyTurn());
+                
                 //button appear
-                if (countNumOfEnemy == 0)
+                //if (countNumOfEnemy == 0)
+               // {
+               //     TestEnemy();
+               // }
+                
+                //setOnOffMenu(enemyPanel, true);
+            }
+           else if (countNumOfEnemy == numOfEnemy)
+            {
+                //setOnOffMenu(enemyPanel, false);
+                turnStatus = 0;
+                countNumOfEnemy = 0;
+                runEnemy = true;
+
+                //check all active enemies/players
+                players = GameObject.FindGameObjectsWithTag("Player");
+                enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+                foreach (GameObject p in playersList)
                 {
-                    TestEnemy();
+                    p.GetComponent<PlayerBehavior>().playerIsPlayable = true;
+                    p.GetComponent<PlayerBehavior>().thisActionPoint = p.GetComponent<PlayerBehavior>().playerStats.actionPoint;
                 }
-                setOnOffMenu(enemyPanel, true);
+                
             }
-          /*  
-            if (countNumOfEnemy < numOfEnemy)
-                foreach (GameObject e in enemies)
-            {
-                e.GetComponent<EnemyBehavior>().triggerMoving = true;
-                countNumOfEnemy++;
-                gridBehaviorCode.resetVisit();
-            }*/
-        
-        else if (countNumOfEnemy == numOfEnemy)
-        {
-            
-            turnStatus = 0;
-            countNumOfEnemy = 0;
-
-            //check all active enemies/players
-            players = GameObject.FindGameObjectsWithTag("Player");
-            enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-            foreach (GameObject p in playersList)
-            {
-                p.GetComponent<PlayerBehavior>().playerIsPlayable = true;
-            }
-            setOnOffMenu(enemyPanel, false);
-        }
         }
 
         //neither player or enemy turn
@@ -562,5 +568,22 @@ public class GameManager : MonoBehaviour
     public void CallPopupTextOutsideGm(string x)
     {
         StartCoroutine(PopupText(x));
+    }
+
+    public IEnumerator DoingEnemyTurn()
+    {
+        if (runEnemy == true)
+        {
+            runEnemy = false;
+            print("enemy coubt" + enemiesList.Count);
+
+            for (int i = 0; i < enemiesList.Count; i++)
+            {
+                print("dddd");
+                yield return new WaitForSeconds(1.2f);
+                TestEnemy();
+            }
+
+        }
     }
 }
