@@ -43,6 +43,37 @@ public class Inventory
         }
     }
 
+    //function used to remove items from your inventory
+    public void RemoveItem(Item item)
+    {
+        //checks to see if the item to remove is greater than 0
+        if (item.amount > 0)
+        {
+            //checks your inventory for the item and removes that amount
+            foreach (Item itemCheck in inventoryList)
+            {
+                if (itemCheck.type == item.type)
+                {
+                    //checks to see if you have enough of the item or else does nothing
+                    if (itemCheck.amount >= item.amount)
+                    {
+                        itemCheck.amount -= item.amount;
+
+                        //if the amount is now equal to 0, remove from inventoryList
+                        if (itemCheck.amount == 0)
+                        {
+                            inventoryList.Remove(itemCheck);
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            Debug.Log("You must define a value to remove that's greater than 0");
+        }
+    }
+
     //function used to check if you have an item and its quantity in your inventory - returns the int number of quantity
     public int CheckItem(Item item)
     {
@@ -54,11 +85,5 @@ public class Inventory
             }
         }
         return 0;
-    }
-
-    //function used to add attachments to your inventory
-    public void AddAttachment(Attachments attach)
-    {
-        attachmentList.Add(attach);
     }
 }
