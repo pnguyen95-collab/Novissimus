@@ -8,6 +8,7 @@ public class GridBehavior : MonoBehaviour
     public GameObject gridPrefab;
     public List<GameObject> enemyPrefabs;
     
+
     public GameObject playerVehicle1;
     public GameObject playerVehicle2;
     public GameObject playerVehicle3;
@@ -191,6 +192,7 @@ public class GridBehavior : MonoBehaviour
 
             for (int i = 0; i < obstacleSpawn.Count; i++)
             {
+                
                 GenerateObstacle(obstacleSpawn[i].spawnXY.x, obstacleSpawn[i].spawnXY.y);
             }
 
@@ -203,6 +205,7 @@ public class GridBehavior : MonoBehaviour
 
     void GenerateObstacle(int x, int y)
     {
+        
         gridArray[x, y].GetComponent<GridStat>().standable = false;
     }
 
