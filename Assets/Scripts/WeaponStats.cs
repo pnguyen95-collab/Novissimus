@@ -22,6 +22,7 @@ public class WeaponStats : MonoBehaviour
     number 5 = Runner weapon
     number 6 = Hunter 
     number 7 = Roadpounder
+    number 8 = Chopper
     */
     private void Start()
     {
@@ -176,6 +177,9 @@ public class WeaponStats : MonoBehaviour
             case 7:
                 xValues.Add(x);
                 return xValues;
+            case 8:
+                xValues.Add(x);
+                return xValues;
         }
 
 
@@ -321,6 +325,9 @@ public class WeaponStats : MonoBehaviour
             case 7:
                 yValues.Add(y);
                 return yValues;
+            case 8:
+                yValues.Add(y);
+                return yValues;
 
         }
         return null;
@@ -344,6 +351,8 @@ public class WeaponStats : MonoBehaviour
                 return 3;
             case 7:
                 return 1;
+            case 8:
+                return 1;
         }
         return 0;
     }
@@ -365,6 +374,8 @@ public class WeaponStats : MonoBehaviour
             case 6:
                 return 1;
             case 7:
+                return 2;
+            case 8:
                 return 2;
 
 
@@ -394,6 +405,8 @@ public class WeaponStats : MonoBehaviour
                 return 3;
             case 7:
                 return 5;
+            case 8:
+                return 4;
 
 
 
@@ -419,6 +432,8 @@ public class WeaponStats : MonoBehaviour
                 return "Machine Gun";
             case 7:
                 return "God Hammer";
+            case 8:
+                return "Cutlass";
 
         }
 

@@ -74,7 +74,8 @@ public class GameManager : MonoBehaviour
         if (GameObject.FindGameObjectsWithTag("Audio") != null&&resourceGrid==false)
         {
             GameObject a = GameObject.FindGameObjectWithTag("Audio");
-            a.GetComponent<AudioController>().PlayBGM();
+            a.GetComponent<AudioController>().PlayBGM(0.4f);
+
 
         }
 
@@ -452,17 +453,10 @@ public class GameManager : MonoBehaviour
             {
                 StartCoroutine(DoingEnemyTurn());
                 
-                //button appear
-                //if (countNumOfEnemy == 0)
-               // {
-               //     TestEnemy();
-               // }
-                
-                //setOnOffMenu(enemyPanel, true);
             }
            else if (countNumOfEnemy == numOfEnemy)
             {
-                //setOnOffMenu(enemyPanel, false);
+               
                 turnStatus = 0;
                 countNumOfEnemy = 0;
                 runEnemy = true;

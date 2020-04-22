@@ -12,9 +12,10 @@ public class AudioController : MonoBehaviour
     [SerializeField] private AudioClip buttonClick;
 
 
-    public void PlayBGM()
+    public void PlayBGM(float volume)
     {
         AudioManager.Instance.PlayMusic(bgm);
+        AudioManager.Instance.SetMusicVolume(volume);
     }
     public void PlayGunShot()
     {
@@ -28,5 +29,6 @@ public class AudioController : MonoBehaviour
     public void PlayButtonClick()
     {
         AudioManager.Instance.PlaySFX(buttonClick);
+        
     }
 }

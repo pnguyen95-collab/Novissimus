@@ -8,6 +8,7 @@ public class ButtonsFunctions : MonoBehaviour
     public GameObject gm;
     public GameManager gmCode;
     public Text turnStatus;
+    public GameObject turnStatusImage;
     public GameObject pausePanel;
     public GameObject holdPanel;
     public GameObject holdPanel2;
@@ -48,13 +49,23 @@ public class ButtonsFunctions : MonoBehaviour
             if (gmCode.turnStatus == 0)
             {
                 turnStatus.text = "Turn: Player";
-                turnStatus.color = Color.blue;
+                Color color = new Color32(188, 230, 250, 255);
+                turnStatus.color = color;
+
+                //set color by RGBA values
+                color = new Color32(0, 25, 255, 255);
+                turnStatusImage.GetComponent<Image>().color = color;
             }
 
             if (gmCode.turnStatus == 1)
             {
                 turnStatus.text = "Turn: Enemy";
-                turnStatus.color = Color.red;
+                Color color = new Color32(255, 198, 198, 255);
+                turnStatus.color = color;
+                
+                //set color by RGBA values
+                color = new Color32(255, 0, 35, 255);
+                turnStatusImage.GetComponent<Image>().color = color;
             }
         }
         if (gmCode.resourceGrid == true)

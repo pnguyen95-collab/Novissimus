@@ -151,9 +151,9 @@ public class GridBehavior : MonoBehaviour
                 }
             }
 
-            //int a = this.GetComponent<GameManager>().playerDataObject.GetComponent<PlayerData>().levelNum;
+            int a = this.GetComponent<GameManager>().playerDataObject.GetComponent<PlayerData>().levelNum;
             //for testing
-            int a = 1;
+            
             
             
             //different depend on level num
@@ -166,6 +166,7 @@ public class GridBehavior : MonoBehaviour
                     //level 1 of desert
                     for (int i = 0; i < enemySpawn.Count; i++)
                     {
+                        //runner
                         count = i;
                         GameObject obj = GenerateEnemy(enemyPrefabs[0],enemySpawn[i].spawnXY.x, enemySpawn[i].spawnXY.y);
                         obj.GetComponent<CharacterStats>().weaponNumber = 1;
@@ -178,11 +179,62 @@ public class GridBehavior : MonoBehaviour
                         count = i;
                         if (i == 0 || i == 1)
                         {
+                            //runner
                             GameObject obj = GenerateEnemy(enemyPrefabs[0], enemySpawn[i].spawnXY.x, enemySpawn[i].spawnXY.y);
                         }
                         else if (i == 2)
                         {
+                            //hunter
                             GameObject obj = GenerateEnemy(enemyPrefabs[1], enemySpawn[i].spawnXY.x, enemySpawn[i].spawnXY.y);
+                        }
+                    }
+                    break;
+                case 3:
+                    //level 3 of desert
+                    for (int i = 0; i < enemySpawn.Count; i++)
+                    {
+                        count = i;
+                        if (i == 0 )
+                        {   //runner
+                            GameObject obj = GenerateEnemy(enemyPrefabs[0], enemySpawn[i].spawnXY.x, enemySpawn[i].spawnXY.y);
+                        }
+                        else if (i == 1)
+                        {   //Roadpounder
+                            GameObject obj = GenerateEnemy(enemyPrefabs[2], enemySpawn[i].spawnXY.x, enemySpawn[i].spawnXY.y);
+                        }
+                    }
+                    break;
+                case 4:
+                    //level 4 of desert
+                    for (int i = 0; i < enemySpawn.Count; i++)
+                    {
+                        count = i;
+                        if (i == 0 )
+                        {
+                            //hunter
+                            GameObject obj = GenerateEnemy(enemyPrefabs[1], enemySpawn[i].spawnXY.x, enemySpawn[i].spawnXY.y);
+                        }
+                        else if (i == 1)
+                        {
+                            //Roadpounder
+                            GameObject obj = GenerateEnemy(enemyPrefabs[2], enemySpawn[i].spawnXY.x, enemySpawn[i].spawnXY.y);
+                        }
+                    }
+                    break;
+                case 5:
+                    //level 4 of desert
+                    for (int i = 0; i < enemySpawn.Count; i++)
+                    {
+                        count = i;
+                        if (i == 0 || i == 1)
+                        {
+                            //hunter
+                            GameObject obj = GenerateEnemy(enemyPrefabs[1], enemySpawn[i].spawnXY.x, enemySpawn[i].spawnXY.y);
+                        }
+                        else if (i == 2||i==3)
+                        {
+                            //chopper
+                            GameObject obj = GenerateEnemy(enemyPrefabs[2], enemySpawn[i].spawnXY.x, enemySpawn[i].spawnXY.y);
                         }
                     }
                     break;
