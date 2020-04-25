@@ -116,6 +116,8 @@ MonoBehaviour:
   positions: []
   speedOfBallMoving: 0
   moveOrAttack: 0
+  thisActionPoint: 0
+  mouseOver: 0
   triggerMoving: 0
   playerIsActive: 0
   playerIsPlayable: 0
@@ -131,6 +133,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f5e4c0adfa351f45beae66e6a12d376, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vehicleNumber: 0
+  vehicleName: 
   maxHealth:
     baseValue: 10
   damage:
@@ -140,4 +144,7 @@ MonoBehaviour:
   attackRange:
     baseValue: 0
   weaponNumber: 2
+  boosterNumber: 0
+  actionPoint: 0
+  checkGotAttack: 0
   currentHealth: 0

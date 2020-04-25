@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public class CharacterStats : MonoBehaviour
 {
+    public int vehicleNumber;
+    public string vehicleName;
+
     public Stat maxHealth;
     public Stat damage;
     public Stat moveSpeed;
@@ -19,6 +22,8 @@ public class CharacterStats : MonoBehaviour
     {
         currentHealth = maxHealth.GetValue();
         checkGotAttack = false;
+
+        transform.name = vehicleName;
 
         if (boosterNumber == 3)
         {

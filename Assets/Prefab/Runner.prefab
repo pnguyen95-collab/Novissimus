@@ -135,6 +135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f5e4c0adfa351f45beae66e6a12d376, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vehicleNumber: 0
+  vehicleName: Runner
   maxHealth:
     baseValue: 8
   damage:
@@ -144,6 +146,8 @@ MonoBehaviour:
   attackRange:
     baseValue: 0
   weaponNumber: 5
+  boosterNumber: 0
+  actionPoint: 0
   checkGotAttack: 0
   currentHealth: 0
 --- !u!95 &5444765947990436575
