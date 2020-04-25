@@ -12,7 +12,7 @@ public class CharacterStats : MonoBehaviour
     public Stat moveSpeed;
     public Stat attackRange;
     public int weaponNumber; //must assign
-    public int boosterNumber;
+    public List<int> boosterNumber;
     public int actionPoint;
     public bool checkGotAttack;
 
@@ -25,14 +25,19 @@ public class CharacterStats : MonoBehaviour
 
         transform.name = vehicleName;
 
-        if (boosterNumber == 3)
+        foreach (int d in boosterNumber)
         {
-            actionPoint = 2;
+            if (d == 3)
+            {
+                actionPoint = 2;
+            }
+            else
+            {
+                actionPoint = 1;
+            }
         }
-        else
-        {
-            actionPoint = 1;
-        }
+
+        
     }
 
     //Damage calculation method

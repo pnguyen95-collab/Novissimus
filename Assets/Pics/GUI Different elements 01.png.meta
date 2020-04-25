@@ -1,0 +1,1411 @@
+fileFormatVersion: 2
+guid: 776ffa613fbec0e4c9ae660a9fd353b9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5606033450830840176
+    second: GUI Different elements 01_0
+  - first:
+      213: 3433452027820555499
+    second: GUI Different elements 01_1
+  - first:
+      213: -6851896895796972784
+    second: GUI Different elements 01_2
+  - first:
+      213: 4917064103830923156
+    second: GUI Different elements 01_3
+  - first:
+      213: -1386789901808075338
+    second: GUI Different elements 01_4
+  - first:
+      213: -787604336975639478
+    second: GUI Different elements 01_5
+  - first:
+      213: -5180263516308254333
+    second: GUI Different elements 01_6
+  - first:
+      213: 2358083769677178027
+    second: GUI Different elements 01_7
+  - first:
+      213: -1649218732746484121
+    second: GUI Different elements 01_8
+  - first:
+      213: -3499088258959814884
+    second: GUI Different elements 01_9
+  - first:
+      213: -6178120686375051286
+    second: GUI Different elements 01_10
+  - first:
+      213: 4964913915846219322
+    second: GUI Different elements 01_11
+  - first:
+      213: 2253319898794250195
+    second: GUI Different elements 01_12
+  - first:
+      213: 6891114144127320061
+    second: GUI Different elements 01_13
+  - first:
+      213: -3547552447801066624
+    second: GUI Different elements 01_14
+  - first:
+      213: 6865376590832257970
+    second: GUI Different elements 01_15
+  - first:
+      213: 3957794566850421329
+    second: GUI Different elements 01_16
+  - first:
+      213: -5593390297824878927
+    second: GUI Different elements 01_17
+  - first:
+      213: -6768206566603949976
+    second: GUI Different elements 01_18
+  - first:
+      213: -6362137129582074811
+    second: GUI Different elements 01_19
+  - first:
+      213: 2243815216630071168
+    second: GUI Different elements 01_20
+  - first:
+      213: -8811421783701212234
+    second: GUI Different elements 01_21
+  - first:
+      213: 2404726405337694099
+    second: GUI Different elements 01_22
+  - first:
+      213: -1166525887206063212
+    second: GUI Different elements 01_23
+  - first:
+      213: 3687962345194317487
+    second: GUI Different elements 01_24
+  - first:
+      213: -1080453869315989564
+    second: GUI Different elements 01_25
+  - first:
+      213: 8385431951651168764
+    second: GUI Different elements 01_26
+  - first:
+      213: 275965312470290554
+    second: GUI Different elements 01_27
+  - first:
+      213: -7744425686451009640
+    second: GUI Different elements 01_28
+  - first:
+      213: 3723118430805062236
+    second: GUI Different elements 01_29
+  - first:
+      213: -3505909005957006681
+    second: GUI Different elements 01_30
+  - first:
+      213: 2088055714415926363
+    second: GUI Different elements 01_31
+  - first:
+      213: 6598999470339654553
+    second: GUI Different elements 01_32
+  - first:
+      213: -3854423715281661872
+    second: GUI Different elements 01_33
+  - first:
+      213: -8831894959620809253
+    second: GUI Different elements 01_34
+  - first:
+      213: -7012247411180987707
+    second: GUI Different elements 01_35
+  - first:
+      213: -2573922681488585117
+    second: GUI Different elements 01_36
+  - first:
+      213: 7766620753472825946
+    second: GUI Different elements 01_37
+  - first:
+      213: -4466498984669668647
+    second: GUI Different elements 01_38
+  - first:
+      213: 1381404040878015245
+    second: GUI Different elements 01_39
+  - first:
+      213: 2706482639098894898
+    second: GUI Different elements 01_40
+  - first:
+      213: 2387285444338139084
+    second: GUI Different elements 01_41
+  - first:
+      213: -7828932120952404286
+    second: GUI Different elements 01_42
+  - first:
+      213: 8613080957467559656
+    second: GUI Different elements 01_43
+  - first:
+      213: -6489461597347425830
+    second: GUI Different elements 01_44
+  - first:
+      213: 2018872722549910449
+    second: GUI Different elements 01_45
+  - first:
+      213: 4493694469663117178
+    second: GUI Different elements 01_46
+  - first:
+      213: 4636420486978847938
+    second: GUI Different elements 01_47
+  - first:
+      213: 5121651142341228514
+    second: GUI Different elements 01_48
+  - first:
+      213: -3522183417711748320
+    second: GUI Different elements 01_49
+  - first:
+      213: 3851465824087413073
+    second: GUI Different elements 01_50
+  - first:
+      213: -5476230924998476387
+    second: GUI Different elements 01_51
+  - first:
+      213: 906657153881781757
+    second: GUI Different elements 01_52
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: GUI Different elements 01_0
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 3420
+        width: 128
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09e354c474e5332b0800000000000000
+      internalID: -5606033450830840176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_1
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 3420
+        width: 134
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: becb6979d6216af20800000000000000
+      internalID: 3433452027820555499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_2
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 3539
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0137b60831c29e0a0800000000000000
+      internalID: -6851896895796972784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_3
+      rect:
+        serializedVersion: 2
+        x: 975
+        y: 3538
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 497aaae20cbec3440800000000000000
+      internalID: 4917064103830923156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_4
+      rect:
+        serializedVersion: 2
+        x: 1532
+        y: 3527
+        width: 58
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bd71ac8ee121cce0800000000000000
+      internalID: -1386789901808075338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_5
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 2697
+        width: 805
+        height: 603
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4c8207470ed115f0800000000000000
+      internalID: -787604336975639478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_6
+      rect:
+        serializedVersion: 2
+        x: 987
+        y: 2506
+        width: 596
+        height: 979
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 381d78337c10c18b0800000000000000
+      internalID: -5180263516308254333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_7
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 2590
+        width: 27
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba4e832e1b899b020800000000000000
+      internalID: 2358083769677178027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_8
+      rect:
+        serializedVersion: 2
+        x: 901
+        y: 2590
+        width: 65
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 766d9bdec4ccc19e0800000000000000
+      internalID: -1649218732746484121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_9
+      rect:
+        serializedVersion: 2
+        x: 931
+        y: 2413
+        width: 263
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1fc5f674cdb07fc0800000000000000
+      internalID: -3499088258959814884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_10
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 2283
+        width: 368
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aef5f1508f7e24aa0800000000000000
+      internalID: -6178120686375051286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_11
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 2287
+        width: 371
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a365866b6eae6e440800000000000000
+      internalID: 4964913915846219322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_12
+      rect:
+        serializedVersion: 2
+        x: 898
+        y: 2168
+        width: 194
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3df43f46286654f10800000000000000
+      internalID: 2253319898794250195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_13
+      rect:
+        serializedVersion: 2
+        x: 1124
+        y: 2167
+        width: 194
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfff06badc722af50800000000000000
+      internalID: 6891114144127320061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_14
+      rect:
+        serializedVersion: 2
+        x: 1348
+        y: 2165
+        width: 194
+        height: 195
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08bffbe28df84cec0800000000000000
+      internalID: -3547552447801066624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_15
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 2204
+        width: 368
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bbc6d192a7b64f50800000000000000
+      internalID: 6865376590832257970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_16
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 2202
+        width: 371
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15227137039ece630800000000000000
+      internalID: 3957794566850421329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_17
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 2125
+        width: 368
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1be1800c8294062b0800000000000000
+      internalID: -5593390297824878927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_18
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 2120
+        width: 371
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 868fa17bcff7212a0800000000000000
+      internalID: -6768206566603949976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_19
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 2011
+        width: 366
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 544efea1df525b7a0800000000000000
+      internalID: -6362137129582074811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_20
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 2019
+        width: 373
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08ff9d02d02a32f10800000000000000
+      internalID: 2243815216630071168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_21
+      rect:
+        serializedVersion: 2
+        x: 899
+        y: 2008
+        width: 246
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b3b958929a87b580800000000000000
+      internalID: -8811421783701212234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_22
+      rect:
+        serializedVersion: 2
+        x: 1163
+        y: 2010
+        width: 244
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39fb724cced4f5120800000000000000
+      internalID: 2404726405337694099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_23
+      rect:
+        serializedVersion: 2
+        x: 1515
+        y: 1990
+        width: 218
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49309c7d2eaafcfe0800000000000000
+      internalID: -1166525887206063212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_24
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 1930
+        width: 367
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa6e25a96364e2330800000000000000
+      internalID: 3687962345194317487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_25
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 1935
+        width: 373
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cf593b2ee47101f0800000000000000
+      internalID: -1080453869315989564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_26
+      rect:
+        serializedVersion: 2
+        x: 899
+        y: 1931
+        width: 246
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf1e06e9ee90f5470800000000000000
+      internalID: 8385431951651168764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_27
+      rect:
+        serializedVersion: 2
+        x: 1163
+        y: 1934
+        width: 244
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a701f145dfc64d300800000000000000
+      internalID: 275965312470290554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_28
+      rect:
+        serializedVersion: 2
+        x: 1494
+        y: 1923
+        width: 261
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8974da1bed5468490800000000000000
+      internalID: -7744425686451009640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_29
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 1852
+        width: 365
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5278d4ac7c2ba330800000000000000
+      internalID: 3723118430805062236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_30
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 1852
+        width: 371
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7aaf61d8552885fc0800000000000000
+      internalID: -3505909005957006681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_31
+      rect:
+        serializedVersion: 2
+        x: 899
+        y: 1855
+        width: 246
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5c5cf8fb934afc10800000000000000
+      internalID: 2088055714415926363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_32
+      rect:
+        serializedVersion: 2
+        x: 1163
+        y: 1859
+        width: 244
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99306962e0b549b50800000000000000
+      internalID: 6598999470339654553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_33
+      rect:
+        serializedVersion: 2
+        x: 1494
+        y: 1850
+        width: 261
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0509bc47d06528ac0800000000000000
+      internalID: -3854423715281661872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_34
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 1748
+        width: 47
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdd1d3ed35ece6580800000000000000
+      internalID: -8831894959620809253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_35
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 1755
+        width: 118
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ca976bc12e7fae90800000000000000
+      internalID: -7012247411180987707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_36
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 1748
+        width: 49
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36e4d8a55f6974cd0800000000000000
+      internalID: -2573922681488585117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_37
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 1755
+        width: 118
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5aaceb0d6498cb60800000000000000
+      internalID: 7766620753472825946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_38
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 1752
+        width: 51
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9da1f1586dec302c0800000000000000
+      internalID: -4466498984669668647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_39
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 1755
+        width: 118
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d03c2dbf7abbb2310800000000000000
+      internalID: 1381404040878015245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_40
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 1693
+        width: 49
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23a5046ee9b5f8520800000000000000
+      internalID: 2706482639098894898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_41
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 1701
+        width: 23
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccf3c379677512120800000000000000
+      internalID: 2387285444338139084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_42
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 1702
+        width: 103
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c68cf727bb0a5390800000000000000
+      internalID: -7828932120952404286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_43
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 1694
+        width: 49
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e6098b2f7fc78770800000000000000
+      internalID: 8613080957467559656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_44
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 1701
+        width: 126
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad151925f0dc0f5a0800000000000000
+      internalID: -6489461597347425830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_45
+      rect:
+        serializedVersion: 2
+        x: 639
+        y: 1692
+        width: 49
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1bb20527b0a740c10800000000000000
+      internalID: 2018872722549910449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_46
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 1701
+        width: 129
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7f4861cf4fcc5e30800000000000000
+      internalID: 4493694469663117178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_47
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 957
+        width: 815
+        height: 564
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c4c7bb3edfd75040800000000000000
+      internalID: 4636420486978847938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_48
+      rect:
+        serializedVersion: 2
+        x: 935
+        y: 1172
+        width: 759
+        height: 339
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e7f8ba0492c31740800000000000000
+      internalID: 5121651142341228514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_49
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 312
+        width: 814
+        height: 564
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02b1589c7d0be1fc0800000000000000
+      internalID: -3522183417711748320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_50
+      rect:
+        serializedVersion: 2
+        x: 938
+        y: 778
+        width: 569
+        height: 382
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1519945d2c7237530800000000000000
+      internalID: 3851465824087413073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_51
+      rect:
+        serializedVersion: 2
+        x: 1561
+        y: 619
+        width: 190
+        height: 527
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9df47fecf48004b0800000000000000
+      internalID: -5476230924998476387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GUI Different elements 01_52
+      rect:
+        serializedVersion: 2
+        x: 944
+        y: 140
+        width: 693
+        height: 451
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df5b036b0e7159c00800000000000000
+      internalID: 906657153881781757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

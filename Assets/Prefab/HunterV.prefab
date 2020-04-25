@@ -76,15 +76,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d5f7c120a48ba12499fae4c71868a5cb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1f993ca39bc283240b1d4c58757933f3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4, y: 4}
+  m_Size: {x: 1.46, y: 2.84}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &581977367530567632
@@ -110,7 +110,7 @@ MonoBehaviour:
   attackRange:
     baseValue: 0
   weaponNumber: 6
-  boosterNumber: 0
+  boosterNumber: 
   actionPoint: 0
   checkGotAttack: 0
   currentHealth: 0

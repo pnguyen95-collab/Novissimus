@@ -267,10 +267,15 @@ public class PlayerBehavior : MonoBehaviour
             visitValue = target[i].transform.parent.GetComponent<GridStat>().visit;
             damageValue = gmCode.GetComponent<WeaponStats>().GiveDamageValue(playerStats.weaponNumber, visitValue);
 
-            if (playerStats.boosterNumber == 1)
+            foreach (int d in playerStats.boosterNumber)
             {
-                damageValue ++;
+                if (d == 1)
+                {
+                    damageValue++;
+                }
             }
+
+           
 
 
             if (target[i].GetComponent<CharacterStats>() != null)
@@ -363,11 +368,16 @@ public class PlayerBehavior : MonoBehaviour
 
     public void CheckIfAbleToSelfHeal()
     {
-        if (playerStats.boosterNumber == 2)
+        
+
+        foreach (int d in playerStats.boosterNumber)
         {
-            if (playerStats.currentHealth < playerStats.maxHealth.GetValue())
+            if (d == 2)
             {
-                playerStats.currentHealth++;
+                if (playerStats.currentHealth < playerStats.maxHealth.GetValue())
+                {
+                    playerStats.currentHealth++;
+                }
             }
         }
     }
