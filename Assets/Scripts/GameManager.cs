@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     public GameObject currentEnemy;
     public Button test;
     public GameObject alertText;
+    public Text enemyLeftText;
     
     public GameObject textDisplay;
     public GameObject textPanel;
@@ -72,7 +73,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         if (GameObject.FindGameObjectsWithTag("Audio") != null&&resourceGrid==false)
-        {
+        {   
             GameObject a = GameObject.FindGameObjectWithTag("Audio");
             a.GetComponent<AudioController>().PlayBGM(0.4f);
 
@@ -145,7 +146,9 @@ public class GameManager : MonoBehaviour
     {
         checkWinLose();
         checkTurn();
-        
+
+        enemyLeftText.text = numOfEnemy+ " Enemy left in the area";
+
         if (runRaycast == true)
         {
 
@@ -525,6 +528,7 @@ public class GameManager : MonoBehaviour
         if (enemiesList.Count == 0)
         {
             setOnOffMenu(winPanel, true);
+            
             playerDataObject.GetComponent<PlayerData>().levelNum++;
         }
         if (playersList.Count == 0)

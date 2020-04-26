@@ -109,7 +109,7 @@ MonoBehaviour:
     baseValue: 4
   attackRange:
     baseValue: 0
-  weaponNumber: 2
+  weaponNumber: 5
   boosterNumber: 
   actionPoint: 0
   checkGotAttack: 0

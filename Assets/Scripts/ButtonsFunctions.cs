@@ -151,12 +151,12 @@ public class ButtonsFunctions : MonoBehaviour
         holdPanel2.SetActive(true);
     }
     
-   
-
     public void ResumeTheGame()
     {
         audioManager.GetComponent<AudioController>().PlayButtonClick();
         pausePanel.SetActive(false);
     }
+
+    
     
 }

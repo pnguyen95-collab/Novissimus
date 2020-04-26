@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vehicleNumber: 0
-  vehicleName: 
+  vehicleName: Chopper
   maxHealth:
     baseValue: 11
   damage:

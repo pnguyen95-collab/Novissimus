@@ -7,8 +7,8 @@ public class GridBehavior : MonoBehaviour
     
     public GameObject gridPrefab;
     public List<GameObject> enemyPrefabs;
-    
 
+    
     public GameObject playerVehicle1;
     public GameObject playerVehicle2;
     public GameObject playerVehicle3;
@@ -45,7 +45,10 @@ public class GridBehavior : MonoBehaviour
 
     //Player, enemy and obstacle spawn locations
     public List<SpawnXY> playerSpawn;
-    public List<SpawnXY> enemySpawn;
+    private List<SpawnXY> enemySpawn;
+    
+     
+    //private List<> enemyTry;
     public List<SpawnXY> obstacleSpawn;
 
     // Start is called before the first frame update
@@ -152,10 +155,9 @@ public class GridBehavior : MonoBehaviour
             }
 
             int a = this.GetComponent<GameManager>().playerDataObject.GetComponent<PlayerData>().levelNum;
-            //for testing
             
             
-            
+           
             //different depend on level num
             switch (a)
             {
@@ -164,79 +166,42 @@ public class GridBehavior : MonoBehaviour
                     break;
                 case 1:
                     //level 1 of desert
-                    for (int i = 0; i < enemySpawn.Count; i++)
-                    {
-                        //runner
-                        count = i;
-                        GameObject obj = GenerateEnemy(enemyPrefabs[0],enemySpawn[i].spawnXY.x, enemySpawn[i].spawnXY.y);
-                        obj.GetComponent<CharacterStats>().weaponNumber = 1;
-                    }
+                    //all runner
+                     GenerateEnemy(enemyPrefabs[0], 10, 14);
+                     GenerateEnemy(enemyPrefabs[0], 16, 11);
+                     GenerateEnemy(enemyPrefabs[0], 24, 14);
+                    
                     break;
                 case 2:
                     //level 2 of desert
-                    for (int i = 0; i < enemySpawn.Count; i++)
-                    {
-                        count = i;
-                        if (i == 0 || i == 1)
-                        {
-                            //runner
-                            GameObject obj = GenerateEnemy(enemyPrefabs[0], enemySpawn[i].spawnXY.x, enemySpawn[i].spawnXY.y);
-                        }
-                        else if (i == 2)
-                        {
-                            //hunter
-                            GameObject obj = GenerateEnemy(enemyPrefabs[1], enemySpawn[i].spawnXY.x, enemySpawn[i].spawnXY.y);
-                        }
-                    }
+                    //2 runner. 1 hunter
+                    GenerateEnemy(enemyPrefabs[0], 19, 11);
+                    GenerateEnemy(enemyPrefabs[0], 6, 13);
+                    GenerateEnemy(enemyPrefabs[1], 10, 18);
+                  
                     break;
                 case 3:
                     //level 3 of desert
-                    for (int i = 0; i < enemySpawn.Count; i++)
-                    {
-                        count = i;
-                        if (i == 0 )
-                        {   //runner
-                            GameObject obj = GenerateEnemy(enemyPrefabs[0], enemySpawn[i].spawnXY.x, enemySpawn[i].spawnXY.y);
-                        }
-                        else if (i == 1)
-                        {   //Roadpounder
-                            GameObject obj = GenerateEnemy(enemyPrefabs[2], enemySpawn[i].spawnXY.x, enemySpawn[i].spawnXY.y);
-                        }
-                    }
+                    //1 runner. 1 roadpounder
+                    GenerateEnemy(enemyPrefabs[0], 9, 11);
+                    GenerateEnemy(enemyPrefabs[2], 23, 9);
+                   
                     break;
                 case 4:
                     //level 4 of desert
-                    for (int i = 0; i < enemySpawn.Count; i++)
-                    {
-                        count = i;
-                        if (i == 0 )
-                        {
-                            //hunter
-                            GameObject obj = GenerateEnemy(enemyPrefabs[1], enemySpawn[i].spawnXY.x, enemySpawn[i].spawnXY.y);
-                        }
-                        else if (i == 1)
-                        {
-                            //Roadpounder
-                            GameObject obj = GenerateEnemy(enemyPrefabs[2], enemySpawn[i].spawnXY.x, enemySpawn[i].spawnXY.y);
-                        }
-                    }
+                    //1 hunter 1 roadpounder
+                    GenerateEnemy(enemyPrefabs[1], 16, 12);
+                    GenerateEnemy(enemyPrefabs[2], 10, 15);
+                    
                     break;
                 case 5:
-                    //level 4 of desert
-                    for (int i = 0; i < enemySpawn.Count; i++)
-                    {
-                        count = i;
-                        if (i == 0 || i == 1)
-                        {
-                            //hunter
-                            GameObject obj = GenerateEnemy(enemyPrefabs[1], enemySpawn[i].spawnXY.x, enemySpawn[i].spawnXY.y);
-                        }
-                        else if (i == 2||i==3)
-                        {
-                            //chopper
-                            GameObject obj = GenerateEnemy(enemyPrefabs[2], enemySpawn[i].spawnXY.x, enemySpawn[i].spawnXY.y);
-                        }
-                    }
+                    //level 5 of desert story level
+                    // 2 hunter. 2 chopper 
+                    GenerateEnemy(enemyPrefabs[1], 7, 12);
+                    GenerateEnemy(enemyPrefabs[1], 23, 9);
+                    GenerateEnemy(enemyPrefabs[3], 2, 23);
+                    GenerateEnemy(enemyPrefabs[3], 23, 16);
+                    
                     break;
 
             }
@@ -569,6 +534,7 @@ public class GridBehavior : MonoBehaviour
         }*/
     }
 
-
+   
+    
 
 }

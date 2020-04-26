@@ -4,10 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class SceneControl : MonoBehaviour
 {
+    
     public int level;
     // Start is called before the first frame update
     void Start()
     {
+       
         //INVENTORY
         if (GameObject.Find("PlayerInventory") != null)
         {
@@ -25,6 +27,7 @@ public class SceneControl : MonoBehaviour
 
     public void SceneTo(string x)
     {
+        
         SceneManager.LoadScene(x);
     }
 
@@ -34,5 +37,11 @@ public class SceneControl : MonoBehaviour
         string x;
         x = map + "_" + temp;
         SceneManager.LoadScene(x);
+    }
+
+    public void ExitGame()
+    {
+        
+        Application.Quit();
     }
 }

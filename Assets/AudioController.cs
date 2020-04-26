@@ -10,6 +10,7 @@ public class AudioController : MonoBehaviour
     [SerializeField] private AudioClip gotHitCrash;
 
     [SerializeField] private AudioClip buttonClick;
+    [SerializeField] private AudioClip buttonHover;
 
 
     public void PlayBGM(float volume)
@@ -30,5 +31,10 @@ public class AudioController : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX(buttonClick);
         
+    }
+    public void PlayButtonHover()
+    {
+        AudioManager.Instance.PlaySFX(buttonHover);
+
     }
 }
