@@ -12,17 +12,12 @@ public class ButtonsFunctions : MonoBehaviour
     public GameObject pausePanel;
     public GameObject holdPanel;
     public GameObject holdPanel2;
-    public GameObject audioManager;
+   
 
     // Start is called before the first frame update
     void Start()
     {
-        if (GameObject.FindGameObjectsWithTag("Audio") != null)
-        {
-            audioManager= GameObject.FindGameObjectWithTag("Audio");
-           
-
-        }
+        
         gm = GameObject.FindGameObjectWithTag("GameController");
         gmCode = gm.GetComponent<GameManager>();
 
@@ -86,7 +81,7 @@ public class ButtonsFunctions : MonoBehaviour
 
     public void MoveButton()
     {
-        audioManager.GetComponent<AudioController>().PlayButtonClick();
+        
         gmCode.setOnOffMenu(gmCode.menuPanel,false);
        
         gmCode.currentPlayer.GetComponent<PlayerBehavior>().ShowMoveableBlocks();
@@ -94,7 +89,7 @@ public class ButtonsFunctions : MonoBehaviour
     }
     public void Attack()
     {
-        audioManager.GetComponent<AudioController>().PlayButtonClick();
+        
         gmCode.setOnOffMenu(gmCode.menuPanel2, false);
         gmCode.setOnOffMenu(gmCode.menuPanel, false);
         gmCode.currentPlayer.GetComponent<PlayerBehavior>().ShowAttackableBlocks();
@@ -103,7 +98,7 @@ public class ButtonsFunctions : MonoBehaviour
 
     public void AttackAll()
     {
-        audioManager.GetComponent<AudioController>().PlayButtonClick();
+        
         gmCode.setOnOffMenu(gmCode.menuPanel3, false);
         //gmCode.setOnOffMenu(gmCode.menuPanel, false);
         gmCode.currentPlayer.GetComponent<PlayerBehavior>().AttackAll();
@@ -112,7 +107,7 @@ public class ButtonsFunctions : MonoBehaviour
 
     public void ExitButton() //FIX
     {
-        audioManager.GetComponent<AudioController>().PlayButtonClick();
+        
         gmCode.setOnOffMenu(gmCode.menuPanel, false);
         gm.GetComponent<GridBehavior>().resetVisit();
         gmCode.currentPlayer.GetComponent<PlayerBehavior>().playerIsActive = false;
@@ -122,7 +117,7 @@ public class ButtonsFunctions : MonoBehaviour
 
     public void DoNothing()
     {
-        audioManager.GetComponent<AudioController>().PlayButtonClick();
+       
         gmCode.setOnOffMenu(gmCode.menuPanel2, false);
         gmCode.setOnOffMenu(gmCode.menuPanel, false);
 
@@ -133,7 +128,7 @@ public class ButtonsFunctions : MonoBehaviour
 
     public void SkipToAttack()
     {
-        audioManager.GetComponent<AudioController>().PlayButtonClick();
+        
         gmCode.setOnOffMenu(gmCode.menuPanel, false);
         gmCode.setOnOffMenu(gmCode.menuPanel2, true);
     }
@@ -145,7 +140,7 @@ public class ButtonsFunctions : MonoBehaviour
 
     public void ExitThelevel()
     {
-        audioManager.GetComponent<AudioController>().PlayButtonClick();
+        
         pausePanel.SetActive(true);
         holdPanel.SetActive(false);
         holdPanel2.SetActive(true);
@@ -153,7 +148,7 @@ public class ButtonsFunctions : MonoBehaviour
     
     public void ResumeTheGame()
     {
-        audioManager.GetComponent<AudioController>().PlayButtonClick();
+       
         pausePanel.SetActive(false);
     }
 

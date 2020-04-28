@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
     public GameObject menuPanel;
     public GameObject menuPanel2;
     public GameObject menuPanel3;
-    public GameObject enemyPanel;
     public GameObject blockClickingPanel;
     public GameObject winPanel;
     public GameObject losePanel;
@@ -72,13 +71,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (GameObject.FindGameObjectsWithTag("Audio") != null&&resourceGrid==false)
-        {   
-            GameObject a = GameObject.FindGameObjectWithTag("Audio");
-            a.GetComponent<AudioController>().PlayBGM(0.4f);
-
-
-        }
+        
 
         currentPlayerDataToShow = null;
         gridBehaviorCode = this.GetComponent<GridBehavior>();
@@ -120,7 +113,7 @@ public class GameManager : MonoBehaviour
         if (resourceGrid == false)
         {
             setOnOffMenu(menuPanel3, false);
-            setOnOffMenu(enemyPanel, false);
+            
             setOnOffMenu(winPanel, false);
             setOnOffMenu(losePanel, false);
             
@@ -147,7 +140,7 @@ public class GameManager : MonoBehaviour
         checkWinLose();
         checkTurn();
 
-        enemyLeftText.text = numOfEnemy+ " Enemy left in the area";
+        enemyLeftText.text = numOfEnemy+ " Enemy left";
 
         if (runRaycast == true)
         {

@@ -12,6 +12,7 @@ public class PlayerBehavior : MonoBehaviour
     public GameManager gmCode;
     public GameObject gm;
     public GameObject parent;
+    private GameObject audio;
 
     public Vector3[] positions; //Positions store the Points of blocks that player will walk through
 
@@ -42,6 +43,15 @@ public class PlayerBehavior : MonoBehaviour
 
         SetOutline("_FirstOutlineWidth", 0.0f);
         thisActionPoint = playerStats.actionPoint;
+
+        if (GameObject.FindGameObjectsWithTag("Audio") != null)
+        {
+            audio = GameObject.FindGameObjectWithTag("Audio");
+        }
+        else
+        {
+            print("audio manager missing");
+        }
     }
     
     void Update()
@@ -56,6 +66,7 @@ public class PlayerBehavior : MonoBehaviour
         if(triggerMoving==true)
         {
             gmCode.setOnOffMenu(gmCode.blockClickingPanel, true);
+            audio.GetComponent<AudioController>().PlayMoving();
             StartCoroutine(MultipleLerp(positions, speedOfBallMoving));
 
             triggerMoving = false;
@@ -84,6 +95,8 @@ public class PlayerBehavior : MonoBehaviour
         //click
         if (Input.GetMouseButtonDown(0))
         {
+            audio.GetComponent<AudioController>().PlayButtonClick();
+
             if (EventSystem.current.IsPointerOverGameObject())
                 return;
 
@@ -251,14 +264,32 @@ public class PlayerBehavior : MonoBehaviour
     //attack
     public void AttackEnemy(List<GameObject> target)
     {
-        gameObject.GetComponent<Shake>().ShakeObject();
-        if (GameObject.FindGameObjectsWithTag("Audio") != null)
+        if (audio != null)
         {
-          GameObject a =  GameObject.FindGameObjectWithTag("Audio");
-          a.GetComponent<AudioController>().PlayGunShot();
-
+            if (playerStats.weaponNumber == 1)
+            {
+                audio.GetComponent<AudioController>().PlayGunShot();
+            }
+            else if (playerStats.weaponNumber == 2)
+            {
+                //hammer
+                audio.GetComponent<AudioController>().PlayHammer();
+            }
+            else if (playerStats.weaponNumber == 3)
+            {
+                audio.GetComponent<AudioController>().PlayBlade();
+            }
+            else
+            {
+                audio.GetComponent<AudioController>().PlaySniper();
+            }
+            
         }
-       
+        gameObject.GetComponent<Shake>().ShakeObject();
+        gmCode.CallPopupTextOutsideGm("Attacking!");
+
+
+
 
         for (int i = 0; i < target.Count; i++)
         {
@@ -377,6 +408,9 @@ public class PlayerBehavior : MonoBehaviour
                 if (playerStats.currentHealth < playerStats.maxHealth.GetValue())
                 {
                     playerStats.currentHealth++;
+                    gmCode.CallPopupTextOutsideGm(this.name+" is self-healing");
+                    gmCode.AddMessage(this.name+"'s health + 1", Color.white);
+
                 }
             }
         }
