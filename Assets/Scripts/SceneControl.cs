@@ -6,6 +6,7 @@ public class SceneControl : MonoBehaviour
 {
     
     public int level;
+    private GameObject playerData;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,8 +14,8 @@ public class SceneControl : MonoBehaviour
         //INVENTORY
         if (GameObject.Find("PlayerInventory") != null)
         {
-            GameObject temp = GameObject.Find("PlayerInventory");
-            level = temp.GetComponent<PlayerData>().levelNum;
+            playerData = GameObject.Find("PlayerInventory");
+            level = playerData.GetComponent<PlayerData>().levelNum;
             
         }
         else
@@ -31,11 +32,15 @@ public class SceneControl : MonoBehaviour
         SceneManager.LoadScene(x);
     }
 
-    public void SceneToGenerateByLevelNum(string map)
+    public void SceneToDesert()
     {
-        int temp = level;
+        //random levelnum 1-4
+        //5 for event 
+        int temp = Random.Range(1,5);
+
+        playerData.GetComponent<PlayerData>().levelNum = temp;
         string x;
-        x = map + "_" + temp;
+        x = "Desert_1";
         SceneManager.LoadScene(x);
     }
 

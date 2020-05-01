@@ -19,7 +19,11 @@ public class AttachmentAssets : MonoBehaviour
     public Sprite spikeBombSprite;
 
     public Sprite armorSprite;
+    public Sprite armorSprite2;
+    public Sprite armorSprite3;
     public Sprite wheelSprite;
+    public Sprite wheelSprite2;
+    public Sprite wheelSprite3;
     public Sprite boosterSprite;
 
     //sprites for the attachment attack pattern to display

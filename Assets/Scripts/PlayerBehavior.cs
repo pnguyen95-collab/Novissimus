@@ -66,8 +66,8 @@ public class PlayerBehavior : MonoBehaviour
         if(triggerMoving==true)
         {
             gmCode.setOnOffMenu(gmCode.blockClickingPanel, true);
-            //for testing
-            //audio.GetComponent<AudioController>().PlayMoving();
+            
+            audio.GetComponent<AudioController>().PlayMoving();
             StartCoroutine(MultipleLerp(positions, speedOfBallMoving));
 
             triggerMoving = false;

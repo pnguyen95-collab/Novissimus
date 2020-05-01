@@ -110,12 +110,12 @@ public class Attachments
             case Name.SpikeBomb:         return AttachmentAssets.Instance.spikeBombSprite;
 
             case Name.MetalCoating:      return AttachmentAssets.Instance.armorSprite;
-            case Name.SpikeCoating:      return AttachmentAssets.Instance.armorSprite;
-            case Name.GlassCoating:      return AttachmentAssets.Instance.armorSprite;
+            case Name.SpikeCoating:      return AttachmentAssets.Instance.armorSprite2;
+            case Name.GlassCoating:      return AttachmentAssets.Instance.armorSprite3;
 
             case Name.RubberTyres:       return AttachmentAssets.Instance.wheelSprite;
-            case Name.OffRoadTyres:      return AttachmentAssets.Instance.wheelSprite;
-            case Name.CrystalTyres:      return AttachmentAssets.Instance.wheelSprite;
+            case Name.OffRoadTyres:      return AttachmentAssets.Instance.wheelSprite2;
+            case Name.CrystalTyres:      return AttachmentAssets.Instance.wheelSprite3;
 
             case Name.BladedWeaponry:    return AttachmentAssets.Instance.boosterSprite;
             case Name.MaggotFarm:        return AttachmentAssets.Instance.boosterSprite;

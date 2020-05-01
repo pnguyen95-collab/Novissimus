@@ -153,7 +153,7 @@ public class GridBehavior : MonoBehaviour
 
                 }
             }
-
+           
             int a = this.GetComponent<GameManager>().playerDataObject.GetComponent<PlayerData>().levelNum;
             
             

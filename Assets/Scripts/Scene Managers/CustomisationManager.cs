@@ -226,10 +226,10 @@ public class CustomisationManager : MonoBehaviour
 
             foreach (GameObject obj in tabs)
             {
-                obj.transform.GetComponent<Image>().color = new Color32(170, 170, 170, 255);
+                obj.transform.GetComponent<Image>().color = new Color32(48, 48, 48, 255);
             }
 
-            select.transform.GetComponent<Image>().color = new Color32(135, 135, 135, 255);
+            select.transform.GetComponent<Image>().color = new Color32(54, 63, 74, 255);
 
             UpdateStats();
 

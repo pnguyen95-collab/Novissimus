@@ -522,7 +522,8 @@ public class GameManager : MonoBehaviour
         {
             setOnOffMenu(winPanel, true);
             
-            playerDataObject.GetComponent<PlayerData>().levelNum++;
+            
+            
         }
         if (playersList.Count == 0)
         {
