@@ -67,7 +67,9 @@ public class PlayerBehavior : MonoBehaviour
         {
             gmCode.setOnOffMenu(gmCode.blockClickingPanel, true);
             
+            if(audio!=null)
             audio.GetComponent<AudioController>().PlayMoving();
+
             StartCoroutine(MultipleLerp(positions, speedOfBallMoving));
 
             triggerMoving = false;
@@ -96,8 +98,8 @@ public class PlayerBehavior : MonoBehaviour
         //click
         if (Input.GetMouseButtonDown(0))
         {
-            //for testing
-            //audio.GetComponent<AudioController>().PlayButtonClick();
+            if(audio!=null)
+            audio.GetComponent<AudioController>().PlayButtonClick();
 
             if (EventSystem.current.IsPointerOverGameObject())
                 return;

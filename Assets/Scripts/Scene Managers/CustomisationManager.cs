@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class CustomisationManager : MonoBehaviour
 {
+    private GameObject audio;
+
     public Inventory inventory;
     public GameObject playerData;
 
@@ -62,6 +64,15 @@ public class CustomisationManager : MonoBehaviour
         }
 
         PopulateLists();
+
+        if (GameObject.FindGameObjectsWithTag("Audio") != null)
+        {
+            audio = GameObject.FindGameObjectWithTag("Audio");
+        }
+        else
+        {
+            print("audio manager missing");
+        }
     }
 
     private void Update()
@@ -231,6 +242,9 @@ public class CustomisationManager : MonoBehaviour
 
             select.transform.GetComponent<Image>().color = new Color32(54, 63, 74, 255);
 
+            if(audio!=null)
+            audio.GetComponent<AudioController>().PlayButtonClick();
+            
             UpdateStats();
 
             //displays info and wipes the name input
