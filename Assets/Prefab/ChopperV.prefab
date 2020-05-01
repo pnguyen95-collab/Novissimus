@@ -84,7 +84,7 @@ SpriteRenderer:
   m_Size: {x: 1.46, y: 2.84}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &8491764627204192633
@@ -109,7 +109,7 @@ MonoBehaviour:
     baseValue: 7
   attackRange:
     baseValue: 0
-  weaponNumber: 8
+  weaponNumber: 5
   boosterNumber: 
   actionPoint: 0
   checkGotAttack: 0

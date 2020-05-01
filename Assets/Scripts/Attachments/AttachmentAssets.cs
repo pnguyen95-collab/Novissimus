@@ -11,7 +11,7 @@ public class AttachmentAssets : MonoBehaviour
         Instance = this;
     }
 
-    //sprites for the attachments to display
+    //sprites for the attachments icons to display
     public Sprite machineGunSprite;
     public Sprite pivotHammerSprite;
     public Sprite eaterBladesSprite;
@@ -21,4 +21,10 @@ public class AttachmentAssets : MonoBehaviour
     public Sprite armorSprite;
     public Sprite wheelSprite;
     public Sprite boosterSprite;
+
+    //sprites for the attachment attack pattern to display
+    public Sprite machineGunPattern;
+    public Sprite pivotHammerPattern;
+    public Sprite eaterBladePattern;
+    public Sprite sniperPattern;
 }

@@ -419,17 +419,17 @@ public class WeaponStats : MonoBehaviour
         switch (itsWeaponNumber)
         {
             case 1:
-                return "Auto Machine Gun";
+                return "Machine Gun";
             case 2:
-                return "Pivot Giant Hammer";
+                return "Pivot Hammer";
             case 3:
-                return "Eater Blade";
+                return "Eater Blades";
             case 4:
                 return "Sniper";
             case 5:
-                return "Some Blade";
+                return "Melee";
             case 6:
-                return "Machine Gun";
+                return "Ranged";
             case 7:
                 return "God Hammer";
             case 8:

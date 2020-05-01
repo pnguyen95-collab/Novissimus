@@ -78,7 +78,7 @@ public class Attachments
             case Name.PivotHammer:      return true;
             case Name.EaterBlades:      return true;
             case Name.Sniper:           return true;
-            case Name.SpikeBomb:        return true;
+            case Name.SpikeBomb:        return false;
 
             case Name.NoCoating:        return false;
             case Name.MetalCoating:     return true;
@@ -93,12 +93,12 @@ public class Attachments
             case Name.BladedWeaponry:   return true;
             case Name.MaggotFarm:       return true;
             case Name.Lightweight:      return true;
-            case Name.HerbMaster:       return true;
-            case Name.AttackMeSign:     return true;
+            case Name.HerbMaster:       return false;
+            case Name.AttackMeSign:     return false;
         }
     }
 
-    //sprite to display in the crafting menu
+    //sprite icon to display in the crafting menu
     public Sprite GetSprite()
     {
         switch(attachmentName)
@@ -122,6 +122,19 @@ public class Attachments
             case Name.Lightweight:       return AttachmentAssets.Instance.boosterSprite;
             case Name.HerbMaster:        return AttachmentAssets.Instance.boosterSprite;
             case Name.AttackMeSign:      return AttachmentAssets.Instance.boosterSprite;
+        }
+    }
+
+    //sprite of the pattern to display in character stats
+    public Sprite GetPattern()
+    {
+        switch(attachmentName)
+        {
+            default:
+            case Name.MachineGun:       return AttachmentAssets.Instance.machineGunPattern;
+            case Name.PivotHammer:      return AttachmentAssets.Instance.pivotHammerPattern;
+            case Name.EaterBlades:      return AttachmentAssets.Instance.eaterBladePattern;
+            case Name.Sniper:           return AttachmentAssets.Instance.sniperPattern;
         }
     }
 
@@ -193,6 +206,34 @@ public class Attachments
             case Name.EaterBlades:      return 3;
             case Name.Sniper:           return 4;
             case Name.SpikeBomb:        return 5;
+        }
+    }
+
+    //finds the appropriate modifiers to alter stats
+    public Modifiers GetModifiers()
+    {
+        switch(attachmentName)
+        {
+            default:
+                //weapons modify damage
+            case Name.MachineGun:      return new Modifiers(3, ModifierType.Flat, 1);
+            case Name.PivotHammer:     return new Modifiers(5, ModifierType.Flat, 1);
+            case Name.EaterBlades:     return new Modifiers(5, ModifierType.Flat, 1);
+            case Name.Sniper:          return new Modifiers(8, ModifierType.Flat, 1);
+                //armour modify maxHealth
+            case Name.NoCoating:       return new Modifiers(0, ModifierType.Flat, 2);
+            case Name.MetalCoating:    return new Modifiers(15, ModifierType.Flat, 2);
+            case Name.SpikeCoating:    return new Modifiers(20, ModifierType.Flat, 2);
+            case Name.GlassCoating:    return new Modifiers(20, ModifierType.Flat, 2);
+                //tyres modify speed
+            case Name.RegularTyres:    return new Modifiers(0, ModifierType.Flat, 3);
+            case Name.RubberTyres:     return new Modifiers(1, ModifierType.Flat, 3);
+            case Name.OffRoadTyres:    return new Modifiers(2, ModifierType.Flat, 3);
+            case Name.CrystalTyres:    return new Modifiers(3, ModifierType.Flat, 3);
+                //boosters have unique modifications outlined in our attachment design document
+            case Name.BladedWeaponry:  return new Modifiers(0.2f, ModifierType.Percent, 4);
+            case Name.MaggotFarm:      return new Modifiers(-1, ModifierType.Flat, 4);
+            case Name.Lightweight:     return new Modifiers(-0.5f, ModifierType.Percent, 4);
         }
     }
 }

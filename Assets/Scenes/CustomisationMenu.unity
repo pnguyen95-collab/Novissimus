@@ -476,7 +476,7 @@ GameObject:
   - component: {fileID: 87711528}
   - component: {fileID: 87711527}
   m_Layer: 5
-  m_Name: Text
+  m_Name: WheelEquip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -498,8 +498,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -350, y: -90}
-  m_SizeDelta: {x: 300, y: 100}
+  m_AnchoredPosition: {x: -100, y: -60}
+  m_SizeDelta: {x: 800, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &87711527
 MonoBehaviour:
@@ -532,7 +532,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Wheels: '
+  m_Text: 
 --- !u!222 &87711528
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -772,7 +772,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Option A
+  m_Text: 
 --- !u!222 &152912533
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2313,7 +2313,7 @@ GameObject:
   - component: {fileID: 537690725}
   - component: {fileID: 537690724}
   m_Layer: 5
-  m_Name: Text
+  m_Name: ArmourEquip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2335,8 +2335,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -350, y: 25}
-  m_SizeDelta: {x: 300, y: 100}
+  m_AnchoredPosition: {x: -100, y: 55}
+  m_SizeDelta: {x: 800, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &537690724
 MonoBehaviour:
@@ -2369,7 +2369,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Armour: '
+  m_Text: 
 --- !u!222 &537690725
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3363,7 +3363,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -34}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &701411092
@@ -3438,7 +3438,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 300}
+  m_AnchoredPosition: {x: 0, y: 330}
   m_SizeDelta: {x: 1000, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &723311005
@@ -4034,7 +4034,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 10}
+  m_AnchoredPosition: {x: 0, y: 40}
   m_SizeDelta: {x: 1000, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &816791127
@@ -4084,16 +4084,21 @@ MonoBehaviour:
   m_ItemImage: {fileID: 0}
   m_Value: 0
   m_Options:
-    m_Options:
-    - m_Text: Option A
-      m_Image: {fileID: 0}
-    - m_Text: Option B
-      m_Image: {fileID: 0}
-    - m_Text: Option C
-      m_Image: {fileID: 0}
+    m_Options: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1003999449}
+        m_MethodName: DropdownSelection
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &816791128
 MonoBehaviour:
@@ -4217,7 +4222,7 @@ GameObject:
   - component: {fileID: 845941801}
   - component: {fileID: 845941800}
   m_Layer: 5
-  m_Name: 3
+  m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4370,7 +4375,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -110}
+  m_AnchoredPosition: {x: 0, y: -80}
   m_SizeDelta: {x: 1000, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &897068311
@@ -4420,16 +4425,21 @@ MonoBehaviour:
   m_ItemImage: {fileID: 0}
   m_Value: 0
   m_Options:
-    m_Options:
-    - m_Text: Option A
-      m_Image: {fileID: 0}
-    - m_Text: Option B
-      m_Image: {fileID: 0}
-    - m_Text: Option C
-      m_Image: {fileID: 0}
+    m_Options: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1003999449}
+        m_MethodName: DropdownSelection
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &897068312
 MonoBehaviour:
@@ -4553,7 +4563,7 @@ GameObject:
   - component: {fileID: 907172592}
   - component: {fileID: 907172591}
   m_Layer: 5
-  m_Name: 5
+  m_Name: 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4864,6 +4874,7 @@ GameObject:
   - component: {fileID: 1003999450}
   - component: {fileID: 1003999449}
   - component: {fileID: 1003999451}
+  - component: {fileID: 1003999452}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -4883,11 +4894,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e9f6f88a4c2ecd46aa352c64e4c50e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData: {fileID: 0}
+  selected: 0
   selectedVehicle: 0
   displayInfo: {fileID: 701411090}
-  displayStats: {fileID: 771734936}
   vehicleName: 
-  nameInput: {fileID: 1002795060}
+  nameInput: {fileID: 733593461}
+  weaponList: []
+  armourList: []
+  wheelList: []
+  boosterList: []
+  tempDropdown: {fileID: 0}
+  weaponSelection: {fileID: 1237772714}
+  armourSelection: {fileID: 816791127}
+  wheelSelection: {fileID: 897068311}
+  booster1Selection: {fileID: 1395493653}
+  booster2Selection: {fileID: 1652559811}
+  currentWeapon: {fileID: 1147890535}
+  currentArmour: {fileID: 537690722}
+  currentWheels: {fileID: 87711525}
+  currentBooster1: {fileID: 1662782752}
+  currentBooster2: {fileID: 1847033777}
+  displayStats: {fileID: 771734936}
+  attackPattern: {fileID: 16195610}
+  damageDisplay: {fileID: 620221013}
+  healthDisplay: {fileID: 243416329}
+  speedDisplay: {fileID: 1241490189}
+  booster1Display: {fileID: 1296462463}
+  booster2Display: {fileID: 478350591}
   alertText: {fileID: 1243848567}
 --- !u!4 &1003999450
 Transform:
@@ -4916,6 +4950,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 0
+--- !u!114 &1003999452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003999448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b318ad622ed6dc544b95e84122cacbd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  machineGunSprite: {fileID: 0}
+  pivotHammerSprite: {fileID: 0}
+  eaterBladesSprite: {fileID: 0}
+  sniperSprite: {fileID: 0}
+  spikeBombSprite: {fileID: 0}
+  armorSprite: {fileID: 0}
+  wheelSprite: {fileID: 0}
+  boosterSprite: {fileID: 0}
+  machineGunPattern: {fileID: 0}
+  pivotHammerPattern: {fileID: 0}
+  eaterBladePattern: {fileID: 0}
+  sniperPattern: {fileID: 0}
 --- !u!1 &1039938712
 GameObject:
   m_ObjectHideFlags: 0
@@ -5088,7 +5146,7 @@ GameObject:
   - component: {fileID: 1064750183}
   - component: {fileID: 1064750182}
   m_Layer: 5
-  m_Name: 2
+  m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5661,7 +5719,7 @@ GameObject:
   - component: {fileID: 1147890538}
   - component: {fileID: 1147890537}
   m_Layer: 5
-  m_Name: Text
+  m_Name: WeaponEquip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5683,8 +5741,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -350, y: 150}
-  m_SizeDelta: {x: 300, y: 100}
+  m_AnchoredPosition: {x: -100, y: 180}
+  m_SizeDelta: {x: 800, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1147890537
 MonoBehaviour:
@@ -5717,7 +5775,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Weapon:'
+  m_Text: 
 --- !u!222 &1147890538
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5871,7 +5929,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Option A
+  m_Text: 
 --- !u!222 &1232692246
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5918,7 +5976,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 130}
+  m_AnchoredPosition: {x: 0, y: 160}
   m_SizeDelta: {x: 1000, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1237772714
@@ -5968,16 +6026,21 @@ MonoBehaviour:
   m_ItemImage: {fileID: 0}
   m_Value: 0
   m_Options:
-    m_Options:
-    - m_Text: Option A
-      m_Image: {fileID: 0}
-    - m_Text: Option B
-      m_Image: {fileID: 0}
-    - m_Text: Option C
-      m_Image: {fileID: 0}
+    m_Options: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1003999449}
+        m_MethodName: DropdownSelection
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &1237772715
 MonoBehaviour:
@@ -7047,7 +7110,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Option A
+  m_Text: 
 --- !u!222 &1364963194
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7207,7 +7270,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -230}
+  m_AnchoredPosition: {x: 0, y: -200}
   m_SizeDelta: {x: 1000, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1395493653
@@ -7257,16 +7320,21 @@ MonoBehaviour:
   m_ItemImage: {fileID: 0}
   m_Value: 0
   m_Options:
-    m_Options:
-    - m_Text: Option A
-      m_Image: {fileID: 0}
-    - m_Text: Option B
-      m_Image: {fileID: 0}
-    - m_Text: Option C
-      m_Image: {fileID: 0}
+    m_Options: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1003999449}
+        m_MethodName: DropdownSelection
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &1395493654
 MonoBehaviour:
@@ -7851,7 +7919,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Option A
+  m_Text: 
 --- !u!222 &1580478407
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7928,7 +7996,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Option A
+  m_Text: 
 --- !u!222 &1596731555
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8048,7 +8116,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -350}
+  m_AnchoredPosition: {x: 0, y: -320}
   m_SizeDelta: {x: 1000, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1652559811
@@ -8098,16 +8166,21 @@ MonoBehaviour:
   m_ItemImage: {fileID: 0}
   m_Value: 0
   m_Options:
-    m_Options:
-    - m_Text: Option A
-      m_Image: {fileID: 0}
-    - m_Text: Option B
-      m_Image: {fileID: 0}
-    - m_Text: Option C
-      m_Image: {fileID: 0}
+    m_Options: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1003999449}
+        m_MethodName: DropdownSelection
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &1652559812
 MonoBehaviour:
@@ -8157,7 +8230,7 @@ GameObject:
   - component: {fileID: 1662782755}
   - component: {fileID: 1662782754}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Booster1Equip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8179,8 +8252,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -350, y: -215}
-  m_SizeDelta: {x: 300, y: 100}
+  m_AnchoredPosition: {x: -100, y: -185}
+  m_SizeDelta: {x: 800, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1662782754
 MonoBehaviour:
@@ -8213,7 +8286,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Booster #1:'
+  m_Text: 'Booster #1: None'
 --- !u!222 &1662782755
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8545,7 +8618,7 @@ GameObject:
   - component: {fileID: 1847033780}
   - component: {fileID: 1847033779}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Booster2Equip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8567,8 +8640,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -350, y: -330}
-  m_SizeDelta: {x: 300, y: 100}
+  m_AnchoredPosition: {x: -100, y: -300}
+  m_SizeDelta: {x: 800, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1847033779
 MonoBehaviour:
@@ -8601,7 +8674,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Booster #2:'
+  m_Text: 'Booster #2: None'
 --- !u!222 &1847033780
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8855,7 +8928,7 @@ GameObject:
   - component: {fileID: 1893020636}
   - component: {fileID: 1893020635}
   m_Layer: 5
-  m_Name: 1
+  m_Name: 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9251,7 +9324,7 @@ GameObject:
   - component: {fileID: 2130248579}
   - component: {fileID: 2130248578}
   m_Layer: 5
-  m_Name: 4
+  m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -31,7 +31,7 @@ public class EnemyDisplay : MonoBehaviour
             {
                 enemyName.text = currentEnemy.name;
                 enemyHealth.text = "Health: " + currentEnemy.GetComponent<CharacterStats>().currentHealth + "/ " + currentEnemy.GetComponent<CharacterStats>().maxHealth.GetValue();
-                enemyWeapon.text = "Weapon: "+gmCode.GetComponent<WeaponStats>().GiveNameOfTheWeapon(currentEnemy.GetComponent<CharacterStats>().weaponNumber);
+                enemyWeapon.text = "Attack Type: "+gmCode.GetComponent<WeaponStats>().GiveNameOfTheWeapon(currentEnemy.GetComponent<CharacterStats>().weaponNumber);
                 enemySpeed.text = "Speed: " + currentEnemy.GetComponent<CharacterStats>().moveSpeed.GetValue();
             }
         }

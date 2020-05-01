@@ -165,6 +165,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelNum: 1
+  playerVehicle:
+  - {fileID: 7041972329582357366, guid: 8791323d65eb5cb4f9cb2d8d9ace2356, type: 3}
+  - {fileID: 5861466154325454838, guid: 2c20590c3761ca3448405f5fd2b45223, type: 3}
+  - {fileID: 4936455718829734784, guid: 8484f3b27c253ad45937d99110826059, type: 3}
+  - {fileID: 8074717214641809749, guid: 6d188a5443554ed41aa546894ad756ec, type: 3}
+  - {fileID: 9002485255803550866, guid: 9ffe67d2813f7384894c5f99097a2d9a, type: 3}
 --- !u!1 &432393710
 GameObject:
   m_ObjectHideFlags: 0

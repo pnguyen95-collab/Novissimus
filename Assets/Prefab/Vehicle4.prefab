@@ -84,7 +84,7 @@ SpriteRenderer:
   m_Size: {x: 1.46, y: 2.84}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &598004957044723330
@@ -125,17 +125,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f5e4c0adfa351f45beae66e6a12d376, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vehicleNumber: 4
+  vehicleNumber: 3
   vehicleName: Vehicle 4
+  isPlayer: 1
   maxHealth:
-    baseValue: 10
+    baseValue: 20
   damage:
     baseValue: 0
   moveSpeed:
-    baseValue: 4
+    baseValue: 5
   attackRange:
     baseValue: 0
-  weaponNumber: 4
+  weaponNumber: 1
   boosterNumber: 
   actionPoint: 0
   checkGotAttack: 0
