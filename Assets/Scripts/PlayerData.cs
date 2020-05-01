@@ -25,9 +25,16 @@ public class PlayerData : MonoBehaviour
 
     public Inventory inventory;
 
+    private static GameObject instance;
+
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
+        
+        if (instance == null)
+            instance = gameObject;
+        else
+            Destroy(gameObject);
     }
 
     private void Start()

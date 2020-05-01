@@ -5,6 +5,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     #region Static Instance
+    private static GameObject instanceObject;
     private static AudioManager instance;
     public static AudioManager Instance
     {
@@ -26,7 +27,7 @@ public class AudioManager : MonoBehaviour
         }
     }
     #endregion
-
+    
     #region Fields
     private AudioSource musicSouce;
     private AudioSource musicSouce2;
@@ -38,6 +39,10 @@ public class AudioManager : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
+        if (instanceObject == null)
+            instanceObject = gameObject;
+        else
+            Destroy(gameObject);
 
         musicSouce = this.gameObject.AddComponent<AudioSource>();
         musicSouce2 = this.gameObject.AddComponent<AudioSource>(); ;
