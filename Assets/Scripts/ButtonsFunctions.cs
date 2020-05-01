@@ -68,7 +68,7 @@ public class ButtonsFunctions : MonoBehaviour
             if (gmCode.turnStatus == 0)
             {
                 turnStatus.text = "Turns Remaining: " + gmCode.turnCountdown;
-                turnStatus.color = Color.blue;
+                turnStatus.color = Color.white;
             }
             if (gmCode.turnStatus == 2)
             {

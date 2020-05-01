@@ -34,13 +34,23 @@ public class SceneControl : MonoBehaviour
 
     public void SceneToDesert()
     {
+        //Phu random them with % please
         //random levelnum 1-4
         //5 for event 
-        int temp = Random.Range(1,5);
+        //6 for resoure
+        int temp = Random.Range(1,7);
 
         playerData.GetComponent<PlayerData>().levelNum = temp;
         string x;
-        x = "Desert_1";
+
+        if (temp==6)
+        {
+            x = "PrototypeResource";
+        }
+        else
+        {
+            x = "Desert_1";
+        }
         SceneManager.LoadScene(x);
     }
 

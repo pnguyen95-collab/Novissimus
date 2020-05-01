@@ -122,6 +122,13 @@ public class GridBehavior : MonoBehaviour
 
         if (playerSpawn.Count > 0)
         {
+            for (int i = 0; i < obstacleSpawn.Count; i++)
+            {
+
+                GenerateObstacle(obstacleSpawn[i].spawnXY.x, obstacleSpawn[i].spawnXY.y);
+            }
+
+
 
             //Generates players/enemies/obstacles according to list
             for (int i = 0; i < playerSpawn.Count; i++)
@@ -155,8 +162,8 @@ public class GridBehavior : MonoBehaviour
             }
            
             int a = this.GetComponent<GameManager>().playerDataObject.GetComponent<PlayerData>().levelNum;
-            
-            
+            //for testing
+           
            
             //different depend on level num
             switch (a)
@@ -203,15 +210,14 @@ public class GridBehavior : MonoBehaviour
                     GenerateEnemy(enemyPrefabs[3], 23, 16);
                     
                     break;
+                case 6:
+                    //resource map no enemy
+                    break;
 
             }
             
 
-            for (int i = 0; i < obstacleSpawn.Count; i++)
-            {
-                
-                GenerateObstacle(obstacleSpawn[i].spawnXY.x, obstacleSpawn[i].spawnXY.y);
-            }
+            
 
         }
         else {

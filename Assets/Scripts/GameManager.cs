@@ -103,10 +103,12 @@ public class GameManager : MonoBehaviour
         if (resourceGrid == false)
         {
             menuPanel2 = GameObject.Find("PlayerMenuPanel2");
+            menuPanel3 = GameObject.Find("PlayerMenuPanel3");
         }
 
         setOnOffMenu(menuPanel, false);
         setOnOffMenu(menuPanel2, false);
+        setOnOffMenu(menuPanel3, false);
         setOnOffMenu(blockClickingPanel, false);
         alertText.SetActive(false);
         
@@ -137,11 +139,14 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        checkWinLose();
+        if (resourceGrid == false)
+        {
+            checkWinLose();enemyLeftText.text = numOfEnemy+ " Enemy left";
+        }
+        
+
         checkTurn();
-
-        enemyLeftText.text = numOfEnemy+ " Enemy left";
-
+        
         if (runRaycast == true)
         {
 
