@@ -20,6 +20,9 @@ public class PlayerData : MonoBehaviour
     //hashset of game progression elements to check
     public HashSet<Progression> gameProgression = new HashSet<Progression>();
 
+    //array of player vehicle's stats
+    public List<CharacterStats> playerVehicle = new List<CharacterStats>();
+
     public Inventory inventory;
 
     private void Awake()
@@ -37,6 +40,15 @@ public class PlayerData : MonoBehaviour
         inventory.attachmentList.Add(new Attachments { attachmentName = Attachments.Name.MachineGun});
         inventory.attachmentList.Add(new Attachments { attachmentName = Attachments.Name.NoCoating});
         inventory.attachmentList.Add(new Attachments { attachmentName = Attachments.Name.RegularTyres});
+
+        //set up the base equipment for each vehicle
+        foreach (CharacterStats vehicle in playerVehicle)
+        {
+            vehicle.currentlyEquipped.Add(new Attachments { attachmentName = Attachments.Name.MachineGun });
+            vehicle.currentlyEquipped.Add(new Attachments { attachmentName = Attachments.Name.NoCoating });
+            vehicle.currentlyEquipped.Add(new Attachments { attachmentName = Attachments.Name.RegularTyres });
+            vehicle.UpdatePlayerStats();
+        }
     }
 
     private void Update()

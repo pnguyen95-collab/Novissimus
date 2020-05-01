@@ -2926,6 +2926,10 @@ MonoBehaviour:
   armorSprite: {fileID: 0}
   wheelSprite: {fileID: 0}
   boosterSprite: {fileID: 0}
+  machineGunPattern: {fileID: 0}
+  pivotHammerPattern: {fileID: 0}
+  eaterBladePattern: {fileID: 0}
+  sniperPattern: {fileID: 0}
 --- !u!114 &1828456185
 MonoBehaviour:
   m_ObjectHideFlags: 0
