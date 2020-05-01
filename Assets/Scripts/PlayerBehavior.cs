@@ -66,7 +66,8 @@ public class PlayerBehavior : MonoBehaviour
         if(triggerMoving==true)
         {
             gmCode.setOnOffMenu(gmCode.blockClickingPanel, true);
-            audio.GetComponent<AudioController>().PlayMoving();
+            //for testing
+            //audio.GetComponent<AudioController>().PlayMoving();
             StartCoroutine(MultipleLerp(positions, speedOfBallMoving));
 
             triggerMoving = false;
@@ -90,12 +91,13 @@ public class PlayerBehavior : MonoBehaviour
     {
         mouseOver = true;
         gmCode.currentPlayerDataToShow = this.gameObject;
-        SetOutline("_FirstOutlineWidth", 0.12f);
+        SetOutline("_FirstOutlineWidth", 0.25f);
 
         //click
         if (Input.GetMouseButtonDown(0))
         {
-            audio.GetComponent<AudioController>().PlayButtonClick();
+            //for testing
+            //audio.GetComponent<AudioController>().PlayButtonClick();
 
             if (EventSystem.current.IsPointerOverGameObject())
                 return;
@@ -383,7 +385,7 @@ public class PlayerBehavior : MonoBehaviour
         if (playerIsPlayable == true)
         {
 
-            SetOutline("_SecondOutlineWidth", 0.05f);
+            SetOutline("_SecondOutlineWidth", 0.1f);
         }
         else
         {

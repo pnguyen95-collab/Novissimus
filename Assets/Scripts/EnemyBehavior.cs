@@ -40,7 +40,7 @@ public class EnemyBehavior : MonoBehaviour
 
         SetOutline("_FirstOutlineWidth", 0.0f);
 
-        SetOutline("_SecondOutlineWidth", 0.05f);
+        SetOutline("_SecondOutlineWidth", 0.55f);
 
         detectableRange = gmCode.GetComponent<WeaponStats>().GiveFarestRange(this.enemyStats.weaponNumber)+this.enemyStats.moveSpeed.GetValue();
 
@@ -89,7 +89,7 @@ public class EnemyBehavior : MonoBehaviour
         if (mouseOver == true)
         {
 
-            SetOutline("_FirstOutlineWidth", 0.12f);
+            SetOutline("_FirstOutlineWidth", 0.25f);
         }
         else
         {
@@ -97,7 +97,7 @@ public class EnemyBehavior : MonoBehaviour
         }
         if (CheckIfCanBeAttack())
         {
-            SetOutline("_SecondOutlineWidth", 0.15f);
+            SetOutline("_SecondOutlineWidth", 0.1f);
         }
         else
         {
