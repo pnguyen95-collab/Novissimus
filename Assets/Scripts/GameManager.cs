@@ -119,7 +119,8 @@ public class GameManager : MonoBehaviour
             
             setOnOffMenu(winPanel, false);
             setOnOffMenu(losePanel, false);
-            
+            setOnOffMenu(gameOverPanel, false);
+
         }
 
         turnStatus = 0;
@@ -538,6 +539,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                Destroy(playerDataObject);
                 setOnOffMenu(gameOverPanel, true);
             }
             
