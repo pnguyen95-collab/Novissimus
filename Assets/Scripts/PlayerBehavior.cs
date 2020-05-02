@@ -26,6 +26,7 @@ public class PlayerBehavior : MonoBehaviour
     public bool triggerMoving;
     public bool playerIsActive; //to check if this player is selected
     public bool playerIsPlayable; //still can perform actions (walk,attack)
+    public bool checkHealing;
     
     void Start()
     {
@@ -47,6 +48,7 @@ public class PlayerBehavior : MonoBehaviour
         playerStats = this.GetComponent<CharacterStats>();
         
         triggerMoving = false;
+        checkHealing = false;
         playerIsActive = false;
         playerIsPlayable = true;
         mouseOver = false;
@@ -318,9 +320,9 @@ public class PlayerBehavior : MonoBehaviour
 
                     damageValue = damageValue +temp;
                     //remove scrap per attack
-                    int num = inventory.CheckItem(new Item { type = Item.Type.Scrap, amount = 15 });
-                    if (num > 15)
-                        inventory.RemoveItem(new Item { type = Item.Type.Scrap, amount = 15 });
+        int num = inventory.CheckItem(new Item { type = Item.Type.Scrap, amount = 15 });
+        if(num>15)
+        inventory.RemoveItem(new Item { type = Item.Type.Scrap, amount = 15});
 
                 }
             }
@@ -416,10 +418,8 @@ public class PlayerBehavior : MonoBehaviour
         this.GetComponent<Renderer>().material.SetFloat(o, a);
     }
 
-    public void CheckIfAbleToSelfHeal()
+    public IEnumerator CheckIfAbleToSelfHeal()
     {
-        
-
         foreach (int d in playerStats.boosterNumber)
         {
             if (d == 2)
@@ -431,17 +431,25 @@ public class PlayerBehavior : MonoBehaviour
                     playerStats.currentHealth = playerStats.currentHealth+toHeal;
                     gmCode.CallPopupTextOutsideGm(this.name+" is self-healing");
                     gmCode.AddMessage(this.name+"'s health + "+toHeal, Color.white);
+                    checkHealing = true;
 
+                    //yield on a new YieldInstruction that waits for 5 seconds.
+                    yield return new WaitForSeconds(1.5f);
+
+                    //After we have waited 5 seconds print the time again.
+                    checkHealing = false;
                 }
             }
         }
+
+        
     }
 
 
     public void EndCurrentPlayerAction()
     {
         thisActionPoint--;
-        CheckIfAbleToSelfHeal();
+        StartCoroutine(CheckIfAbleToSelfHeal());
 
         if (thisActionPoint >= 1)
         {
