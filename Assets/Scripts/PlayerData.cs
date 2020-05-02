@@ -47,17 +47,20 @@ public class PlayerData : MonoBehaviour
         inventory.attachmentList.Add(new Attachments { attachmentName = Attachments.Name.MachineGun});
         inventory.attachmentList.Add(new Attachments { attachmentName = Attachments.Name.NoCoating});
         inventory.attachmentList.Add(new Attachments { attachmentName = Attachments.Name.RegularTyres});
+        inventory.attachmentList.Add(new Attachments { attachmentName = Attachments.Name.BladedWeaponry });
+        inventory.attachmentList.Add(new Attachments { attachmentName = Attachments.Name.MaggotFarm });
+        inventory.attachmentList.Add(new Attachments { attachmentName = Attachments.Name.Lightweight });
 
         //base resources added
         inventory.AddItem(new Item { type = Item.Type.Fuel, amount = 500 });
-        inventory.AddItem(new Item { type = Item.Type.Scrap, amount = 300 });
 
         //set up the base equipment for each vehicle
         foreach (CharacterStats vehicle in playerVehicle)
         {
-            vehicle.currentlyEquipped.Add(new Attachments { attachmentName = Attachments.Name.MachineGun });
-            vehicle.currentlyEquipped.Add(new Attachments { attachmentName = Attachments.Name.NoCoating });
-            vehicle.currentlyEquipped.Add(new Attachments { attachmentName = Attachments.Name.RegularTyres });
+            vehicle.currentlyEquipped[0] = new Attachments { attachmentName = Attachments.Name.MachineGun };
+            vehicle.currentlyEquipped[1] = new Attachments { attachmentName = Attachments.Name.NoCoating };
+            vehicle.currentlyEquipped[2] = new Attachments { attachmentName = Attachments.Name.RegularTyres };
+
             vehicle.UpdatePlayerStats();
         }
     }

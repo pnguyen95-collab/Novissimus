@@ -131,7 +131,7 @@ public class GameManager : MonoBehaviour
         if (resourceGrid == true)
         {
             turnCountdown = 10;
-            AddMessage("Resource harvesting start!", Color.cyan);
+            AddMessage("Resource harvesting start!", Color.white);
         }
         
     }
@@ -210,7 +210,6 @@ public class GameManager : MonoBehaviour
                 if (resourceGrid == true && turnCountdown > 0)
                 {
                     turnCountdown -= 1;
-                    StartCoroutine(PopupText("You have " + turnCountdown + " turns remaining!"));
 
                     //check if turn countdown is 0
                     if (turnCountdown == 0)
@@ -220,7 +219,7 @@ public class GameManager : MonoBehaviour
                         turnStatus = 2;
 
                         
-                        StartCoroutine(PopupText("You are forced to return to base"));
+                        StartCoroutine(PopupText("Return to base!"));
                     }
 
                     setCurrentPlayer(null);
@@ -241,9 +240,6 @@ public class GameManager : MonoBehaviour
                     if (resourceGrid == true && turnCountdown > 0)
                     {
                         turnCountdown -= 1;
-                        
-                        
-                        StartCoroutine(PopupText("You have " + turnCountdown + " turns remaining!"));
 
                         //check if turn countdown is 0
                         if (turnCountdown == 0)
@@ -253,7 +249,7 @@ public class GameManager : MonoBehaviour
                             turnStatus = 2;
 
                             
-                            StartCoroutine(PopupText("You are forced to return to base"));
+                            StartCoroutine(PopupText("Return to base!"));
                         }
 
                         setCurrentPlayer(null);

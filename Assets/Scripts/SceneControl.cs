@@ -45,7 +45,7 @@ public class SceneControl : MonoBehaviour
 
         if (temp==6)
         {
-            x = "PrototypeResource";
+            x = "Desert_Resource";
         }
         else
         {

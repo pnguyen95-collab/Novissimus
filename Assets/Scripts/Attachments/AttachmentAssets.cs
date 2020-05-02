@@ -18,9 +18,11 @@ public class AttachmentAssets : MonoBehaviour
     public Sprite sniperSprite;
     public Sprite spikeBombSprite;
 
+    public Sprite baseArmorSprite;
     public Sprite armorSprite;
     public Sprite armorSprite2;
     public Sprite armorSprite3;
+    public Sprite baseWheelSprite;
     public Sprite wheelSprite;
     public Sprite wheelSprite2;
     public Sprite wheelSprite3;

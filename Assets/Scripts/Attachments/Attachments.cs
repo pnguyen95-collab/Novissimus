@@ -104,15 +104,18 @@ public class Attachments
         switch(attachmentName)
         {
             default:
+            case Name.MachineGun:        return AttachmentAssets.Instance.machineGunSprite;
             case Name.PivotHammer:       return AttachmentAssets.Instance.pivotHammerSprite;
             case Name.EaterBlades:       return AttachmentAssets.Instance.eaterBladesSprite;
             case Name.Sniper:            return AttachmentAssets.Instance.sniperSprite;
             case Name.SpikeBomb:         return AttachmentAssets.Instance.spikeBombSprite;
 
+            case Name.NoCoating:         return AttachmentAssets.Instance.baseArmorSprite;
             case Name.MetalCoating:      return AttachmentAssets.Instance.armorSprite;
             case Name.SpikeCoating:      return AttachmentAssets.Instance.armorSprite2;
             case Name.GlassCoating:      return AttachmentAssets.Instance.armorSprite3;
 
+            case Name.RegularTyres:      return AttachmentAssets.Instance.baseWheelSprite;
             case Name.RubberTyres:       return AttachmentAssets.Instance.wheelSprite;
             case Name.OffRoadTyres:      return AttachmentAssets.Instance.wheelSprite2;
             case Name.CrystalTyres:      return AttachmentAssets.Instance.wheelSprite3;
@@ -217,7 +220,7 @@ public class Attachments
             default:
                 //weapons modify damage
             case Name.MachineGun:      return new Modifiers(3, ModifierType.Flat, 1);
-            case Name.PivotHammer:     return new Modifiers(5, ModifierType.Flat, 1);
+            case Name.PivotHammer:     return new Modifiers(6, ModifierType.Flat, 1);
             case Name.EaterBlades:     return new Modifiers(5, ModifierType.Flat, 1);
             case Name.Sniper:          return new Modifiers(8, ModifierType.Flat, 1);
                 //armour modify maxHealth
@@ -234,6 +237,18 @@ public class Attachments
             case Name.BladedWeaponry:  return new Modifiers(0.2f, ModifierType.Percent, 4);
             case Name.MaggotFarm:      return new Modifiers(-1, ModifierType.Flat, 4);
             case Name.Lightweight:     return new Modifiers(-0.5f, ModifierType.Percent, 4);
+        }
+    }
+
+    //finds the description of the booster
+    public string GetDescription()
+    {
+        switch(attachmentName)
+        {
+            default:
+            case Name.BladedWeaponry:          return "Plus 20% Damage \nMinus 15 Scrap On Attack";
+            case Name.MaggotFarm:              return "10% Healing between rounds \nMinus 1 Speed";
+            case Name.Lightweight:             return "Can act twice \nMinus 50% Health";
         }
     }
 }

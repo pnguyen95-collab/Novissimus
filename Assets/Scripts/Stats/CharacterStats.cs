@@ -4,16 +4,13 @@ using System.Collections.Generic;
 
 public class CharacterStats : MonoBehaviour
 {
+    public GameObject playerData;
     public int vehicleNumber;
     public string vehicleName;
     public bool isPlayer;
 
-    public List<Attachments> currentlyEquipped = new List<Attachments>();
-    public Attachments currentWeapon;
-    public Attachments currentArmour;
-    public Attachments currentWheels;
-    public Attachments currentBooster1;
-    public Attachments currentBooster2;
+    //array of equipment (0 = weapon, 1 = armour, 2 = wheels, 3 = booster 1, 4 = booster 2)
+    public Attachments[] currentlyEquipped = new Attachments[System.Enum.GetNames(typeof(Attachments.Slot)).Length + 1];
 
     public Stat maxHealth;
     public Stat damage;
@@ -28,11 +25,29 @@ public class CharacterStats : MonoBehaviour
 
     void Awake()
     {
-        currentHealth = maxHealth.GetValue();
+        //finds vehicle stats
+        if (GameObject.Find("PlayerInventory") != null)
+        {
+            playerData = GameObject.Find("PlayerInventory");
+        }
+        else
+        {
+            print("Missing player data");
+        }
 
         checkGotAttack = false;
 
         transform.name = vehicleName;
+
+        if (isPlayer == true)
+        {
+            this.maxHealth = playerData.GetComponent<PlayerData>().playerVehicle[vehicleNumber].maxHealth;
+            this.moveSpeed = playerData.GetComponent<PlayerData>().playerVehicle[vehicleNumber].moveSpeed;
+            this.weaponNumber = playerData.GetComponent<PlayerData>().playerVehicle[vehicleNumber].weaponNumber;
+            this.boosterNumber = playerData.GetComponent<PlayerData>().playerVehicle[vehicleNumber].boosterNumber;
+        }
+
+        currentHealth = maxHealth.GetValue();
 
         foreach (int d in boosterNumber)
         {
@@ -50,61 +65,23 @@ public class CharacterStats : MonoBehaviour
     //function used whenever equipment gets changed
     public void ChangeEquipment(Attachments newEquip)
     {
-        //checks if booster
-        if (newEquip.GetSlot() == Attachments.Slot.Boosters)
-        {
-            //checks to see if booster slots are empty
-            if (currentBooster1 == null && currentBooster2 != null)
-            {
-                foreach (Attachments equipped in currentlyEquipped)
-                {
-                    //checks to see if it isn't already equipped
-                    if (newEquip != equipped)
-                    {
-                        //remove current equipped attachment and add the new attachment in
-                        currentlyEquipped.Remove(equipped);
-                        currentlyEquipped.Add(newEquip);
+        Attachments.Slot slot = newEquip.GetSlot();
 
-                        currentBooster1 = newEquip;
-                    }
-                }
-            }
-            else if (currentBooster2 == null && currentBooster1 != null)
-            {
-                foreach (Attachments equipped in currentlyEquipped)
-                {
-                    //checks to see if it isn't already equipped
-                    if (newEquip != equipped)
-                    {
-                        //remove current equipped attachment and add the new attachment in
-                        currentlyEquipped.Remove(equipped);
-                        currentlyEquipped.Add(newEquip);
-
-                        currentBooster2 = newEquip;
-                    }
-                }
-            }
-            else
-            {
-                print("You cannot equip any more boosters!");
-            }
-        }
-        else
+        //checks the slot of the new attachment and equips the new equipment to the corresponding slot
+        switch(slot)
         {
-            //checks currently equipped for the same type of attachment
-            foreach (Attachments equipped in currentlyEquipped)
-            {
-                if (newEquip.GetSlot() == equipped.GetSlot())
-                {
-                    //checks to see if it isn't already equipped
-                    if (newEquip != equipped)
-                    {
-                        //remove current equipped attachment and add the new attachment in
-                        currentlyEquipped.Remove(equipped);
-                        currentlyEquipped.Add(newEquip);
-                    }
-                }
-            }
+            default:
+            case Attachments.Slot.Weapon:
+                currentlyEquipped[0] = newEquip;
+                break;
+
+            case Attachments.Slot.Armour:
+                currentlyEquipped[1] = newEquip;
+                break;
+
+            case Attachments.Slot.Wheels:
+                currentlyEquipped[2] = newEquip;
+                break;
         }
     }
 
@@ -114,82 +91,60 @@ public class CharacterStats : MonoBehaviour
         damage.ResetModifier();
         maxHealth.ResetModifier();
         moveSpeed.ResetModifier();
+        boosterNumber = new List<int>();
 
         //weapons
-        foreach (Attachments equipped in currentlyEquipped)
-        {
-            if (equipped.GetSlot() == Attachments.Slot.Weapon)
-            {
-                damage.AddModifier(equipped.GetModifiers());
-                weaponNumber = equipped.GetWeaponNumber();
+        damage.AddModifier(currentlyEquipped[0].GetModifiers());
+        weaponNumber = currentlyEquipped[0].GetWeaponNumber();
 
-                currentWeapon = equipped;
-            }
-        }
         //armour
-        foreach (Attachments equipped in currentlyEquipped)
-        {
-            if (equipped.GetSlot() == Attachments.Slot.Armour)
-            {
-                maxHealth.AddModifier(equipped.GetModifiers());
+        maxHealth.AddModifier(currentlyEquipped[1].GetModifiers());
 
-                currentArmour = equipped;
-            }
-        }
         //wheels
-        foreach (Attachments equipped in currentlyEquipped)
+        moveSpeed.AddModifier(currentlyEquipped[2].GetModifiers());
+        
+        //boosters
+        if (currentlyEquipped[3] != null)
         {
-            if (equipped.GetSlot() == Attachments.Slot.Wheels)
+            switch(currentlyEquipped[3].attachmentName)
             {
-                moveSpeed.AddModifier(equipped.GetModifiers());
+                default:
+                case Attachments.Name.BladedWeaponry:
+                    damage.AddModifier(currentlyEquipped[3].GetModifiers());
+                    boosterNumber.Add(1);
+                    break;
 
-                currentWheels = equipped;
+                case Attachments.Name.MaggotFarm:
+                    moveSpeed.AddModifier(currentlyEquipped[3].GetModifiers());
+                    boosterNumber.Add(2);
+                    break;
+
+                case Attachments.Name.Lightweight:
+                    maxHealth.AddModifier(currentlyEquipped[3].GetModifiers());
+                    boosterNumber.Add(3);
+                    break;
             }
         }
-        //boosters
-        foreach (Attachments equipped in currentlyEquipped)
+        
+        if (currentlyEquipped[4] != null)
         {
-            if (equipped.GetSlot() == Attachments.Slot.Boosters)
+            switch (currentlyEquipped[4].attachmentName)
             {
-                switch(equipped.attachmentName)
-                {
-                    default:
-                    case Attachments.Name.BladedWeaponry:
-                        damage.AddModifier(equipped.GetModifiers());
-                        if (currentBooster1 == null)
-                        {
-                            currentBooster1 = equipped;
-                        }
-                        else
-                        {
-                            currentBooster2 = equipped;
-                        }
-                        break;
+                default:
+                case Attachments.Name.BladedWeaponry:
+                    damage.AddModifier(currentlyEquipped[4].GetModifiers());
+                    boosterNumber.Add(1);
+                    break;
 
-                    case Attachments.Name.MaggotFarm:
-                        moveSpeed.AddModifier(equipped.GetModifiers());
-                        if (currentBooster1 == null)
-                        {
-                            currentBooster1 = equipped;
-                        }
-                        else
-                        {
-                            currentBooster2 = equipped;
-                        }
-                        break;
+                case Attachments.Name.MaggotFarm:
+                    moveSpeed.AddModifier(currentlyEquipped[4].GetModifiers());
+                    boosterNumber.Add(2);
+                    break;
 
-                    case Attachments.Name.Lightweight:
-                        maxHealth.AddModifier(equipped.GetModifiers());
-                        if (currentBooster1 == null)
-                        {
-                            currentBooster1 = equipped;
-                        }
-                        else
-                        {
-                            currentBooster2 = equipped;
-                        }
-                        break;
-                }
+                case Attachments.Name.Lightweight:
+                    maxHealth.AddModifier(currentlyEquipped[4].GetModifiers());
+                    boosterNumber.Add(3);
+                    break;
             }
         }
     }

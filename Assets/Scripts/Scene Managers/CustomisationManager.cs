@@ -17,21 +17,17 @@ public class CustomisationManager : MonoBehaviour
     public string vehicleName;
     public InputField nameInput;
 
-    public List<string> weaponList;
     public List<Attachments> weapon = new List<Attachments>();
-    public List<string> armourList;
     public List<Attachments> armour = new List<Attachments>();
-    public List<string> wheelList;
     public List<Attachments> wheels = new List<Attachments>();
-    public List<string> boosterList;
     public List<Attachments> booster = new List<Attachments>();
-    public Dropdown tempDropdown;
 
-    public Dropdown weaponSelection;
-    public Dropdown armourSelection;
-    public Dropdown wheelSelection;
-    public Dropdown booster1Selection;
-    public Dropdown booster2Selection;
+    public GameObject weaponSelection;
+    public GameObject armourSelection;
+    public GameObject wheelSelection;
+    public GameObject booster1Selection;
+    public GameObject booster2Selection;
+    public GameObject equipIconPrefab;
 
     public GameObject currentWeapon;
     public GameObject currentArmour;
@@ -44,8 +40,13 @@ public class CustomisationManager : MonoBehaviour
     public GameObject damageDisplay;
     public GameObject healthDisplay;
     public GameObject speedDisplay;
+
     public GameObject booster1Display;
+    public GameObject booster1Name;
+    public GameObject booster1Description;
     public GameObject booster2Display;
+    public GameObject booster2Name;
+    public GameObject booster2Description;
 
     public GameObject alertText;
 
@@ -93,7 +94,7 @@ public class CustomisationManager : MonoBehaviour
         }
     }
 
-    //checks what options are available for the player to equip and displays them in the dropboxes
+    //checks what options are available for the player to equip and displays them in the selection
     public void PopulateLists()
     {
         //checking for weapons
@@ -102,7 +103,6 @@ public class CustomisationManager : MonoBehaviour
             if (attach.GetSlot() == Attachments.Slot.Weapon)
             {
                 weapon.Add(attach);
-                weaponList.Add(attach.GetName());
             }
         }
 
@@ -112,7 +112,6 @@ public class CustomisationManager : MonoBehaviour
             if (attach.GetSlot() == Attachments.Slot.Armour)
             {
                 armour.Add(attach);
-                armourList.Add(attach.GetName());
             }
         }
 
@@ -122,7 +121,6 @@ public class CustomisationManager : MonoBehaviour
             if (attach.GetSlot() == Attachments.Slot.Wheels)
             {
                 wheels.Add(attach);
-                wheelList.Add(attach.GetName());
             }
         }
 
@@ -132,25 +130,144 @@ public class CustomisationManager : MonoBehaviour
             if (attach.GetSlot() == Attachments.Slot.Boosters)
             {
                 booster.Add(attach);
-                boosterList.Add(attach.GetName());
             }
         }
 
-        //adds options to the list
-        weaponSelection.AddOptions(weaponList);
-        armourSelection.AddOptions(armourList);
-        wheelSelection.AddOptions(wheelList);
-        booster1Selection.AddOptions(boosterList);
-        booster2Selection.AddOptions(boosterList);
+        UpdateEquipIcons(Attachments.Slot.Weapon);
+        UpdateEquipIcons(Attachments.Slot.Armour);
+        UpdateEquipIcons(Attachments.Slot.Wheels);
+        UpdateEquipIcons(Attachments.Slot.Boosters);
     }
 
-    //what happens when you change the equipment in the dropdown box
-    public void DropdownSelection(int index)
+    //function to update equippable icons
+    public void UpdateEquipIcons(Attachments.Slot slot)
     {
-        //finds what dropdown is currently selected
-        tempDropdown = GameObject.Find("Dropdown List").transform.parent.gameObject.GetComponent<Dropdown>();
+        //switch to find the current selection & attachment type
+        GameObject selection;
+        List<Attachments> type;
+        bool isBooster = false;
 
-        UpdateStats();
+        switch(slot)
+        {
+            default:
+            case Attachments.Slot.Weapon:
+                selection = weaponSelection;
+                type = weapon;
+                break;
+
+            case Attachments.Slot.Armour:
+                selection = armourSelection;
+                type = armour;
+                break;
+
+            case Attachments.Slot.Wheels:
+                selection = wheelSelection;
+                type = wheels;
+                break;
+
+            case Attachments.Slot.Boosters:
+                selection = booster1Selection;
+                type = booster;
+                isBooster = true;
+                break;
+        }
+
+        //clears out all currently instantiated in the selection
+        if (isBooster == true)
+        {
+            foreach (Transform child in booster2Selection.transform)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+
+        foreach (Transform child in selection.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        //instantiate all equip icons in the selection
+        if (isBooster == true)
+        {
+            foreach (Attachments equippable in type)
+            {
+                CreateIcon(equippable, booster2Selection);
+            }
+        }
+
+        foreach (Attachments equippable in type)
+        {
+            CreateIcon(equippable, selection);
+        }
+    }
+
+    //function to create equip icons
+    public void CreateIcon(Attachments equippable, GameObject selection)
+    {
+        GameObject icon = Instantiate(equipIconPrefab, selection.transform);
+
+        icon.transform.GetChild(0).GetComponent<Image>().sprite = equippable.GetSprite();
+
+        //when you click on the button you equip it
+        icon.GetComponent<Button>().onClick.AddListener(() => ClickEquip(equippable, selection));
+    }
+
+    //function when you click on an equip icon
+    public void ClickEquip(Attachments equippable, GameObject selection)
+    {
+        //checks to see if equippable is a booster
+        if (equippable.GetSlot() == Attachments.Slot.Boosters)
+        {
+            //checks to see which booster slot it is
+            if (selection == booster1Selection)
+            {
+                //checks to see if you already have that booster equipped
+                if (playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].currentlyEquipped[3] != equippable && playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].currentlyEquipped[4] != equippable)
+                {
+                    //equips the booster to Slot 1
+                    playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].currentlyEquipped[3] = equippable;
+
+                    UpdateStats();
+                }
+                else
+                {
+                    StartCoroutine(PopupText("You already have this equipped!"));
+                }
+            }
+            else if (selection == booster2Selection)
+            {
+                //checks to see if you already have that booster equipped
+                if (playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].currentlyEquipped[3] != equippable && playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].currentlyEquipped[4] != equippable)
+                {
+                    //equips the booster to Slot 2
+                    playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].currentlyEquipped[4] = equippable;
+
+                    UpdateStats();
+                }
+                else
+                {
+                    StartCoroutine(PopupText("You already have this equipped!"));
+                }
+            }
+        }
+        else
+        {
+            //checks if you already have the attachment equipped
+            foreach (Attachments check in playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].currentlyEquipped)
+            {
+                if (check == equippable)
+                {
+                    StartCoroutine(PopupText("You already have this equipped!"));
+                }
+                else
+                {
+                    //equip the item
+                    playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].ChangeEquipment(equippable);
+
+                    UpdateStats();
+                }
+            }
+        }
     }
 
     //updates the current stats of the selected vehicle
@@ -159,62 +276,67 @@ public class CustomisationManager : MonoBehaviour
         //checks to see if you have a vehicle selected
         if (selected == true)
         {
-            if (tempDropdown != null)
-            {
-                if (tempDropdown.name == "WeaponSelection")
-                {
-                    playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].ChangeEquipment(weapon[tempDropdown.value]);
-                }
-                if (tempDropdown.name == "ArmourSelection")
-                {
-                    playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].ChangeEquipment(armour[tempDropdown.value]);
-                }
-                if (tempDropdown.name == "Wheel")
-                {
-                    playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].ChangeEquipment(wheels[tempDropdown.value]);
-                }
-                if (tempDropdown.name == "BoosterSelection1")
-                {
-                    playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].ChangeEquipment(booster[tempDropdown.value]);
-                }
-                if (tempDropdown.name == "BoosterSelection2")
-                {
-                    playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].ChangeEquipment(booster[tempDropdown.value]);
-                }
-            }
-
             //changes the current equipment and stat values
             playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].UpdatePlayerStats();
 
             //displays the updated info
-            currentWeapon.GetComponent<Text>().text = "Weapon: " + playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].currentWeapon.GetName();
-            currentArmour.GetComponent<Text>().text = "Armour: " + playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].currentArmour.GetName();
-            currentWheels.GetComponent<Text>().text = "Wheels: " + playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].currentWheels.GetName();
+            currentWeapon.GetComponent<Text>().text = "Weapon: " + playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].currentlyEquipped[0].GetName();
+            currentArmour.GetComponent<Text>().text = "Armour: " + playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].currentlyEquipped[1].GetName();
+            currentWheels.GetComponent<Text>().text = "Wheels: " + playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].currentlyEquipped[2].GetName();
 
-            if (playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].currentBooster1 != null)
+            //attack pattern
+            attackPattern.GetComponent<Image>().sprite = playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].currentlyEquipped[0].GetPattern();
+
+            //damage display
+            if (playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].currentlyEquipped[0].attachmentName == Attachments.Name.PivotHammer)
             {
-                currentBooster1.GetComponent<Text>().text = "Booster #1: " + playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].currentBooster1.GetName();
+                damageDisplay.GetComponent<Text>().text = "Damage Dealt: 3 - 6";
+            }
+            else
+            {
+                damageDisplay.GetComponent<Text>().text = "Damage Dealt: " + playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].damage.GetValue();
+            }
+
+            //health display
+            healthDisplay.GetComponent<Text>().text = "Health: " + playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].maxHealth.GetValue();
+
+            //speed display
+            speedDisplay.GetComponent<Text>().text = "Speed: " + playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].moveSpeed.GetValue();
+
+            //boosterdisplay
+
+            if (playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].currentlyEquipped[3] != null)
+            {
+                currentBooster1.GetComponent<Text>().text = "Booster #1: " + playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].currentlyEquipped[3].GetName();
+
+                //displays booster info
+                booster1Display.SetActive(true);
+
+                booster1Name.GetComponent<Text>().text = playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].currentlyEquipped[3].GetName();
+                booster1Description.GetComponent<Text>().text = playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].currentlyEquipped[3].GetDescription();
             }
             else
             {
                 currentBooster1.GetComponent<Text>().text = "Booster #1: None";
+                booster1Display.SetActive(false);
             }
 
-            if (playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].currentBooster2 != null)
+            if (playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].currentlyEquipped[4] != null)
             {
-                currentBooster2.GetComponent<Text>().text = "Booster #2: " + playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].currentBooster2.GetName();
+                currentBooster2.GetComponent<Text>().text = "Booster #2: " + playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].currentlyEquipped[4].GetName();
+
+                //displays booster info
+                booster2Display.SetActive(true);
+
+                booster2Name.GetComponent<Text>().text = playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].currentlyEquipped[4].GetName();
+                booster2Description.GetComponent<Text>().text = playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].currentlyEquipped[4].GetDescription();
             }
             else
             {
-                currentBooster1.GetComponent<Text>().text = "Booster #2: None";
+                currentBooster2.GetComponent<Text>().text = "Booster #2: None";
+                booster2Display.SetActive(false);
             }
-            
 
-            //attack pattern
-            damageDisplay.GetComponent<Text>().text = "Damage Dealt: " + playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].damage.GetValue();
-            healthDisplay.GetComponent<Text>().text = "Health: " + playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].maxHealth.GetValue();
-            speedDisplay.GetComponent<Text>().text = "Speed: " + playerData.GetComponent<PlayerData>().playerVehicle[selectedVehicle].moveSpeed.GetValue();
-            //boosterdisplay
         }
         else
         {
