@@ -118,8 +118,8 @@ public class Attachments
             case Name.CrystalTyres:      return AttachmentAssets.Instance.wheelSprite3;
 
             case Name.BladedWeaponry:    return AttachmentAssets.Instance.boosterSprite;
-            case Name.MaggotFarm:        return AttachmentAssets.Instance.boosterSprite;
-            case Name.Lightweight:       return AttachmentAssets.Instance.boosterSprite;
+            case Name.MaggotFarm:        return AttachmentAssets.Instance.boosterSprite2;
+            case Name.Lightweight:       return AttachmentAssets.Instance.boosterSprite3;
             case Name.HerbMaster:        return AttachmentAssets.Instance.boosterSprite;
             case Name.AttackMeSign:      return AttachmentAssets.Instance.boosterSprite;
         }

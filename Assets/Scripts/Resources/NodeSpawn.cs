@@ -86,7 +86,7 @@ public class NodeSpawn : MonoBehaviour
         Vector2Int spawnPoint = new Vector2Int(0, 0);
 
         spawnPoint.x = Random.Range(0, gridBehaviorCode.columns);
-        spawnPoint.y = Random.Range(0, gridBehaviorCode.rows);
+        spawnPoint.y = Random.Range(3, gridBehaviorCode.rows);
         //Debug.Log(spawnPoint);
 
         //check to see if spawn point is not on an obstacle

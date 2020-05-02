@@ -64,6 +64,8 @@ public class CharacterStats : MonoBehaviour
                         //remove current equipped attachment and add the new attachment in
                         currentlyEquipped.Remove(equipped);
                         currentlyEquipped.Add(newEquip);
+
+                        currentBooster1 = newEquip;
                     }
                 }
             }
@@ -77,6 +79,8 @@ public class CharacterStats : MonoBehaviour
                         //remove current equipped attachment and add the new attachment in
                         currentlyEquipped.Remove(equipped);
                         currentlyEquipped.Add(newEquip);
+
+                        currentBooster2 = newEquip;
                     }
                 }
             }
