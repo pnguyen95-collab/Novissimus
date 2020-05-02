@@ -25,6 +25,8 @@ public class AttachmentAssets : MonoBehaviour
     public Sprite wheelSprite2;
     public Sprite wheelSprite3;
     public Sprite boosterSprite;
+    public Sprite boosterSprite2;
+    public Sprite boosterSprite3;
 
     //sprites for the attachment attack pattern to display
     public Sprite machineGunPattern;

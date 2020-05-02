@@ -48,6 +48,10 @@ public class PlayerData : MonoBehaviour
         inventory.attachmentList.Add(new Attachments { attachmentName = Attachments.Name.NoCoating});
         inventory.attachmentList.Add(new Attachments { attachmentName = Attachments.Name.RegularTyres});
 
+        //base resources added
+        inventory.AddItem(new Item { type = Item.Type.Fuel, amount = 500 });
+        inventory.AddItem(new Item { type = Item.Type.Scrap, amount = 300 });
+
         //set up the base equipment for each vehicle
         foreach (CharacterStats vehicle in playerVehicle)
         {
