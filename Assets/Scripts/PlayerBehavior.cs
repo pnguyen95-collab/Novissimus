@@ -220,7 +220,6 @@ public class PlayerBehavior : MonoBehaviour
         currentX = parent.GetComponent<GridStat>().x;
 
         currentY = parent.GetComponent<GridStat>().y;
-
         
         bool walkable = gridBehaviorCode.RunThePath(currentX, currentY, endX, endY, playerStats.moveSpeed.GetValue());
 
@@ -321,7 +320,7 @@ public class PlayerBehavior : MonoBehaviour
             {
                 if (d == 1)
                 {
-                    damageValue++;
+                    damageValue = damageValue * 2;
                 }
             }
 
@@ -426,9 +425,11 @@ public class PlayerBehavior : MonoBehaviour
             {
                 if (playerStats.currentHealth < playerStats.maxHealth.GetValue())
                 {
-                    playerStats.currentHealth++;
+                    int toHeal = (playerStats.maxHealth.GetValue()/10);
+                    
+                    playerStats.currentHealth = playerStats.currentHealth+toHeal;
                     gmCode.CallPopupTextOutsideGm(this.name+" is self-healing");
-                    gmCode.AddMessage(this.name+"'s health + 1", Color.white);
+                    gmCode.AddMessage(this.name+"'s health + "+toHeal, Color.white);
 
                 }
             }
