@@ -58,7 +58,7 @@ public class GridStat : MonoBehaviour
         if (standable == false)
         {
            
-            Color color = new Color32(157, 69, 69, 0);
+            Color color = new Color32(157, 157, 157, 0);
             
             SetGridColor(color);
         }

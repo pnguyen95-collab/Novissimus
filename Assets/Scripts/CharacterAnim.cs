@@ -15,7 +15,10 @@ public class CharacterAnim : MonoBehaviour
         checkGotAttack = false;
         checkHealing = false;
         cs = this.GetComponent<CharacterStats>();
+
+        if(this.gameObject.tag=="Player")
         pb = this.GetComponent<PlayerBehavior>();
+
         anim = this.GetComponent<Animator>();
     }
 
@@ -23,8 +26,20 @@ public class CharacterAnim : MonoBehaviour
     void Update()
     {
         this.checkGotAttack = cs.checkGotAttack;
-        this.checkHealing = pb.checkHealing;
 
+        if (this.gameObject.tag == "Player")
+        {
+            this.checkHealing = pb.checkHealing;
+
+            if (checkHealing == true)
+            {
+                anim.SetBool("Healing", true);
+            }
+            else
+            {
+                anim.SetBool("Healing", false);
+            }
+        }
         if (checkGotAttack == true)
         {
             anim.SetBool("GotAttack", true);
@@ -34,13 +49,7 @@ public class CharacterAnim : MonoBehaviour
             anim.SetBool("GotAttack", false);
         }
 
-        if (checkHealing == true)
-        {
-            anim.SetBool("Healing", true);
-        }
-        else
-        {
-            anim.SetBool("Healing", false);
-        }
+
+        
     }
 }
