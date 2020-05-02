@@ -160,10 +160,7 @@ public class PlayerBehavior : MonoBehaviour
         }
         else if (Input.GetMouseButtonDown(1)) //act as click exit
         {
-            moveOrAttack = 0;
-            gmCode.setOnOffMenu(gmCode.menuPanel,false);
-            gridBehaviorCode.resetVisit();
-            gmCode.setCurrentPlayer(null); //FIX
+            
             
         }
     }

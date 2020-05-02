@@ -15,6 +15,12 @@ public class GridBehavior : MonoBehaviour
     public GameObject playerVehicle4;
     public GameObject playerVehicle5;
 
+    public Sprite vehicleMachineGun;
+    public Sprite vehiclePivotHammer;
+    public Sprite vehicleBlade;
+    public Sprite vehicleSniper;
+
+
     public GameObject[,] gridArray;
     public Vector3 leftBottomLocation = new Vector3(0, 0, 0);
 
@@ -138,25 +144,49 @@ public class GridBehavior : MonoBehaviour
                 if (i == 0)
                 {
                     obj = GeneratePlayer(playerVehicle1, playerSpawn[i].spawnXY.x, playerSpawn[i].spawnXY.y);
+
                 }
                 else if (i == 1)
                 {
-                     obj = GeneratePlayer(playerVehicle2, playerSpawn[i].spawnXY.x, playerSpawn[i].spawnXY.y);
+                    obj = GeneratePlayer(playerVehicle2, playerSpawn[i].spawnXY.x, playerSpawn[i].spawnXY.y);
 
                 }
                 else if (i == 2)
                 {
-                     obj = GeneratePlayer(playerVehicle3, playerSpawn[i].spawnXY.x, playerSpawn[i].spawnXY.y);
+                    obj = GeneratePlayer(playerVehicle3, playerSpawn[i].spawnXY.x, playerSpawn[i].spawnXY.y);
 
                 }
                 else if (i == 3)
                 {
-                     obj = GeneratePlayer(playerVehicle4, playerSpawn[i].spawnXY.x, playerSpawn[i].spawnXY.y);
+                    obj = GeneratePlayer(playerVehicle4, playerSpawn[i].spawnXY.x, playerSpawn[i].spawnXY.y);
 
                 }
                 else if (i == 4)
                 {
                     obj = GeneratePlayer(playerVehicle5, playerSpawn[i].spawnXY.x, playerSpawn[i].spawnXY.y);
+
+                }
+                else
+                {
+                    obj = null; print("obj is null");
+                }
+
+                int weaponNum = obj.GetComponent<CharacterStats>().weaponNumber;
+
+                switch (weaponNum)
+                {
+                    case 1:
+                        obj.GetComponent<SpriteRenderer>().sprite = vehicleMachineGun;
+                        break;
+                    case 2:
+                        obj.GetComponent<SpriteRenderer>().sprite = vehiclePivotHammer;
+                        break;
+                    case 3:
+                        obj.GetComponent<SpriteRenderer>().sprite = vehicleBlade;
+                        break;
+                    case 4:
+                        obj.GetComponent<SpriteRenderer>().sprite = vehicleSniper;
+                        break;
 
                 }
             }
