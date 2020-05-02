@@ -7,6 +7,9 @@ public class PlayerHubManager : MonoBehaviour
     public GameObject optionSelectPanel;
     public GameObject forageSelectPanel;
 
+    public GameObject storyPanel;
+    public GameObject finishRead;
+
     private PlayerData playerData;
     public GameObject plainsUnlocked;
     public GameObject storyEventButton;
@@ -19,6 +22,7 @@ public class PlayerHubManager : MonoBehaviour
         setOnOffMenu(forageSelectPanel, false);
         setOnOffMenu(plainsUnlocked, false);
         setOnOffMenu(storyEventButton, false);
+        setOnOffMenu(storyPanel, false);
 
         //finds player data
         if (GameObject.Find("PlayerInventory") != null)
@@ -43,10 +47,17 @@ public class PlayerHubManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StoryEventInitiate()
     {
+        setOnOffMenu(storyPanel, true);
+        setOnOffMenu(optionSelectPanel, false);
+        setOnOffMenu(forageSelectPanel, false);
+    }
 
+    public void FinishRead()
+    {
+        setOnOffMenu(storyPanel, false);
+        setOnOffMenu(optionSelectPanel, false);
     }
 
     public void setOnOffMenu(GameObject target, bool x)

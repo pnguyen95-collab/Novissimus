@@ -234,10 +234,10 @@ public class GridBehavior : MonoBehaviour
                 case 5:
                     //level 5 of desert story level
                     // 2 hunter. 2 chopper 
-                    GenerateEnemy(enemyPrefabs[1], 7, 12);
-                    GenerateEnemy(enemyPrefabs[1], 23, 9);
-                    GenerateEnemy(enemyPrefabs[3], 2, 23);
-                    GenerateEnemy(enemyPrefabs[3], 23, 16);
+                    GenerateEnemy(enemyPrefabs[3], 7, 12);
+                    GenerateEnemy(enemyPrefabs[3], 23, 9);
+                    GenerateEnemy(enemyPrefabs[1], 2, 23);
+                    GenerateEnemy(enemyPrefabs[1], 23, 16);
                     
                     break;
                 case 6:

@@ -645,7 +645,8 @@ public class GameManager : MonoBehaviour
                 inventory.AddItem(new Item { type = Item.Type.Iron, amount = 2 });
                 inventory.AddItem(new Item { type = Item.Type.Rubber, amount = 2 });
                 inventory.AddItem(new Item { type = Item.Type.Steel, amount = 1 });
-               
+
+                playerDataObject.GetComponent<PlayerData>().gameProgression.Remove(Progression.StoryEvent);
                 break;
 
         }

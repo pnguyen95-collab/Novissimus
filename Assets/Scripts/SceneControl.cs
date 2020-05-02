@@ -86,6 +86,8 @@ public class SceneControl : MonoBehaviour
                 //blahblah
                 playerData.GetComponent<PlayerData>().gameProgression.Add(Progression.FirstStoryEvent);
                 playerData.GetComponent<PlayerData>().gameProgression.Add(Progression.StoryEvent);
+
+                GameObject.Find("GameManager").transform.GetComponent<PlayerHubManager>().StoryEventInitiate();
             }
 
         }
