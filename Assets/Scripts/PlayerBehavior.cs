@@ -300,10 +300,7 @@ public class PlayerBehavior : MonoBehaviour
         gameObject.GetComponent<Shake>().ShakeObject();
         gmCode.CallPopupTextOutsideGm("Attacking!");
 
-        //remove scrap per attack
-        int num = inventory.CheckItem(new Item { type = Item.Type.Scrap, amount = 15 });
-        if(num>15)
-        inventory.RemoveItem(new Item { type = Item.Type.Scrap, amount = 15});
+        
 
         
         for (int i = 0; i < target.Count; i++)
@@ -317,7 +314,14 @@ public class PlayerBehavior : MonoBehaviour
             {
                 if (d == 1)
                 {
-                    damageValue = damageValue * 2;
+                   int temp = damageValue / 20;
+
+                    damageValue = damageValue +temp;
+                    //remove scrap per attack
+                    int num = inventory.CheckItem(new Item { type = Item.Type.Scrap, amount = 15 });
+                    if (num > 15)
+                        inventory.RemoveItem(new Item { type = Item.Type.Scrap, amount = 15 });
+
                 }
             }
 

@@ -4834,6 +4834,17 @@ MonoBehaviour:
           m_StringArgument: Player_Hub
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1140795397}
+        m_MethodName: LoseWhenExit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 917769326}
         m_MethodName: Click
         m_Mode: 1
@@ -4842,7 +4853,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Player_Hub
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &917769324
@@ -9674,7 +9685,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Yes
+  m_Text: Flee
 --- !u!222 &1584083753
 CanvasRenderer:
   m_ObjectHideFlags: 0
