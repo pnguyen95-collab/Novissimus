@@ -621,6 +621,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgmCombat: {fileID: 8300000, guid: f4ef68cfcf06d904681bb57119c6ffca, type: 3}
   bgmMenu: {fileID: 8300000, guid: 825795d50ac46e44082840e8913a002d, type: 3}
+  bgmCraftandCustom: {fileID: 8300000, guid: 553ed8913ad19094f86ead6f624267b7, type: 3}
   gunShots: {fileID: 8300000, guid: 8edae71659425f341a34b24027f344cf, type: 3}
   BladeSound: {fileID: 8300000, guid: 4f9e2a231085c4c4dbcd73633878a075, type: 3}
   sniper: {fileID: 8300000, guid: 1f54afee435d2814faef441b649e691f, type: 3}

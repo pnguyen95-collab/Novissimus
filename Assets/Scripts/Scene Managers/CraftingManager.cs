@@ -37,6 +37,16 @@ public class CraftingManager : MonoBehaviour
             print("Missing Inventory object");
         }
 
+        if (GameObject.FindGameObjectsWithTag("Audio") != null)
+        {
+            GameObject audio = GameObject.FindGameObjectWithTag("Audio");
+            audio.GetComponent<AudioController>().PlayBGMCraftandCustimizeScene(0.3f);
+        }
+        else
+        {
+            print("audio manager missing");
+        }
+
         RefreshTable();
     }
 

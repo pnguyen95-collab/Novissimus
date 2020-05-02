@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public GameObject blockClickingPanel;
     public GameObject winPanel;
     public GameObject losePanel;
+    public GameObject gameOverPanel;
     public GridBehavior gridBehaviorCode;
     public NodeLoot lootResources;
     public GameObject currentEnemy;
@@ -53,6 +54,7 @@ public class GameManager : MonoBehaviour
     public bool runRaycast; //boolean to trigger whether or not it's a resource grid
     public bool resourceGrid = false;
     private bool runEnemy;
+    private bool gameFinish;
 
     private void Awake()
     {
@@ -118,13 +120,14 @@ public class GameManager : MonoBehaviour
             
             setOnOffMenu(winPanel, false);
             setOnOffMenu(losePanel, false);
-            
+            setOnOffMenu(gameOverPanel, false);
+
         }
 
         turnStatus = 0;
         runRaycast = false;
         runEnemy = true;
-
+        gameFinish=false;
        
         
         //set how many turns countdown to countdown until return to base
@@ -139,9 +142,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (resourceGrid == false)
+        
+        if (resourceGrid == false&&gameFinish==false)
         {
-            checkWinLose();enemyLeftText.text = numOfEnemy+ " Enemy left";
+            checkWinLose();
+            enemyLeftText.text = numOfEnemy+ " Enemy left";
         }
         
 
@@ -521,14 +526,27 @@ public class GameManager : MonoBehaviour
     {
         if (enemiesList.Count == 0)
         {
+            gameFinish = true;
             setOnOffMenu(winPanel, true);
-            
-            
-            
+            WinReward();
         }
         if (playersList.Count == 0)
         {
-            setOnOffMenu(losePanel, true);
+            bool gameOVer = LoseReward();
+            if (gameOVer == false)
+            {
+
+                gameFinish = true;
+                setOnOffMenu(losePanel, true);
+            }
+            else
+            {
+
+                gameFinish = true;
+                Destroy(playerDataObject);
+                setOnOffMenu(gameOverPanel, true);
+            }
+            
         }
     }
     public void ReCountEnemies()
@@ -578,5 +596,109 @@ public class GameManager : MonoBehaviour
             }
 
         }
+    }
+
+    public void WinReward()
+    {
+        int temp = playerDataObject.GetComponent<PlayerData>().levelNum;
+
+        switch (temp)
+        {
+            case 1:
+
+                
+                inventory.AddItem(new Item { type = Item.Type.Scrap, amount = 96 });
+                inventory.AddItem(new Item { type = Item.Type.Fuel, amount = 18 });
+                inventory.AddItem(new Item { type = Item.Type.Iron, amount = 3 });
+
+               
+                break;
+            case 2:
+
+                inventory.AddItem(new Item { type = Item.Type.Scrap, amount = 112 });
+                inventory.AddItem(new Item { type = Item.Type.Fuel, amount = 20 });
+                inventory.AddItem(new Item { type = Item.Type.Iron, amount = 3 });
+                inventory.AddItem(new Item { type = Item.Type.Rubber, amount = 1 });
+                
+                break;
+            case 3:
+                inventory.AddItem(new Item { type = Item.Type.Scrap, amount = 32+56 });
+                inventory.AddItem(new Item { type = Item.Type.Fuel, amount = 6+9 });
+                inventory.AddItem(new Item { type = Item.Type.Iron, amount = 1 });
+                inventory.AddItem(new Item { type = Item.Type.Rubber, amount = 1 });
+                inventory.AddItem(new Item { type = Item.Type.Plastic, amount = 1 });
+                
+                break;
+            case 4:
+
+                inventory.AddItem(new Item { type = Item.Type.Scrap, amount = 56 + 48 });
+                inventory.AddItem(new Item { type = Item.Type.Fuel, amount = 9 + 8 });
+                inventory.AddItem(new Item { type = Item.Type.Iron, amount = 1 });
+                inventory.AddItem(new Item { type = Item.Type.Rubber, amount =  2});
+                inventory.AddItem(new Item { type = Item.Type.Plastic, amount = 1 });
+                
+                break;
+            case 5:
+
+                inventory.AddItem(new Item { type = Item.Type.Scrap, amount = 82+82+48+48});
+                inventory.AddItem(new Item { type = Item.Type.Fuel, amount =11 + 11+8+8 });
+                inventory.AddItem(new Item { type = Item.Type.Iron, amount = 2 });
+                inventory.AddItem(new Item { type = Item.Type.Rubber, amount = 2 });
+                inventory.AddItem(new Item { type = Item.Type.Steel, amount = 1 });
+               
+                break;
+
+        }
+
+    }
+    public bool LoseReward()
+    {
+        bool gameOver=false;
+
+        int temp = playerDataObject.GetComponent<PlayerData>().levelNum;
+        
+        int num = inventory.CheckItem(new Item { type = Item.Type.Scrap, amount = 1 });
+        if (num > 0)
+        {
+            num = Mathf.RoundToInt(num/2);
+            inventory.RemoveItem(new Item { type = Item.Type.Fuel, amount = num });
+
+            int num2 = inventory.CheckItem(new Item { type = Item.Type.Scrap, amount = 1 });
+
+
+            if (num2 < 50 && num2 > 0)
+            {
+                inventory.RemoveItem(new Item { type = Item.Type.Fuel, amount = num2 });
+                return gameOver = true;
+                //game over back to start scene (reset playerdata)
+            }
+            else if (num2==0)
+            {
+                return gameOver = true;
+                //gameover back to start scene (reset playerdata)
+            }
+            else
+            {
+                inventory.RemoveItem(new Item { type = Item.Type.Fuel, amount = 50 });
+            }
+        }
+        //lose fuel half +50 if they have
+        //lose all
+        return gameOver;
+    }
+
+
+    public void LoseWhenExit()
+    {
+        int num = inventory.CheckItem(new Item { type = Item.Type.Scrap, amount = 1 });
+
+        int toReduce = num / 10;
+
+        if (toReduce > 0)
+        {
+            inventory.RemoveItem(new Item { type = Item.Type.Scrap, amount = toReduce });
+        }
+
+        
     }
 }

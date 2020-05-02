@@ -13,6 +13,8 @@ public class PlayerBehavior : MonoBehaviour
     public GameObject gm;
     public GameObject parent;
     private GameObject audio;
+    public GameObject playerDataObject;
+    public Inventory inventory;
 
     public Vector3[] positions; //Positions store the Points of blocks that player will walk through
 
@@ -27,8 +29,18 @@ public class PlayerBehavior : MonoBehaviour
     
     void Start()
     {
+        if (GameObject.Find("PlayerInventory") != null)
+        {
+            playerDataObject = GameObject.Find("PlayerInventory");
 
-        
+            inventory = playerDataObject.GetComponent<PlayerData>().inventory;
+        }
+        else
+        {
+            print("Missing Inventory object");
+        }
+
+
         gm = GameObject.FindGameObjectWithTag("GameController");
         gridBehaviorCode = gm.GetComponent<GridBehavior>();
         gmCode = gm.GetComponent<GameManager>();
@@ -148,10 +160,7 @@ public class PlayerBehavior : MonoBehaviour
         }
         else if (Input.GetMouseButtonDown(1)) //act as click exit
         {
-            moveOrAttack = 0;
-            gmCode.setOnOffMenu(gmCode.menuPanel,false);
-            gridBehaviorCode.resetVisit();
-            gmCode.setCurrentPlayer(null); //FIX
+            
             
         }
     }
@@ -208,7 +217,6 @@ public class PlayerBehavior : MonoBehaviour
         currentX = parent.GetComponent<GridStat>().x;
 
         currentY = parent.GetComponent<GridStat>().y;
-
         
         bool walkable = gridBehaviorCode.RunThePath(currentX, currentY, endX, endY, playerStats.moveSpeed.GetValue());
 
@@ -292,9 +300,9 @@ public class PlayerBehavior : MonoBehaviour
         gameObject.GetComponent<Shake>().ShakeObject();
         gmCode.CallPopupTextOutsideGm("Attacking!");
 
+        
 
-
-
+        
         for (int i = 0; i < target.Count; i++)
         {
             int damageValue, visitValue;
@@ -306,7 +314,14 @@ public class PlayerBehavior : MonoBehaviour
             {
                 if (d == 1)
                 {
-                    damageValue++;
+                   int temp = damageValue / 20;
+
+                    damageValue = damageValue +temp;
+                    //remove scrap per attack
+                    int num = inventory.CheckItem(new Item { type = Item.Type.Scrap, amount = 15 });
+                    if (num > 15)
+                        inventory.RemoveItem(new Item { type = Item.Type.Scrap, amount = 15 });
+
                 }
             }
 
@@ -411,9 +426,11 @@ public class PlayerBehavior : MonoBehaviour
             {
                 if (playerStats.currentHealth < playerStats.maxHealth.GetValue())
                 {
-                    playerStats.currentHealth++;
+                    int toHeal = (playerStats.maxHealth.GetValue()/10);
+                    
+                    playerStats.currentHealth = playerStats.currentHealth+toHeal;
                     gmCode.CallPopupTextOutsideGm(this.name+" is self-healing");
-                    gmCode.AddMessage(this.name+"'s health + 1", Color.white);
+                    gmCode.AddMessage(this.name+"'s health + "+toHeal, Color.white);
 
                 }
             }

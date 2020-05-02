@@ -7,15 +7,18 @@ public class Shake : MonoBehaviour
     private bool shaking = false;
     public float shakeAmt;
     private Vector3 originalPos;
+
+    private Vector3 originalStartPos;
     //if you move   'Vector3 OriginalPos  = transform.position' to a global variable.
 
-//Set OriginalPos in the start function (OriginalPos = transform.position;)
+    //Set OriginalPos in the start function (OriginalPos = transform.position;)
 
-//Then change    Vector3 NewPosition = Random.insideUnitSphere * (Time.deltaTime * ShakeAmount);
+    //Then change    Vector3 NewPosition = Random.insideUnitSphere * (Time.deltaTime * ShakeAmount);
     //to
-                             // Vector3 NewPosition = OriginalPos + Random.insideUnitSphere* (Time.deltaTime* ShakeAmount);
+    // Vector3 NewPosition = OriginalPos + Random.insideUnitSphere* (Time.deltaTime* ShakeAmount);
     void Update()
     {
+
         originalPos = transform.position;
 
         if (shaking)
@@ -31,6 +34,7 @@ public class Shake : MonoBehaviour
 
     public void ShakeObject()
     {
+        originalStartPos = transform.position;
 
         StartCoroutine(ShakeNow());
     }
@@ -45,6 +49,7 @@ public class Shake : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
         shaking = false;
-        transform.position = originalPos;
+        transform.position = originalStartPos;
+
     }
 }

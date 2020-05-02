@@ -7,6 +7,7 @@ public class AudioController : MonoBehaviour
 
     [SerializeField] private AudioClip bgmCombat;
     [SerializeField] private AudioClip bgmMenu;
+    [SerializeField] private AudioClip bgmCraftandCustom;
 
     [SerializeField] private AudioClip gunShots;
     [SerializeField] private AudioClip BladeSound;
@@ -23,6 +24,12 @@ public class AudioController : MonoBehaviour
     public void PlayBGMStartScene(float volume)
     {
         AudioManager.Instance.PlayMusic(bgmMenu);
+        AudioManager.Instance.SetMusicVolume(volume);
+    }
+
+    public void PlayBGMCraftandCustimizeScene(float volume)
+    {
+        AudioManager.Instance.PlayMusic(bgmCraftandCustom);
         AudioManager.Instance.SetMusicVolume(volume);
     }
 
