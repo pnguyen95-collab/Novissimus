@@ -690,13 +690,13 @@ public class GameManager : MonoBehaviour
 
     public void LoseWhenExit()
     {
-        int num = inventory.CheckItem(new Item { type = Item.Type.Scrap, amount = 1 });
+        int num = inventory.CheckItem(new Item { type = Item.Type.Fuel, amount = 1 });
 
         int toReduce = num / 10;
 
         if (toReduce > 0)
         {
-            inventory.RemoveItem(new Item { type = Item.Type.Scrap, amount = toReduce });
+            inventory.RemoveItem(new Item { type = Item.Type.Fuel, amount = toReduce });
         }
 
         

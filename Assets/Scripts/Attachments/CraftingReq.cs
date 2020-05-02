@@ -34,18 +34,22 @@ public class CraftingReq : MonoBehaviour
     private void Start()
     {
         //Pivot Hammer requirements
+        pivotHammerReq.Add(new Item { type = Item.Type.Scrap, amount = 200 });
         pivotHammerReq.Add(new Item { type = Item.Type.Iron, amount = 5 });
         pivotHammerReq.Add(new Item { type = Item.Type.Steel, amount = 2 });
-        pivotHammerReq.Add(new Item { type = Item.Type.Rubber, amount = 2 });
+        pivotHammerReq.Add(new Item { type = Item.Type.Rubber, amount = 4 });
+        pivotHammerReq.Add(new Item { type = Item.Type.Wires, amount = 2 });
 
         //Eater Blades requirements
+        eaterBladesReq.Add(new Item { type = Item.Type.Scrap, amount = 250 });
         eaterBladesReq.Add(new Item { type = Item.Type.Iron, amount = 6 });
-        eaterBladesReq.Add(new Item { type = Item.Type.Steel, amount = 3 });
+        eaterBladesReq.Add(new Item { type = Item.Type.Steel, amount = 5 });
         eaterBladesReq.Add(new Item { type = Item.Type.Brass, amount = 1 });
 
         //Sniper requirements
-        sniperReq.Add(new Item { type = Item.Type.Plastic, amount = 6 });
-        sniperReq.Add(new Item { type = Item.Type.Steel, amount = 1 });
+        sniperReq.Add(new Item { type = Item.Type.Scrap, amount = 300 });
+        sniperReq.Add(new Item { type = Item.Type.Plastic, amount = 10 });
+        sniperReq.Add(new Item { type = Item.Type.Steel, amount = 2 });
         sniperReq.Add(new Item { type = Item.Type.Nylon, amount = 1 });
 
         //Spike Bomb requirements
@@ -54,46 +58,58 @@ public class CraftingReq : MonoBehaviour
         spikeBombReq.Add(new Item { type = Item.Type.ElectronicChip, amount = 1 });
 
         //Metal Coating requirements
+        metalCoatingReq.Add(new Item { type = Item.Type.Scrap, amount = 100 });
         metalCoatingReq.Add(new Item { type = Item.Type.Iron, amount = 7 });
-        metalCoatingReq.Add(new Item { type = Item.Type.Wires, amount = 7 });
+        metalCoatingReq.Add(new Item { type = Item.Type.Wires, amount = 10 });
 
         //Spikes Coating requirements
-        spikesCoatingReq.Add(new Item { type = Item.Type.Steel, amount = 4 });
+        spikesCoatingReq.Add(new Item { type = Item.Type.Scrap, amount = 200 });
+        spikesCoatingReq.Add(new Item { type = Item.Type.Steel, amount = 5 });
         spikesCoatingReq.Add(new Item { type = Item.Type.Wires, amount = 15 });
 
         //Glass Coating requirements
+        glassCoatingReq.Add(new Item { type = Item.Type.Scrap, amount = 300 });
         glassCoatingReq.Add(new Item { type = Item.Type.Plastic, amount = 7 });
         glassCoatingReq.Add(new Item { type = Item.Type.Nylon, amount = 1 });
-        glassCoatingReq.Add(new Item { type = Item.Type.Wires, amount = 15 });
+        glassCoatingReq.Add(new Item { type = Item.Type.Wires, amount = 20 });
 
         //Rubber Tyres requirements
-        rubberTyresReq.Add(new Item { type = Item.Type.Rubber, amount = 5 });
-        rubberTyresReq.Add(new Item { type = Item.Type.Iron, amount = 3 });
+        rubberTyresReq.Add(new Item { type = Item.Type.Scrap, amount = 100 });
+        rubberTyresReq.Add(new Item { type = Item.Type.Rubber, amount = 6 });
+        rubberTyresReq.Add(new Item { type = Item.Type.Iron, amount = 4 });
 
         //Off Road Tyres requirements
-        offRoadTyresReq.Add(new Item { type = Item.Type.Rubber, amount = 7 });
-        offRoadTyresReq.Add(new Item { type = Item.Type.Steel, amount = 2 });
+        offRoadTyresReq.Add(new Item { type = Item.Type.Scrap, amount = 200 });
+        offRoadTyresReq.Add(new Item { type = Item.Type.Rubber, amount = 8 });
+        offRoadTyresReq.Add(new Item { type = Item.Type.Steel, amount = 3 });
 
         //Crystal Tyres requirements
-        crystalTyresReq.Add(new Item { type = Item.Type.Rubber, amount = 12 });
-        crystalTyresReq.Add(new Item { type = Item.Type.Brass, amount = 1 });
+        crystalTyresReq.Add(new Item { type = Item.Type.Scrap, amount = 300 });
+        crystalTyresReq.Add(new Item { type = Item.Type.Rubber, amount = 13 });
+        crystalTyresReq.Add(new Item { type = Item.Type.Brass, amount = 2 });
 
         //Bladed Weaponry requirements
+        bladedWeaponryReq.Add(new Item { type = Item.Type.Scrap, amount = 350 });
         bladedWeaponryReq.Add(new Item { type = Item.Type.Iron, amount = 5 });
         bladedWeaponryReq.Add(new Item { type = Item.Type.Wires, amount = 5 });
-        bladedWeaponryReq.Add(new Item { type = Item.Type.Steel, amount = 2 });
+        bladedWeaponryReq.Add(new Item { type = Item.Type.Steel, amount = 4 });
         bladedWeaponryReq.Add(new Item { type = Item.Type.Brass, amount = 1 });
+        bladedWeaponryReq.Add(new Item { type = Item.Type.CircuitBoard, amount = 1 });
 
         //Maggot Farm requirements
+        maggotFarmReq.Add(new Item { type = Item.Type.Scrap, amount = 350 });
         maggotFarmReq.Add(new Item { type = Item.Type.Rubber, amount = 5 });
-        maggotFarmReq.Add(new Item { type = Item.Type.Plastic, amount = 5 });
+        maggotFarmReq.Add(new Item { type = Item.Type.Plastic, amount = 7 });
         maggotFarmReq.Add(new Item { type = Item.Type.Wires, amount = 5 });
+        maggotFarmReq.Add(new Item { type = Item.Type.ElectronicChip, amount = 1 });
         maggotFarmReq.Add(new Item { type = Item.Type.CircuitBoard, amount = 1 });
 
         //Lightweight requirements
-        lightweightReq.Add(new Item { type = Item.Type.Plastic, amount = 8 });
+        lightweightReq.Add(new Item { type = Item.Type.Scrap, amount = 350 });
+        lightweightReq.Add(new Item { type = Item.Type.Plastic, amount = 13 });
         lightweightReq.Add(new Item { type = Item.Type.Nylon, amount = 1 });
         lightweightReq.Add(new Item { type = Item.Type.CircuitBoard, amount = 1 });
+        lightweightReq.Add(new Item { type = Item.Type.ElectronicChip, amount = 1 });
 
         //Herb Master requirements
         herbMasterReq.Add(new Item { type = Item.Type.Rubber, amount = 5 });

@@ -8883,6 +8883,7 @@ MonoBehaviour:
   blockClickingPanel: {fileID: 677565066}
   winPanel: {fileID: 0}
   losePanel: {fileID: 0}
+  gameOverPanel: {fileID: 0}
   gridBehaviorCode: {fileID: 1976581626}
   lootResources: {fileID: 143323878}
   currentEnemy: {fileID: 0}
@@ -8930,6 +8931,10 @@ MonoBehaviour:
     type: 3}
   playerVehicle5: {fileID: 3973109635701873927, guid: 9ffe67d2813f7384894c5f99097a2d9a,
     type: 3}
+  vehicleMachineGun: {fileID: 21300000, guid: e86ec08c29045374bad153bfb7f3df4a, type: 3}
+  vehiclePivotHammer: {fileID: 21300000, guid: 7c54ad129af180d4bbab4a3f0b2466b4, type: 3}
+  vehicleBlade: {fileID: 21300000, guid: 82d91f6ca02e3764784d1ef1a02455bc, type: 3}
+  vehicleSniper: {fileID: 21300000, guid: 12bf56b480f2cb440aea37aef27a8209, type: 3}
   leftBottomLocation: {x: 0, y: 0, z: 0}
   path: []
   AdjacencyList: []

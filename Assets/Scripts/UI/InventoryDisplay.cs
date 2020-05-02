@@ -17,6 +17,7 @@ public class InventoryDisplay : MonoBehaviour
     public Text wireAmount;
     public Text circuitAmount;
     public Text chipAmount;
+    public Text scrapAmount;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +51,7 @@ public class InventoryDisplay : MonoBehaviour
             int tempWires = inventory.CheckItem(new Item { type = Item.Type.Wires });
             int tempCircuit = inventory.CheckItem(new Item { type = Item.Type.CircuitBoard });
             int tempChip = inventory.CheckItem(new Item { type = Item.Type.ElectronicChip });
+            int tempScrap = inventory.CheckItem(new Item { type = Item.Type.Scrap });
 
             ironAmount.text = "Iron - " + tempIron;
             steelAmount.text = "Steel - " + tempSteel;
@@ -60,6 +62,7 @@ public class InventoryDisplay : MonoBehaviour
             wireAmount.text = "Wires - " + tempWires;
             circuitAmount.text = "Circuit Board - " + tempCircuit;
             chipAmount.text = "Electronic Chip - " + tempChip;
+            scrapAmount.text = "Scrap - " + tempScrap;
         }
     }
 }
