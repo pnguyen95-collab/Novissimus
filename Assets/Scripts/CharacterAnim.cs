@@ -6,12 +6,16 @@ public class CharacterAnim : MonoBehaviour
 {
     private Animator anim;
     public CharacterStats cs;
+    public PlayerBehavior pb;
     public bool checkGotAttack;
+    public bool checkHealing;
     // Start is called before the first frame update
     void Start()
     {
         checkGotAttack = false;
+        checkHealing = false;
         cs = this.GetComponent<CharacterStats>();
+        pb = this.GetComponent<PlayerBehavior>();
         anim = this.GetComponent<Animator>();
     }
 
@@ -19,6 +23,7 @@ public class CharacterAnim : MonoBehaviour
     void Update()
     {
         this.checkGotAttack = cs.checkGotAttack;
+        this.checkHealing = pb.checkHealing;
 
         if (checkGotAttack == true)
         {
@@ -27,6 +32,15 @@ public class CharacterAnim : MonoBehaviour
         else
         {
             anim.SetBool("GotAttack", false);
+        }
+
+        if (checkHealing == true)
+        {
+            anim.SetBool("Healing", true);
+        }
+        else
+        {
+            anim.SetBool("Healing", false);
         }
     }
 }
