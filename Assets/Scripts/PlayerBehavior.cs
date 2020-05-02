@@ -13,6 +13,8 @@ public class PlayerBehavior : MonoBehaviour
     public GameObject gm;
     public GameObject parent;
     private GameObject audio;
+    public GameObject playerDataObject;
+    public Inventory inventory;
 
     public Vector3[] positions; //Positions store the Points of blocks that player will walk through
 
@@ -27,8 +29,18 @@ public class PlayerBehavior : MonoBehaviour
     
     void Start()
     {
+        if (GameObject.Find("PlayerInventory") != null)
+        {
+            playerDataObject = GameObject.Find("PlayerInventory");
 
-        
+            inventory = playerDataObject.GetComponent<PlayerData>().inventory;
+        }
+        else
+        {
+            print("Missing Inventory object");
+        }
+
+
         gm = GameObject.FindGameObjectWithTag("GameController");
         gridBehaviorCode = gm.GetComponent<GridBehavior>();
         gmCode = gm.GetComponent<GameManager>();
@@ -292,9 +304,12 @@ public class PlayerBehavior : MonoBehaviour
         gameObject.GetComponent<Shake>().ShakeObject();
         gmCode.CallPopupTextOutsideGm("Attacking!");
 
+        //remove scrap per attack
+        int num = inventory.CheckItem(new Item { type = Item.Type.Scrap, amount = 15 });
+        if(num>15)
+        inventory.RemoveItem(new Item { type = Item.Type.Scrap, amount = 15});
 
-
-
+        
         for (int i = 0; i < target.Count; i++)
         {
             int damageValue, visitValue;

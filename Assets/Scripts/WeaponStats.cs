@@ -394,7 +394,7 @@ public class WeaponStats : MonoBehaviour
                 if (step == 1)
                     return 3;
                 else
-                    return 5;
+                    return 6;
             case 3:
                 return 5;
             case 4:
