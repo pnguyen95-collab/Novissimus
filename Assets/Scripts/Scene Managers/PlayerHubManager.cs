@@ -10,6 +10,7 @@ public class PlayerHubManager : MonoBehaviour
     private PlayerData playerData;
     public GameObject plainsUnlocked;
     public GameObject storyEventButton;
+    private GameObject audio;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,16 @@ public class PlayerHubManager : MonoBehaviour
         else
         {
             print("Missing player data");
+        }
+
+        if (GameObject.FindGameObjectsWithTag("Audio") != null)
+        {
+            audio = GameObject.FindGameObjectWithTag("Audio");
+            audio.GetComponent<AudioController>().PlayBGMStartScene(0.4f);
+        }
+        else
+        {
+            print("audio manager missing");
         }
     }
 

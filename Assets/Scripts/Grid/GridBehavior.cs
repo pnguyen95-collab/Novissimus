@@ -227,8 +227,8 @@ public class GridBehavior : MonoBehaviour
                 case 4:
                     //level 4 of desert
                     //1 hunter 1 roadpounder
-                    GenerateEnemy(enemyPrefabs[1], 16, 12);
-                    GenerateEnemy(enemyPrefabs[2], 10, 15);
+                    GenerateEnemy(enemyPrefabs[2], 16, 12);
+                    GenerateEnemy(enemyPrefabs[1], 10, 15);
                     
                     break;
                 case 5:

@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
     public bool runRaycast; //boolean to trigger whether or not it's a resource grid
     public bool resourceGrid = false;
     private bool runEnemy;
+    private bool gameFinish;
 
     private void Awake()
     {
@@ -126,7 +127,7 @@ public class GameManager : MonoBehaviour
         turnStatus = 0;
         runRaycast = false;
         runEnemy = true;
-
+        gameFinish=false;
        
         
         //set how many turns countdown to countdown until return to base
@@ -141,9 +142,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (resourceGrid == false)
+        
+        if (resourceGrid == false&&gameFinish==false)
         {
-            checkWinLose();enemyLeftText.text = numOfEnemy+ " Enemy left";
+            checkWinLose();
+            enemyLeftText.text = numOfEnemy+ " Enemy left";
         }
         
 
@@ -527,6 +530,7 @@ public class GameManager : MonoBehaviour
     {
         if (enemiesList.Count == 0)
         {
+            gameFinish = true;
             setOnOffMenu(winPanel, true);
             WinReward();
         }
@@ -535,10 +539,14 @@ public class GameManager : MonoBehaviour
             bool gameOVer = LoseReward();
             if (gameOVer == false)
             {
+
+                gameFinish = true;
                 setOnOffMenu(losePanel, true);
             }
             else
             {
+
+                gameFinish = true;
                 Destroy(playerDataObject);
                 setOnOffMenu(gameOverPanel, true);
             }
